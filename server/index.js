@@ -79,7 +79,7 @@ passport.deserializeUser(((primaryKeyId, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
     // this redirects the user back to the front end where they started the login process
-    successRedirect:'http://localhost:4000/#/private'
+    successRedirect:'http://localhost:4000/#/search'
     // user the hash symbol above because we are using Hashrouter
 }))
 
