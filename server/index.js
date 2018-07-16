@@ -97,8 +97,10 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:4000');
 });
 
-app.listen(SERVER_PORT, () => {
-    console.log(`Listening on port:`, SERVER_PORT);
+
+const port = 4000;
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 })
 
 
