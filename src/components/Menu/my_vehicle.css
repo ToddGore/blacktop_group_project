@@ -1,0 +1,5 @@
+.myvehicle{
+    height: 100vh;
+    padding-top: 10px;
+    background-color: var(--appbackgroundcolor);
+}
