@@ -44,14 +44,16 @@ table {
 	border-spacing: 0;
 }
 
+:root{
+	--appbackgroundcolor: rgb(72, 211, 254);
+	--appfontcolor: black;
+}
 
 /* MAIN APP CSS */
 
 .App {
   text-align: center;
-}
-a{
-  padding: 3px 10px 3px 10px;
+  color: var(--appfontcolor)
 }
 
 
@@ -60,13 +62,46 @@ a{
 .Nav{
   height: 55px;
   width: 100%;
-  background-color: rgb(72, 211, 254);
+  background-color: var(--appbackgroundcolor);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  z-index: 10;
 }
 .Size{
-  height: 50px;
-  width: 50px;
+	height: 50px;
+	width: 50px;
+	padding: 3px 10px 3px 10px;
+}
+
+/* POPUP CSS */
+
+.popup{
+  padding-top: 50px;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  position: fixed;
+  background-color: var(--appbackgroundcolor);
+}
+.popupbutton{
+  height: 40px;
+  width: 215px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: black;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  letter-spacing: 2px;
+  background-color: black;
+  color: white;
+}
+.hiddenPU{
+	top: -1500px;
 }
