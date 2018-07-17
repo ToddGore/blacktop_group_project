@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const ctrl = require('./ctrl');
+const ctrl = require('./controllers');
 const massive = require('massive');
 const session = require('express-session');
 const passport = ('passport');
@@ -55,7 +55,7 @@ passport.use( new Auth0Strategy({
         if(user[0]){
             done(null, user[0].id)
         } else {
-            db.create_user([displayName, picture, id]).then((createdUser) => {
+            db.create_user([displayName, id, picture]).then((createdUser) => {
                 done(null, createdUser[0].id)
             })
         }
