@@ -1,30 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import './Nav.css'
-
-import Search from './../Images/search_icon.png'
-import Message from './../Images/messaging_icon.svg'
-
-export default function Nav() {
-    return (
-        <div>
-            <div className='Nav'>
-                <button className=''>
-                    <img src={Search} alt='' />
-                </button>
-                <button className=''>
-                    <img src={Message} alt='' />
-                </button>
-                <button className=''>
-                    {/* <img src = {} alt = ''/> */}
-                </button>
-                <button className=''>
-                    {/* <img src = {} alt = ''/> */}
-                </button>
-            </div>
-        </div>
-    )
-=======
 import {Link} from 'react-router-dom'
 
 import Search_icon from './../Images/Search_icon.svg'
@@ -43,5 +17,4 @@ export default function Nav (){
             </div> 
         </div>
      )
->>>>>>> master
 }
