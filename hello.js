@@ -1,1 +1,0 @@
-const hello = 'hello this is Eriks commit'
