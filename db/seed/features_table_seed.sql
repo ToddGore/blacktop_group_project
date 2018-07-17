@@ -5,5 +5,6 @@ CREATE TABLE features (
     charging INTEGER,
     camera INTEGER,
     fenced INTEGER,
-    guarded INTEGER
+    guarded INTEGER,
+    listing_id INTEGER
 )
