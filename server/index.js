@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const ctrl = require('./ctrl');
+const ctrl = require('./controllers');
 const massive = require('massive');
 const session = require('express-session');
 const passport = ('passport');
