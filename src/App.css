@@ -44,11 +44,42 @@ table {
 	border-spacing: 0;
 }
 
+:root{
+
+  /* MAIN APP */
+	--appbackgroundcolor: rgb(237, 237, 237);
+  --appfontcolor: black;
+
+  /* BUTTONS */
+  --buttonbackgroundcolor: red;
+  
+  /* NAV BAR */
+  --navbackgroundcolor: red;
+
+  /* POPUP */
+  --popupbackgroundcolor: blue;
+}
 
 /* MAIN APP CSS */
 
 .App {
   text-align: center;
+  color: var(--appfontcolor);
+}
+.input{
+  height: 34px;
+  width: 80%;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  border-top: none;
+  border-bottom: 1px solid #DDD;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
+.button{
+  background: var(--buttonbackgroundcolor);
+  height:40px;
+  font-size:1.6em;
+  padding:0 2em;
 }
 
 
@@ -57,14 +88,46 @@ table {
 .Nav{
   height: 55px;
   width: 100%;
-  background-color: rgb(72, 211, 254);
+  background-color: var(--navbackgroundcolor);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  z-index: 10;
 }
 .Size{
-  height: 50px;
+	height: 50px;
 	width: 50px;
 	padding: 3px 10px 3px 10px;
+}
+
+/* POPUP CSS */
+
+.popup{
+  padding-top: 50px;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  position: fixed;
+  background-color: var(--popupbackgroundcolor);
+}
+.popupbutton{
+  height: 40px;
+  width: 215px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: black;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  letter-spacing: 2px;
+  background-color: black;
+  color: white;
+}
+.hiddenPU{
+	top: -1500px;
 }
