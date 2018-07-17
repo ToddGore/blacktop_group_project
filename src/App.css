@@ -50,9 +50,6 @@ table {
 .App {
   text-align: center;
 }
-a{
-  padding: 3px 10px 3px 10px;
-}
 
 
 /* NAV BAR CSS */
@@ -68,5 +65,6 @@ a{
 }
 .Size{
   height: 50px;
-  width: 50px;
+	width: 50px;
+	padding: 3px 10px 3px 10px;
 }
