@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const ctrl = require('./ctrl');
+const ctrl = require('./controllers');
 const massive = require('massive');
 const session = require('express-session');
 const passport = ('passport');
@@ -96,6 +96,33 @@ app.get('/auth/logout', (req, res) => {
     // this is a built in method in passport that kills the session and resets the user property
     res.redirect('http://localhost:4000');
 });
+
+//Listing
+app.get('/api/listing', ctrl.getAllListings)
+app.get('/api/listing/:id', ctrl.getUserListings)
+app.get('/api/preview/:id', ctrl.getListingPreview)
+app.post('/api/listing', ctrl.createListing)
+app.put('/api/listing', ctrl.updateListing)
+app.delete('/api/listing', ctrl.deleteListing)
+
+//Features
+app.post('/api/feature', ctrl.createFeatures)
+app.put('/api/feature', ctrl.updateFeatures)
+
+//Pictures
+app.post('/api/picture', ctrl.createPictures)
+app.put('/api/picture', ctrl.updatePictures)
+
+//Vehicles
+app.get('/api/vehicle', ctrl.getVehicles)
+app.post('/api/vehicles', ctrl.createVehicle)
+app.put('/api/vehicle', ctrl.updateVehicle)
+app.delete('/api/vehicle', ctrl.deleteVehicle)
+
+//Reservations
+app.get('/api/reservation', ctrl.getReservations)
+app.post('/api/reservation', ctrl.createReservation)
+app.delete('/api/reservation', ctrl.deleteReservation)
 
 
 const port = 4000;
