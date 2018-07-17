@@ -9,6 +9,7 @@ export default function Popup (props){
             <div >
                 <div className = {props.handlePopup ? 'popup animated fadeInUpBig' : 'popup hiddenPU'}>
                     <Link to = '/wizard0' className = 'popupbutton'><div >List a Space</div></Link>
+                    <Link to = '/mylistings' className = 'popupbutton'><div >My Listings</div></Link>
                     <Link to = '/myvehicle' className = 'popupbutton'><div >My Vehicles</div></Link>
                     <Link to = '/myprofile' className = 'popupbutton'><div >Profile Settings</div></Link>
                 </div> 

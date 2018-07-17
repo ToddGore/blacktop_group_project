@@ -5,6 +5,13 @@ import './Wizard1.css'
 import Nav from '../../Nav/Nav'
 
 export default class Wizard1 extends Component {
+    constructor(){
+        super()
+
+        this.state = {
+            
+        }
+    }
     render() {
         return (
             <div>

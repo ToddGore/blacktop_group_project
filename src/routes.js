@@ -7,6 +7,7 @@ import Messages from "./components/Messages/Messages";
 import Reservations from "./components/Reservations/Reservations";
 import MyVehicle from "./components/Menu/my_vehicle";
 import MyProfile from "./components/Menu/my_profile";
+import Mylistings from './components/Menu/my_listings'
 
 import Wizard0 from './components/Menu/List_space_Wizards/Wizard0'
 import Wizard1 from './components/Menu/List_space_Wizards/Wizard1'
@@ -27,6 +28,8 @@ export default (
         <Route path='/reservations' component={Reservations} />
         <Route path='/myvehicle' component={MyVehicle} />
         <Route path='/myprofile' component={MyProfile} />
+        <Route path='/mylistings' component={Mylistings} />
+
 
         <Route path='/wizard0' component={Wizard0}/>
         <Route path='/wizard1' component={Wizard1}/>
