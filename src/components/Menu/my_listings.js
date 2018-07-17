@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import Nav from './../Nav/Nav'
-import './Reservations.css'
+import './my_listings.css'
 
-export default class Reservations extends Component {
+export default class Mylistings extends Component {
     render() {
         return (
             <div>
                 <Nav/>
-                <div className = 'reservations'>Reservations</div> 
+                <div className = 'mylistings'>mylistings</div> 
             </div>
         )
     }

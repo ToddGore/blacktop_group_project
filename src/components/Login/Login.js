@@ -1,3 +1,13 @@
-// Will have Auth0 then returns to Main.js
+import React, { Component } from 'react';
+require('dotenv').config();
 
+
+export default function Login() {
+    return (
+        <a href={process.env.REACT_APP_LOGIN}>
+            <button>Login</button>
+        </a>
+    )
+
+}
 
