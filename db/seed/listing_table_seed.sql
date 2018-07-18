@@ -8,5 +8,5 @@ CREATE TABLE listings (
     about TEXT,
     instructions TEXT,
     price INTEGER,
-    user_id INTEGER
+    host_id INTEGER
 )
