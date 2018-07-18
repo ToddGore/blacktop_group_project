@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Map from './../Map/Map';
 import Nav from './../Nav/Nav'
 import './Search.css'
 
@@ -9,6 +9,7 @@ export default class Search extends Component {
             <div>
                 <Nav/>
                 <div className = 'search'>Search</div> 
+                <Map/>
             </div>
         )
     }
