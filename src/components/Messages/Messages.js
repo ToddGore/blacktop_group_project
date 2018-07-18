@@ -4,11 +4,30 @@ import Nav from './../Nav/Nav'
 import './Messages.css'
 
 export default class Messages extends Component {
+    constructor(){
+        super()
+
+        this.state = {
+            toggle: true,
+            messages: ['fakeone', 'another fake message to Todd', 'Make me more fake messages for erik hehe']
+        }
+    }
+
+    
     render() {
+        let mappedmessages1 = this.state.messages.map((e, i) => (
+            <p key = {i}>{e}</p>
+            
+        ))
+
         return (
             <div>
                 <Nav/>
-                <div className = 'messages'>Messages</div> 
+                <div className = 'messages'>
+                <button className='button' onClick = {() => {this.setState({toggle: true})}}>Lots Im asking about</button>
+                <button className='button' onClick = {() => {this.setState({toggle: false})}}>Lots Im hosting</button>
+                {this.state.toggle ? <div>{mappedmessages1}</div> : <div><p>Not a list</p></div>}
+                </div> 
             </div>
         )
     }
