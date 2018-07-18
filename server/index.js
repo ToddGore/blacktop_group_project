@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const ctrl = require('./controllers');
 const massive = require('massive');
 const session = require('express-session');
-const passport = ('passport');
+const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 require('dotenv').config();
 // dotenv must be above stripe because stripe requires it in the line below
@@ -102,27 +102,27 @@ app.get('/api/listing', ctrl.getAllListings)
 app.get('/api/listing/:id', ctrl.getUserListings)
 app.get('/api/preview/:id', ctrl.getListingPreview)
 app.post('/api/listing', ctrl.createListing)
-app.put('/api/listing', ctrl.updateListing)
-app.delete('/api/listing', ctrl.deleteListing)
+app.put('/api/listing/:id', ctrl.updateListing)
+app.delete('/api/listing/:id', ctrl.deleteListing)
 
 //Features
 app.post('/api/feature', ctrl.createFeatures)
-app.put('/api/feature', ctrl.updateFeatures)
+app.put('/api/feature/:id', ctrl.updateFeatures)
 
 //Pictures
 app.post('/api/picture', ctrl.createPictures)
-app.put('/api/picture', ctrl.updatePictures)
+app.put('/api/picture/:id', ctrl.updatePictures)
 
 //Vehicles
-app.get('/api/vehicle', ctrl.getVehicles)
-app.post('/api/vehicles', ctrl.createVehicle)
-app.put('/api/vehicle', ctrl.updateVehicle)
-app.delete('/api/vehicle', ctrl.deleteVehicle)
+app.get('/api/vehicle/:id', ctrl.getVehicles)
+app.post('/api/vehicle', ctrl.createVehicle)
+app.put('/api/vehicle/:id', ctrl.updateVehicle)
+app.delete('/api/vehicle/:id', ctrl.deleteVehicle)
 
 //Reservations
-app.get('/api/reservation', ctrl.getReservations)
+app.get('/api/reservation/:id', ctrl.getReservations)
 app.post('/api/reservation', ctrl.createReservation)
-app.delete('/api/reservation', ctrl.deleteReservation)
+app.delete('/api/reservation/:id', ctrl.deleteReservation)
 
 
 const port = 4000;
