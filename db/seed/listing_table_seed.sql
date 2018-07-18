@@ -7,5 +7,6 @@ CREATE TABLE listings (
     space_size VARCHAR(40),
     about TEXT,
     instructions TEXT,
-    price INTEGER
+    price INTEGER,
+    user_id INTEGER
 )
