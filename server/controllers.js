@@ -103,7 +103,7 @@ module.exports = {
     },
     createReservation:(req, res) => {
         const db = req.app.get('db');
-        const {user_id, listing_id}
+        // const {user_id, listing_id}
 
         db.create_reservation([user_id, listing_id])
         .then( () => res.status(200).send())
