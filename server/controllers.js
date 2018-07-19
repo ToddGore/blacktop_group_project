@@ -5,7 +5,7 @@ module.exports = {
 
         db.get_all_listings()
         .then( listings => res.status(200).send(listings))
-        .catch( () => res.status(500).send())
+        .catch( (err) => res.status(500).send(console.log(err)))
     },
     getUserListings:(req, res) => {
         const db = req.app.get('db');
@@ -20,15 +20,15 @@ module.exports = {
         const {id} = req.params
 
         db.get_listing_preview([id])
-        .then( (preview) => res.status(200).send(preview))
-        .catch( () => res.status(500).send())
+        .then( preview => res.status(200).send(preview))
+        .catch( (err) => res.status(500).send(console.log(err)))
     },
     getReservations:(req, res) => {
         const db = req.app.get('db');
         const {id} = req.params
 
         db.get_reservation([id])
-        .then( () => res.status(200).send())
+        .then( reservations => res.status(200).send(reservations))
         .catch( () => res.status(500).send())
     },
     getVehicles:(req, res) => {
@@ -36,7 +36,7 @@ module.exports = {
         const {id} = req.params
 
         db.get_vehicles([id])
-        .then( () => res.status(200).send())
+        .then( vehicles => res.status(200).send(vehicles))
         .catch( () => res.status(500).send())
     },
 
@@ -98,15 +98,19 @@ module.exports = {
         const {pic_one, pic_two, pic_three, pic_four, listing_id} = req.body
 
         db.create_picture([pic_one, pic_two, pic_three, pic_four, listing_id])
-        .then( () => res.status(200).send())
+        .then( pictures => res.status(200).send(pictures))
         .catch( () => res.status(500).send())
     },
     createReservation:(req, res) => {
         const db = req.app.get('db');
+<<<<<<< HEAD
+        const {user_id, listing_id} = req.body
+=======
         // const {user_id, listing_id}
+>>>>>>> master
 
         db.create_reservation([user_id, listing_id])
-        .then( () => res.status(200).send())
+        .then( reservation => res.status(200).send(reservation))
         .catch( () => res.status(500).send())
     },
     createSchedule:(req, res) => {
@@ -121,7 +125,7 @@ module.exports = {
         const {user_id, car_pic, year, make, model, color, size, plate} = req.body
 
         db.create_vehicle([user_id, car_pic, year, make, model, color, size, plate])
-        .then( () => res.status(200).send())
+        .then( vehicle => res.status(200).send(vehicle))
         .catch( () => res.status(500).send())
     },
 
