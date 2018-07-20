@@ -6,4 +6,4 @@ SET car_pic = $1,
     color = $5,
     size = $6,
     plate = $7
-WHERE id = $8
+WHERE id = $8;

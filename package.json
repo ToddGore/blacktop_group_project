@@ -16,6 +16,7 @@
     "passport-auth0": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-geocode": "^0.1.2",
     "react-google-maps": "^9.4.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
