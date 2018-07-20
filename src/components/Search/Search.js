@@ -2,39 +2,29 @@ import React, { Component } from 'react';
 import Map from './../Map/Map';
 import Nav from './../Nav/Nav'
 import './Search.css'
+import axios from 'axios';
 
 export default class Search extends Component {
-    // constructor(){
-    //     super();
-    //     this.state ={
-    //         markers = []
-    //     }
-    // }
+    constructor(){
+        super();
+        this.state ={
+            markers:[]
+        }
+    }
 
-    // componentDidMount(){
-    //     this.getMarkers();
-    //   }
+    componentDidMount(){
+        this.getListings();
+      }
     
-    //   getTrips() {
-    //     axios.get('api/markers').then(res => {
-    //       this.setState({ markers: res.data })
-    //     });
-    //   }
+      getListings() {
+          axios.get('api/listing').then(res => {
+            console.log(res.data)
+          this.setState({ markers: res.data })
+        });
+      }
       
     render() {
-        var markers = [
-                {
-                    lat: 33.64,
-                    lng: -117.9
-                },
-
-                {
-                    lat: 33.645,
-                    lng: -117.91    
-                }
-        ]
-
-
+      
         return (
             <div>
                 <Nav />
@@ -42,11 +32,10 @@ export default class Search extends Component {
 
                 <Map
                     zoom={14}
-                    center={{ lat: -34.397, lng: 150.644 }}
-                    markers={markers}
+                    markers={this.state.markers}
                     googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-                    loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `400px` }} />}
+                    loadingElement={<div style={{ height: `100%` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                 />
 

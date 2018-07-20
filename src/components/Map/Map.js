@@ -10,8 +10,8 @@ class Map extends Component {
             map: null,
             searchBox: null,
             center: {
-                lat: 33.64,
-                lng: -117.91
+                lat: 40.226294,
+                lng:    -111.660776
             }
         }
     }
@@ -48,7 +48,7 @@ class Map extends Component {
         console.log('OnPlacesChanged:' + this.state.searchBox.getPlaces());
         console.log(this.state.searchBox.getPlaces());
         const places = this.state.searchBox.getPlaces();
-        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng);
+        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng());
 
         this.setState({
             center: {
@@ -61,7 +61,7 @@ class Map extends Component {
 
     render() {
         const markers = this.props.markers;
-        console.log(this.props.markers[0])
+        // console.log(this.props.markers[0])
         return (
             <div>
 

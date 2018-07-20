@@ -231,12 +231,4 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
-
-    getMarkers:(req, res) => {
-        const db = req.app.get('db');
-
-        db.get_markers()
-        .then( markers => res.status(200).send(markers))
-        .catch( (err) => res.status(500).send(console.log(err)))
-    },
 }
