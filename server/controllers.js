@@ -103,11 +103,7 @@ module.exports = {
     },
     createReservation:(req, res) => {
         const db = req.app.get('db');
-<<<<<<< HEAD
         const {user_id, listing_id} = req.body
-=======
-        // const {user_id, listing_id}
->>>>>>> master
 
         db.create_reservation([user_id, listing_id])
         .then( reservation => res.status(200).send(reservation))
@@ -234,5 +230,13 @@ module.exports = {
         db.delete_reservation([id])
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
+    },
+
+    getMarkers:(req, res) => {
+        const db = req.app.get('db');
+
+        db.get_markers()
+        .then( markers => res.status(200).send(markers))
+        .catch( (err) => res.status(500).send(console.log(err)))
     },
 }
