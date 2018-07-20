@@ -10,11 +10,12 @@ class Map extends Component {
             map: null,
             searchBox: null,
             center: {
-                lat: 33.64,
-                lng: -117.91
+                lat: 40.226294,
+                lng:    -111.660776
             }
         }
     }
+
 
     mapMoved() {
         console.log('mapMoved: ' + JSON.stringify(this.state.map.getCenter()))
@@ -34,8 +35,8 @@ class Map extends Component {
         console.log('zoomChanged:' + this.state.map.getZoom())
     }
 
-    onSearchBoxMounted(searchBox){
-        if(this.state.searchBox !== null){
+    onSearchBoxMounted(searchBox) {
+        if (this.state.searchBox !== null) {
             return;
         }
         this.setState({
@@ -43,24 +44,24 @@ class Map extends Component {
         })
     }
 
-    onPlacesChanged(){
+    onPlacesChanged() {
         console.log('OnPlacesChanged:' + this.state.searchBox.getPlaces());
         console.log(this.state.searchBox.getPlaces());
         const places = this.state.searchBox.getPlaces();
-        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng);
+        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng());
 
         this.setState({
             center: {
-            lat:places[0].geometry.location.lat(),
-            lng:places[0].geometry.location.lng()
-        }
-    })
-}
+                lat: places[0].geometry.location.lat(),
+                lng: places[0].geometry.location.lng()
+            }
+        })
+    }
 
 
     render() {
-        const markers = this.props.markers || [];
-
+        const markers = this.props.markers;
+        // console.log(this.props.markers[0])
         return (
             <div>
 
@@ -95,12 +96,20 @@ class Map extends Component {
                     center={this.state.center}
                 >
 
-                    {markers.map((marker, index) => (
+                     
 
-                        <Marker {...marker} />
-
+                    {markers.map((marker, i) => (
+                        
+                        <Marker
+                        key = {i}
+                        {...marker} 
+                        position = {this.props.markers[i]}
+                        icon = {`https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png`}
+                        />
+                        
                     )
-                    )}
+                )}
+
                 </GoogleMap>
 
             </div>
