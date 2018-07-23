@@ -38,23 +38,6 @@
 }
 
 
-/* NAV BAR CSS */
-
-.Nav{
-  height: 55px;
-  width: 100%;
-  background-color: var(--navbackgroundcolor);
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  z-index: 10;
-}
-.Size{
-	height: 50px;
-	width: 50px;
-	padding: 3px 10px 3px 10px;
-}
 
 /* POPUP CSS */
 
