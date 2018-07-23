@@ -85,4 +85,7 @@ function mapStateToProps(state){
   }
 }
 
+// We must register the store with a dispatch function.
+// The dispatch function is usually accessed using a helper like react-redux's connect(). 
+
 export default connect(mapStateToProps, {updateWizLat, updateWizLng, updateWizAddress})(Wizard0);

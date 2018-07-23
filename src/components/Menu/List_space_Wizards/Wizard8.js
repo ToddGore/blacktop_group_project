@@ -16,6 +16,7 @@ class Wizard8 extends Component {
           <p>Address:{this.props.address}</p>
           <p>Lat:{this.props.lat}</p>
           <p>Lng:{this.props.lng}</p>
+          <p>Building Type: {this.props.buildingType}</p>
 
           <Link to="/search">
             <img
@@ -44,7 +45,8 @@ function mapStateToProps(state){
   return { 
     address: state.address,
     lat: state.lat,
-    lng: state.lng
+    lng: state.lng,
+    buildingType: state.buildingType
   }
 }
 
