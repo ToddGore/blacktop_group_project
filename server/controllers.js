@@ -13,7 +13,7 @@ module.exports = {
 
         db.get_user_listings([id])
         .then( listings => res.status(200).send(listings))
-        .catch( () => res.status(500).send())
+        .catch( (err) => res.status(500).send(console.log(err)))
     },
     getListingPreview:(req, res) => {
         const db = req.app.get('db');
@@ -200,8 +200,8 @@ module.exports = {
         const {id} = req.params
         const {car_pic, year, make, model, color, size, plate} = req.body
 
-        db.save_position([car_pic, year, make, model, color, size, plate, id])
-        .then( () => res.status(200).send())
+        db.update_vehicle([car_pic, year, make, model, color, size, plate, id])
+        .then( (vehicles) => res.status(200).send(vehicles))
         .catch( () => res.status(500).send())
     },
 
