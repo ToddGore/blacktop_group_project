@@ -1,131 +1,88 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
-import "./Wizard6.css";
+import "./Wizards.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
+import { updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday, updateWizFriday, updateWizSaturday, updateWizSunday } from "../../../ducks/reducer";
+import { connect } from "react-redux";
 
-export default class Wizard6 extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      Monday: false,
-      Tuesday: false,
-      Wednesday: false,
-      Thursday: false,
-      Friday: false,
-      Saturday: false,
-      Sunday: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    console.log(e.target.checked);
-    this.setState({ [e.target.name]: e.target.checked });
-  }
+class Wizard6 extends Component {
 
   render() {
+
+const {updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday, updateWizFriday, updateWizSaturday, updateWizSunday} = this.props;
+
     return (
-      <div>
+      <div className = "wizards">
         <div className="wizard6">
-          Times the spot is available
+
+          <h1>Please indicate all available days for your parking space(s).</h1>
           <br />
-          <input
-            type="checkbox"
-            name="Monday"
-            className=""
-            value={!this.state.Monday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Monday
+          <input type="checkbox" id="Monday" name="Monday" className="" value="Monday"
+          onChange={(e) => { updateWizMonday(true) }}/>
+          <label htmlFor="Monday">Monday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Tuesday"
-            className=""
-            value={!this.state.Tuesday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Tuesday
+
+          <input type="checkbox" id="Tuesday" name="Tuesday" className="" value="Tuesday"
+          onChange={(e) => { updateWizTuesday(true) }}/>
+          <label htmlFor="Tuesday">Tuesday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Wednesday"
-            className=""
-            value={!this.state.Wednesday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Wednesday
+
+          <input type="checkbox" id="Wednesday" name="Wednesday" className="" value="Wednesday"
+          onChange={(e) => { updateWizWednesday(true) }}/>
+          <label htmlFor="Wednesday">Wednesday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Thursday"
-            className=""
-            value={!this.state.Thursday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Thursday
+
+          <input type="checkbox" id="Thursday" name="Thursday" className="" value="Thursday"
+          onChange={(e) => { updateWizThursday(true) }}/>
+          <label htmlFor="Thursday">Thursday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Friday"
-            className=""
-            value={!this.state.Friday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Friday
+
+          <input type="checkbox" name="Friday" id="Friday" className="" value="Friday"
+          onChange={(e) => { updateWizFriday(true) }}/>
+          <label htmlFor="Friday">Friday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Saturday"
-            className=""
-            value={!this.state.Saturday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Saturday
+
+          <input type="checkbox" id="Saturday" name="Saturday" className="" value="Saturday"
+          onChange={(e) => { updateWizSaturday(true) }}/>
+          <label htmlFor="Saturday" >Saturday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Sunday"
-            className=""
-            value={!this.state.Sunday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Sunday
+
+          <input type="checkbox" id="Sunday" name="Sunday" className="" value="Sunday"
+          onChange={(e) => { updateWizSunday(true) }}/>
+          <label htmlFor="Sunday" >Sunday</label>
           <br />
+
           <Link to="/wizard5">
-            <img
-              alt=""
-              src={backarrow}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
+
           <Link to="/search">
-            <img
-              alt=""
-              src={cancelbutton}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
           </Link>
+
           <Link to="/wizard7">
-            <img
-              alt=""
-              src={nextarrow}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
+
         </div>
       </div>
     );
   }
+};
+
+function mapStateToProps(state){
+  const{monday, tuesday, wednesday, thursday, friday, saturday, sunday} = state;
+  return {
+    monday: monday, 
+    tuesday: tuesday,
+    wednesday: wednesday,
+    thursday: thursday,
+    friday: friday,
+    saturday: saturday,
+    sunday: sunday
+  }
 }
+
+export default connect(mapStateToProps, {updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday, updateWizFriday, updateWizSaturday, updateWizSunday})(Wizard6);

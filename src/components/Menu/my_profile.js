@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components'
 import Nav from "../Nav/Nav";
+import axios from 'axios'
 // import "./my_profile.css";
 
 export default class Myprofile extends Component {
@@ -8,17 +9,27 @@ export default class Myprofile extends Component {
     super(props);
 
     this.state = {
+      user: {},
       profilepicture: "",
       googlename: "",
       username: "",
       email: "",
-      phonenumber: ""
+      phonenumber: "",
+      edit: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  handleEdit() {
+    this.setState({ edit: !this.state.edit })
+  }
+  componentDidMount() {
+    axios.get('/auth/user').then(res => {
+      this.setState({ user: res.data })
+    })
   }
 
   render() {
@@ -33,8 +44,8 @@ export default class Myprofile extends Component {
           </PicCSS>
           {/* <p>Google name will be displayed here</p> */}
           <InputCSS>
-          <p>Tap an item to edit it</p>
-          <br/>
+            <p>Tap an item to edit it</p>
+            <br />
             <input
               placeholder="Username"
               disabled // Disables input to box
