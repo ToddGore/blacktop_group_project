@@ -20,7 +20,19 @@ const initialState = {
     charging: false,
     camera: false,
     fenced: false,
-    guarded: false
+    guarded: false,
+    cash: false,
+    credit: false,
+    venmo: false,
+    paypal: false,
+    applePay: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
+    sunday: false
 }
 
 // Actions are payloads of information that send data from the app to the store. 
@@ -49,6 +61,19 @@ const UPDATE_WIZ_CHARGING = "UPDATE_WIZ_CHARGING";
 const UPDATE_WIZ_CAMERA = "UPDATE_WIZ_CAMERA";
 const UPDATE_WIZ_FENCED = "UPDATE_WIZ_FENCED";
 const UPDATE_WIZ_GUARDED = "UPDATE_WIZ_GUARDED";
+const UPDATE_WIZ_CASH = "UPDATE_WIZ_CASH";
+const UPDATE_WIZ_CREDIT = "UPDATE_WIZ_CREDIT";
+const UPDATE_WIZ_VENMO = "UPDATE_WIZ_VENMO";
+const UPDATE_WIZ_PAYPAL = "UPDATE_WIZ_PAYPAL";
+const UPDATE_WIZ_APPLE_PAY = "UPDATE_WIZ_APPLE_PAY";
+const UPDATE_WIZ_MONDAY = "UPDATE_WIZ_MONDAY";
+const UPDATE_WIZ_TUESDAY = "UPDATE_WIZ_MONDAY";
+const UPDATE_WIZ_WEDNESDAY = "UPDATE_WIZ_WEDNESDAY";
+const UPDATE_WIZ_THURSDAY = "UPDATE_WIZ_THURSDAY";
+const UPDATE_WIZ_FRIDAY = "UPDATE_WIZ_FRIDAY";
+const UPDATE_WIZ_SATURDAY = "UPDATE_WIZ_SATURDAY";
+const UPDATE_WIZ_SUNDAY = "UPDATE_WIZ_SUNDAY";
+
 
 
 // Reducers specify how the app's state changes in response to actions sent to the store.
@@ -112,6 +137,47 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_WIZ_GUARDED:
             return Object.assign({}, state, { guarded: action.payload });
+
+
+        case UPDATE_WIZ_CASH:
+            return Object.assign({}, state, { cash: action.payload });
+
+
+        case UPDATE_WIZ_CREDIT:
+            return Object.assign({}, state, { credit: action.payload });
+
+
+        case UPDATE_WIZ_VENMO:
+            return Object.assign({}, state, { venmo: action.payload });
+
+
+        case UPDATE_WIZ_PAYPAL:
+            return Object.assign({}, state, { paypal: action.payload });
+
+
+        case UPDATE_WIZ_APPLE_PAY:
+            return Object.assign({}, state, { applePay: action.payload });
+
+        case UPDATE_WIZ_MONDAY:
+            return Object.assign({}, state, { monday: action.payload });
+
+        case UPDATE_WIZ_TUESDAY:
+            return Object.assign({}, state, { tuesday: action.payload });
+
+        case UPDATE_WIZ_WEDNESDAY:
+            return Object.assign({}, state, { wednesday: action.payload });
+
+        case UPDATE_WIZ_THURSDAY:
+            return Object.assign({}, state, { thursday: action.payload });
+
+        case UPDATE_WIZ_FRIDAY:
+            return Object.assign({}, state, { friday: action.payload });
+
+        case UPDATE_WIZ_SATURDAY:
+            return Object.assign({}, state, { saturday: action.payload });
+
+        case UPDATE_WIZ_SUNDAY:
+            return Object.assign({}, state, { sunday: action.payload });
 
         // Return the previous state in the default case.  We do that for any unknown actions.
         default:
@@ -241,5 +307,89 @@ export function updateWizGuarded(guarded) {
     return {
         type: UPDATE_WIZ_GUARDED,
         payload: guarded
+    }
+}
+
+export function updateWizCash(cash) {
+    return {
+        type: UPDATE_WIZ_CASH,
+        payload: cash
+    }
+}
+
+export function updateWizCredit(credit) {
+    return {
+        type: UPDATE_WIZ_CREDIT,
+        payload: credit
+    }
+}
+
+export function updateWizVenmo(venmo) {
+    return {
+        type: UPDATE_WIZ_VENMO,
+        payload: venmo
+    }
+}
+
+export function updateWizPaypal(paypal) {
+    return {
+        type: UPDATE_WIZ_PAYPAL,
+        payload: paypal
+    }
+}
+
+export function updateWizApplePay(applePay) {
+    return {
+        type: UPDATE_WIZ_APPLE_PAY,
+        payload: applePay
+    }
+}
+
+export function updateWizMonday(monday) {
+    return {
+        type: UPDATE_WIZ_MONDAY,
+        payload: monday
+    }
+}
+
+export function updateWizTuesday(tuesday) {
+    return {
+        type: UPDATE_WIZ_TUESDAY,
+        payload: tuesday
+    }
+}
+
+export function updateWizWednesday(wednesday) {
+    return {
+        type: UPDATE_WIZ_WEDNESDAY,
+        payload: wednesday
+    }
+}
+
+export function updateWizThursday(thursday) {
+    return {
+        type: UPDATE_WIZ_THURSDAY,
+        payload: thursday
+    }
+}
+
+export function updateWizFriday(friday) {
+    return {
+        type: UPDATE_WIZ_FRIDAY,
+        payload: friday
+    }
+}
+
+export function updateWizSaturday(saturday) {
+    return {
+        type: UPDATE_WIZ_SATURDAY,
+        payload: saturday
+    }
+}
+
+export function updateWizSunday(sunday) {
+    return {
+        type: UPDATE_WIZ_SUNDAY,
+        payload: sunday
     }
 }

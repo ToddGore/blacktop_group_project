@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import {storage} from './../Firebase/index'
+import { storage } from './../Firebase/index'
 
 import Nav from "./../Nav/Nav";
 import "./my_vehicle.css";
@@ -19,7 +19,7 @@ export default class Myvehicle extends Component {
     super();
 
     this.state = {
-      user: {id: 9},
+      user: { id: 9 },
       Year: "",
       Make: "",
       Model: "",
@@ -105,9 +105,19 @@ export default class Myvehicle extends Component {
       car_pic: e.car_pic
     })
   }
-  // AXIOS CALLS AND FULL CRUD
-
-  addCar(){
+  handleToggle() {
+    this.setState({ toggle: !this.state.toggle })
+  }
+  editToggle(e) {
+    this.setState({ edit: !this.state.edit })
+  }
+  componentDidMount() {
+    let id = this.state.user.id
+    axios.get(`/api/vehicle/${id}`).then((res) => {
+      this.setState({ vehicles: res.data })
+    })
+  }
+  addCar() {
     let body = {
       user_id: this.state.user.id,
       car_pic: this.state.car_pic,
@@ -133,7 +143,7 @@ export default class Myvehicle extends Component {
       })
     })
   }
-  updateCar(e){
+  updateCar(e) {
     let id = e.id
     let body = {
       car_pic: this.state.car_pic,
@@ -146,18 +156,18 @@ export default class Myvehicle extends Component {
     }
     axios.put(`/api/vehicle/${id}`, body).then((res) => {
       this.componentDidMount()
-      this.setState({edit: false})
+      this.setState({ edit: false })
     })
   }
-  deleteCar(id){
+  deleteCar(id) {
     let result = window.confirm('Are you sure you want to delete this vehicle?')
-    if(result){
+    if (result) {
       axios.delete(`/api/vehicle/${id}`).then((res) => {
         this.componentDidMount()
       })
     }
   }
-  
+
 
   render() {
 
@@ -231,7 +241,7 @@ export default class Myvehicle extends Component {
           </div> 
         }
         </div>
-      </div> 
+      </div>
     ))
 
 
@@ -258,21 +268,21 @@ export default class Myvehicle extends Component {
             
               Year: <input type='' className="input" value={this.state.Year}  name="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
               <br />
-              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => {this.handleChange(e)}}/>
+              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => { this.handleChange(e) }} />
               <br />
-              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => {this.handleChange(e)}}/>
+              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => { this.handleChange(e) }} />
               <br />
-              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }}/>
+              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }} />
               <br />
-              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => {this.handleChange(e)}}/>
+              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => { this.handleChange(e) }} />
               <br />
               Size: (click on a icon button)
               <br />
               <button className='button' onClick = {()=> {this.cancel()}}>Cancel</button>
               <button className="button" onClick = {()=> {this.addCar()}}>Submit</button>
             </div>
-        </div> 
-      
+          </div>
+
           :
 
           <div> 
@@ -281,7 +291,7 @@ export default class Myvehicle extends Component {
                 <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
                 {mappedVehicles}
             </div>
-          </div> 
+          </div>
         }
       </div>
     );
