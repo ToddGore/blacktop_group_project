@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import "./Wizard3.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
@@ -10,7 +9,6 @@ import { connect } from 'react-redux';
 
 class Wizard3 extends Component {
 
-
   render() {
 
     const { updateWizDescription, updateWizInstructions, updateWizSpaceSize, updateWizCovered, updateWizLit, updateWizCharging, updateWizCamera, updateWizFenced, updateWizGuarded } = this.props;
@@ -18,25 +16,30 @@ class Wizard3 extends Component {
     return (
       <div>
         <div className="wizard3">
+
           <h1>Please provide parking instructions and a description of your lot(s).</h1>
           <br />
           <hr />
+
           <input className="input" placeholder="Parking Instructions" onChange={(e) => { updateWizInstructions(e.target.value) }} />
           <hr />
           <input className="input" placeholder="Lot Description" onChange={(e) => { updateWizDescription(e.target.value) }} />
+
           <br />
           <br />
-          <h3>Plase select space size.</h3>
+          <h3>Plase select a parking space size.</h3>
           <br />
 
           <button onClick={() => { updateWizSpaceSize('Compact') }}>Compact</button>
           <button onClick={() => { updateWizSpaceSize('Midsized') }}>Midsized</button>
           <button onClick={() => { updateWizSpaceSize('Large') }}>Large</button>
           <button onClick={() => { updateWizSpaceSize('Oversized') }}>Oversized</button>
+
           <br />
           <br />
-          <h3>Please select from the following features.</h3>
+          <h3>Please select all features that apply:</h3>
           <br />
+
           <button onClick={() => { updateWizCovered(true) }}>Covered</button>
           <button onClick={() => { updateWizLit(true) }}>Lit</button>
           <button onClick={() => { updateWizCharging(true) }}>Charging</button>
@@ -46,28 +49,17 @@ class Wizard3 extends Component {
 
           <br />
           <br />
+
           <Link to="/wizard2">
-            <img
-              alt=""
-              src={backarrow}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
 
           <Link to="/search">
-            <img
-              alt=""
-              src={cancelbutton}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
           </Link>
 
           <Link to="/wizard4">
-            <img
-              alt=""
-              src={nextarrow}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
 
         </div>

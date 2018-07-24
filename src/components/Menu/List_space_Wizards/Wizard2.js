@@ -8,8 +8,9 @@ import { updateWizSpaceType, updateWizSpaceQuantity } from '../../../ducks/reduc
 import { connect } from 'react-redux';
 
 class Wizard2 extends Component {
+
   increaseSpaceQuanity() {
-    this.props.updateWizSpaceQuantity(this.props.spaceQuantity +1)
+    this.props.updateWizSpaceQuantity(this.props.spaceQuantity + 1)
     // console.log(this.props.spaceQuantity + 1)
   }
 
@@ -17,13 +18,14 @@ class Wizard2 extends Component {
     if (this.props.spaceQuantity <= 0) {
       this.props.updateWizSpaceQuantity(0)
     } else {
-      this.props.updateWizSpaceQuantity(this.props.spaceQuantity -1);
+      this.props.updateWizSpaceQuantity(this.props.spaceQuantity - 1);
     }
   }
-  
+
   render() {
 
     const { updateWizSpaceType } = this.props;
+
     return (
       <div>
         <div className="wizard2">
@@ -32,12 +34,12 @@ class Wizard2 extends Component {
 
           <button className="button" onClick={() => { this.increaseSpaceQuanity() }}>+</button>
           <span>{this.props.spaceQuantity}</span>
-
           <button className="button" onClick={() => { this.decreaseSpaceQuantity() }}>-</button>
           <br />
           <br />
           <h1>Please select your parking space type.</h1>
           <br />
+
           <button onClick={() => { updateWizSpaceType('Driveway') }}>Driveway</button>
           <br />
           <button onClick={() => { updateWizSpaceType('Home Garage') }}>Home Garage</button>
@@ -49,16 +51,17 @@ class Wizard2 extends Component {
           <button onClick={() => { updateWizSpaceType('Unpaved Lot') }}>Unpaved Lot</button>
           <br />
           <br />
+
           <Link to="/wizard1">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }}/>
+            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
 
           <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }}/>
+            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
           </Link>
 
           <Link to="/wizard3">
-            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }}/>
+            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
 
         </div>
