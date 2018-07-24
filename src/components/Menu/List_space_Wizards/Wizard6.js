@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import "./Wizard6.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";

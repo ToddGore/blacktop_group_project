@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 class Wizard3 extends Component {
 
   render() {
+    console.log(this.props)
 
     const { updateWizDescription, updateWizInstructions, updateWizSpaceSize, updateWizCovered, updateWizLit, updateWizCharging, updateWizCamera, updateWizFenced, updateWizGuarded } = this.props;
 
@@ -40,12 +41,12 @@ class Wizard3 extends Component {
           <h3>Please select all features that apply:</h3>
           <br />
 
-          <button onClick={() => { updateWizCovered(true) }}>Covered</button>
-          <button onClick={() => { updateWizLit(true) }}>Lit</button>
-          <button onClick={() => { updateWizCharging(true) }}>Charging</button>
-          <button onClick={() => { updateWizCamera(true) }}>Camera</button>
-          <button onClick={() => { updateWizFenced(true) }}>Fenced</button>
-          <button onClick={() => { updateWizGuarded(true) }}>Guarded</button>
+          <button onClick={(e) => { updateWizCovered(true) }}>Covered</button>
+          <button onClick={(e) => { updateWizLit(true) }}>Lit</button>
+          <button onClick={(e) => { updateWizCharging(true) }}>Charging</button>
+          <button onClick={(e) => { updateWizCamera(true) }}>Camera</button>
+          <button onClick={(e) => { updateWizFenced(true) }}>Fenced</button>
+          <button onClick={(e) => { updateWizGuarded(true) }}>Guarded</button>
 
           <br />
           <br />
