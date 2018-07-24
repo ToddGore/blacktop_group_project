@@ -7,25 +7,6 @@ import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
 
 export default class Wizard6 extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      Monday: false,
-      Tuesday: false,
-      Wednesday: false,
-      Thursday: false,
-      Friday: false,
-      Saturday: false,
-      Sunday: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    console.log(e.target.checked);
-    this.setState({ [e.target.name]: e.target.checked });
-  }
 
   render() {
     return (
@@ -33,76 +14,28 @@ export default class Wizard6 extends Component {
         <div className="wizard6">
           Times the spot is available
           <br />
-          <input
-            type="checkbox"
-            name="Monday"
-            className=""
-            value={!this.state.Monday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Monday
+          <input type="checkbox" id="Monday" name="Monday" className="" value="Monday" />
+          <label htmlFor="Monday">Monday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Tuesday"
-            className=""
-            value={!this.state.Tuesday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Tuesday
+          <input type="checkbox" id="Tuesday" name="Tuesday" className="" value="Tuesday" />
+          <label htmlFor="Tuesday">Tuesday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Wednesday"
-            className=""
-            value={!this.state.Wednesday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Wednesday
+          <input type="checkbox" id="Wednesday" name="Wednesday" className="" value="Wednesday" />
+          <label htmlFor="Wednesday">Wednesday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Thursday"
-            className=""
-            value={!this.state.Thursday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Thursday
+          <input type="checkbox" id="Thursday" name="Thursday" className="" value="Thursday" />
+          <label htmlFor="Thursday">Thursday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Friday"
-            className=""
-            value={!this.state.Friday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Friday
+          <input type="checkbox" name="Friday" id="Friday" className="" value="Friday" />
+          <label htmlFor="Friday">Friday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Saturday"
-            className=""
-            value={!this.state.Saturday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Saturday
+          <input type="checkbox" id="Saturday" name="Saturday" className="" value="Saturday" />
+          <label htmlFor="Saturday" >Saturday</label>
           <br />
-          <input
-            type="checkbox"
-            name="Sunday"
-            className=""
-            value={!this.state.Sunday}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-          />Sunday
+          <input type="checkbox" id="Sunday" name="Sunday" className="" value="Sunday" />
+          <label htmlFor = "Sunday" >Sunday</label>
           <br />
+
           <Link to="/wizard5">
             <img
               alt=""
