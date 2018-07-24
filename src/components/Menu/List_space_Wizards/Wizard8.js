@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import "./Wizards.css";
+  import "./Wizards.css";
 import { connect } from 'react-redux';
 import backarrow from "./../../Images/backarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
