@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Menu_icon">
+            <g id="Bounding_Boxes">
+                <polygon id="Shape" points="0 0 500 0 500 500 0 500"></polygon>
+            </g>
+            <g id="Sharp" transform="translate(62.500000, 125.000000)" fill="#FDD000" fill-rule="nonzero">
+                <path d="M0,250 L375,250 L375,208.333333 L0,208.333333 L0,250 Z M0,145.833333 L375,145.833333 L375,104.166667 L0,104.166667 L0,145.833333 Z M0,0 L0,41.6666667 L375,41.6666667 L375,0 L0,0 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
