@@ -1,54 +1,99 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
-
+// import "./Wizards.css";
+import { connect } from 'react-redux';
 import backarrow from "./../../Images/backarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
 
 class Wizard8 extends Component {
+
   render() {
+    console.log(this.props)
+
     return (
-      <div>
+      <div className = "wizards">
         <div className="wizard8">
-          This will show them what their listing will look like before they post
-          it
+
+          <h1>Here is a preview of your listing:</h1>
           <br />
-          <p>Address:{this.props.address}</p>
+          <h3>ADDRESS</h3>
+          <p>{this.props.address}</p>
           <p>Lat:{this.props.lat}</p>
           <p>Lng:{this.props.lng}</p>
-          <p>Building Type: {this.props.buildingType}</p>
-          <p>Quantity: {this.props.spaceQuantity}</p>
-          <p>Space Type: {this.props.spaceType}</p>
-          <p>instructions: {this.props.instructions}</p>
-          <p>Description: {this.props.description}</p>
-          <p>Space Size: {this.props.spaceSize}</p>
-          <p>Features-charging: {this.props.charging}</p>
+          <br />
+          <h3>BUILDING TYPE</h3>
+          <p>{this.props.buildingType}</p>
+          <br />
 
+          <h3>NUMBER OF AVAILABLE SPACES</h3>
+          <p>{this.props.spaceQuantity}</p>
+          <br />
+
+          <h3>SPACE TYPE</h3>
+          <p>{this.props.spaceType}</p>
+          <br />
+
+          <h3>PARKING INSTRUCTIONS</h3>
+          <p>{this.props.instructions}</p>
+          <br />
+
+          <h3>SPACE DESCRIPTION</h3>
+          <p>{this.props.description}</p>
+          <br />
+
+          <h3>SPACE SIZE</h3>
+          <p>{this.props.spaceSize}</p>
+          <br />
+
+          <h3>FEATURES</h3>
+          <p>covered: {`${this.props.covered}`}</p>
+          <p>lit: {`${this.props.lit}`}</p>
+          <p>charging: {`${this.props.charging}`}</p>
+          <p>camera: {`${this.props.camera}`}</p>
+          <p>fenced: {`${this.props.fenced}`}</p>
+          <p>guarded: {`${this.props.guarded}`}</p>
+          <br />
+
+          <h3>SPACE AVAILABILITY</h3>
+          <p>Monday: {`${this.props.monday}`}</p>
+          <p>Tuesday: {`${this.props.tuesday}`}</p>
+          <p>Wednesday: {`${this.props.wednesday}`}</p>
+          <p>Thursday: {`${this.props.thursday}`}</p>
+          <p>Friday: {`${this.props.friday}`}</p>
+          <p>Saturday: {`${this.props.saturday}`}</p>
+          <p>Sunday: {`${this.props.sunday}`}</p>
+          <br/>
+
+          <h3>PAYMENT PREFERENCE</h3>
+          <p>credit: {`${this.props.credit}`}</p>
+          <p>venmo: {`${this.props.venmo}`}</p>
+          <p>paypal: {`${this.props.paypal}`}</p>
+          <p>apple pay: {`${this.props.applePay}`}</p>
+
+          {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
+
+
+          <br />
           <Link to="/search">
-            <img
-              alt=""
-              src={cancelbutton}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
           </Link>
+
           <Link to="/wizard7">
-            <img
-              alt=""
-              src={backarrow}
-              style={{ height: "30px", width: "30px" }}
-            />
+            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
+
           <Link to="/mylistings">
             <button className="button">Post</button>
           </Link>
+
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state){
-  return { 
+function mapStateToProps(state) {
+  return {
     address: state.address,
     lat: state.lat,
     lng: state.lng,
@@ -63,7 +108,19 @@ function mapStateToProps(state){
     charging: state.charging,
     camera: state.camera,
     fenced: state.fenced,
-    guarded: state.guarded
+    guarded: state.guarded,
+    cash: state.cash,
+    credit: state.credit,
+    venmo: state.venmo,
+    paypal: state.paypal,
+    applePay: state.applePay,
+    monday: state.monday,
+    tuesday: state.tuesday,
+    wednesday: state.wednesday,
+    thursday: state.thursday,
+    friday: state.friday,
+    saturday: state.saturday,
+    sunday: state.sunday
   }
 }
 

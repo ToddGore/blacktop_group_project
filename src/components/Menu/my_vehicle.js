@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import {storage} from './../Firebase/index'
+import { storage } from './../Firebase/index'
 
 import Nav from "./../Nav/Nav";
 import "./my_vehicle.css";
@@ -18,7 +18,7 @@ export default class Myvehicle extends Component {
     super();
 
     this.state = {
-      user: {id: 9},
+      user: { id: 9 },
       Year: "",
       Make: "",
       Model: "",
@@ -29,44 +29,44 @@ export default class Myvehicle extends Component {
       vehicles: [],
       toggle: false,
       edit: false,
-      progress:0,
+      progress: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
-  
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   //this is for when someone uploads a new car image.
   handleCarPic(e) {
-    if(e.target.files[0]) {
-        const car_pic = e.target.files[0];
-        this.setState({
-            car_pic: car_pic 
-        })
+    if (e.target.files[0]) {
+      const car_pic = e.target.files[0];
+      this.setState({
+        car_pic: car_pic
+      })
     }
   }
   handleUpload = (e) => {
-    const {car_pic} = this.state;
+    const { car_pic } = this.state;
     const uploadTask = storage.ref(`main_images/${car_pic.name}`).put(car_pic);
-    uploadTask.on('state_changed', 
-    (snapshot) => {
+    uploadTask.on('state_changed',
+      (snapshot) => {
         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        this.setState({progress})
-    }, 
-    (error) => {
+        this.setState({ progress })
+      },
+      (error) => {
         console.log(error)
-    }, 
-    () => {
+      },
+      () => {
         storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
-            console.log(url);
-            this.setState({car_pic: url})
-            // AXIOS CALL TO SAVE IMAGE URL IN DB GOES HERE
+          console.log(url);
+          this.setState({ car_pic: url })
+          // AXIOS CALL TO SAVE IMAGE URL IN DB GOES HERE
         })
-    });
+      });
   }
-  handleEdit(e){
+  handleEdit(e) {
     this.setState({
       edit: true,
       Year: e.year,
@@ -78,19 +78,19 @@ export default class Myvehicle extends Component {
       car_pic: e.car_pic
     })
   }
-  handleToggle(){
-    this.setState({toggle: !this.state.toggle})
+  handleToggle() {
+    this.setState({ toggle: !this.state.toggle })
   }
-  editToggle(e){
-    this.setState({edit: !this.state.edit})
+  editToggle(e) {
+    this.setState({ edit: !this.state.edit })
   }
-  componentDidMount(){
+  componentDidMount() {
     let id = this.state.user.id
     axios.get(`/api/vehicle/${id}`).then((res) => {
-      this.setState({vehicles: res.data})
+      this.setState({ vehicles: res.data })
     })
   }
-  addCar(){
+  addCar() {
     let body = {
       user_id: this.state.user.id,
       car_pic: this.state.car_pic,
@@ -116,7 +116,7 @@ export default class Myvehicle extends Component {
       })
     })
   }
-  updateCar(e){
+  updateCar(e) {
     let id = e.id
     let body = {
       car_pic: this.state.car_pic,
@@ -129,150 +129,150 @@ export default class Myvehicle extends Component {
     }
     axios.put(`/api/vehicle/${id}`, body).then((res) => {
       this.componentDidMount()
-      this.setState({edit: false})
+      this.setState({ edit: false })
     })
   }
-  deleteCar(id){
+  deleteCar(id) {
     let result = window.confirm('Are you sure you want to delete this vehicle?')
-    if(result){
+    if (result) {
       axios.delete(`/api/vehicle/${id}`).then((res) => {
         this.componentDidMount()
       })
     }
   }
-  
+
 
   render() {
 
     let mappedVehicles = this.state.vehicles.map((e, i) => (
 
-      <div key ={i}>
-        <div style = {{boxShadow: '0px 1px 10px grey', padding: '20px', marginTop: '30px', textAlign: 'left'}}>
+      <div key={i}>
+        <div style={{ boxShadow: '0px 1px 10px grey', padding: '20px', marginTop: '30px', textAlign: 'left' }}>
 
-        {e.car_pic ?
-          <img alt = '' src = {e.car_pic} style ={{height: '150px',margin: 'auto', display:'block'}}/> 
-        : 
-          <div>
-            {this.state.edit ?
+          {e.car_pic ?
+            <img alt='' src={e.car_pic} style={{ height: '150px', margin: 'auto', display: 'block' }} />
+            :
+            <div>
+              {this.state.edit ?
                 <div>
-                  <label htmlFor = 'upload-photo' style = {{curser: 'pointer'}}>
-                    <img alt = ''src = {add_image_icon} style = {{height: '150px',margin: 'auto', display:'block'}}/>
+                  <label htmlFor='upload-photo' style={{ curser: 'pointer' }}>
+                    <img alt='' src={add_image_icon} style={{ height: '150px', margin: 'auto', display: 'block' }} />
                   </label>
-                  <input type='file' id = 'upload-photo' accept='image/*' style = {{height: '150px',margin: 'auto',display: 'none'}}/>
+                  <input type='file' id='upload-photo' accept='image/*' style={{ height: '150px', margin: 'auto', display: 'none' }} />
                 </div>
-              :
-                <img alt = '' src = {no_image} style = {{height: '150px', margin: 'auto', display:'block'}}/>
-            }
-          </div>
-        }
-
-          <hr/>
-          
-          {this.state.edit ? 
-              <p>Year: <input type='' className='input' name = 'Year' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Year} maxLength = '4'/></p>
-            : 
-              <p>Year: {e.year}</p>
+                :
+                <img alt='' src={no_image} style={{ height: '150px', margin: 'auto', display: 'block' }} />
+              }
+            </div>
           }
 
-          <hr/>
+          <hr />
 
           {this.state.edit ?
-             <p>Make: <input type='' className='input' name = 'Make' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Make}/></p> 
-            : 
-             <p>Make: {e.make}</p>
-          }
-
-          <hr/>
-
-          {this.state.edit ?
-              <p>Model: <input type='' className='input' name = 'Model' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Model}/></p> 
-            : 
-              <p>Model: {e.model}</p>
-          }
-
-          <hr/>
-
-          {this.state.edit ?
-              <p>Color: <input type='' className='input' name = 'Color' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Color}/></p> 
-            : 
-              <p>Color: {e.color}</p>
-          }
-
-          <hr/>
-
-          {this.state.edit ?
-              <p>Size: <input type='' className='input' name = 'Size' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Size}/></p> 
-            : 
-              <p>Size: {e.size}</p>
-          }
-
-          <hr/>
-
-          {this.state.edit ?
-              <p>Plate: <input type='' className='input' name = 'Plate' onChange = {(e) => {this.handleChange(e)}} value = {this.state.Plate}/></p> 
+            <p>Year: <input type='' className='input' name='Year' onChange={(e) => { this.handleChange(e) }} value={this.state.Year} maxLength='4' /></p>
             :
-              <p>Plate: {e.plate}</p>
+            <p>Year: {e.year}</p>
           }
 
-          <hr/>
+          <hr />
 
-          {this.state.edit ? 
-              <img style  = {{height:'30px', float: 'right'}} alt = '' src = {update_icon} onClick = {() => {this.updateCar(e)}}/> 
+          {this.state.edit ?
+            <p>Make: <input type='' className='input' name='Make' onChange={(e) => { this.handleChange(e) }} value={this.state.Make} /></p>
             :
-              <img alt  = '' src ={delete_icon} onClick = {(id) => {this.deleteCar(e.id)}}/>
+            <p>Make: {e.make}</p>
           }
 
-          {this.state.edit ? 
-              <img style  = {{height:'25px'}} alt ='' src = {cancel_button} onClick = {() =>  {this.editToggle()}}/> 
-            : 
-              <img alt = '' style = {{float: 'right'}}src = {edit_icon} onClick = {() => {this.handleEdit(e)}}/>
+          <hr />
+
+          {this.state.edit ?
+            <p>Model: <input type='' className='input' name='Model' onChange={(e) => { this.handleChange(e) }} value={this.state.Model} /></p>
+            :
+            <p>Model: {e.model}</p>
+          }
+
+          <hr />
+
+          {this.state.edit ?
+            <p>Color: <input type='' className='input' name='Color' onChange={(e) => { this.handleChange(e) }} value={this.state.Color} /></p>
+            :
+            <p>Color: {e.color}</p>
+          }
+
+          <hr />
+
+          {this.state.edit ?
+            <p>Size: <input type='' className='input' name='Size' onChange={(e) => { this.handleChange(e) }} value={this.state.Size} /></p>
+            :
+            <p>Size: {e.size}</p>
+          }
+
+          <hr />
+
+          {this.state.edit ?
+            <p>Plate: <input type='' className='input' name='Plate' onChange={(e) => { this.handleChange(e) }} value={this.state.Plate} /></p>
+            :
+            <p>Plate: {e.plate}</p>
+          }
+
+          <hr />
+
+          {this.state.edit ?
+            <img style={{ height: '30px', float: 'right' }} alt='' src={update_icon} onClick={() => { this.updateCar(e) }} />
+            :
+            <img alt='' src={delete_icon} onClick={(id) => { this.deleteCar(e.id) }} />
+          }
+
+          {this.state.edit ?
+            <img style={{ height: '25px' }} alt='' src={cancel_button} onClick={() => { this.editToggle() }} />
+            :
+            <img alt='' style={{ float: 'right' }} src={edit_icon} onClick={() => { this.handleEdit(e) }} />
           }
 
         </div>
-      </div> 
+      </div>
     ))
     return (
       <div>
-        {this.state.toggle ? 
-        <div>
-          <Nav/>
+        {this.state.toggle ?
+          <div>
+            <Nav />
             <div className="myvehicle">
-           
-                  <img alt = '' src = {this.state.car_pic} style = {{height: '150px'}}/> 
-              
-                <div>
-                  <progress value={this.state.progress} max='100' />
-                  <br />
-                  <input type='file' onChange={(e)=>{this.handleCarPic(e)}}/>
-                  <button onClick={(e)=> {this.handleUpload(e)}}>Upload</button>
-                </div>
-            
-              Year: <input type='' className="input" value={this.state.Year}  name="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
+
+              <img alt='' src={this.state.car_pic} style={{ height: '150px' }} />
+
+              <div>
+                <progress value={this.state.progress} max='100' />
+                <br />
+                <input type='file' onChange={(e) => { this.handleCarPic(e) }} />
+                <button onClick={(e) => { this.handleUpload(e) }}>Upload</button>
+              </div>
+
+              Year: <input type='' className="input" value={this.state.Year} name="Year" onChange={e => { this.handleChange(e) }} maxLength='4' />
               <br />
-              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => {this.handleChange(e)}}/>
+              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => { this.handleChange(e) }} />
               <br />
-              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => {this.handleChange(e)}}/>
+              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => { this.handleChange(e) }} />
               <br />
-              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }}/>
+              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }} />
               <br />
-              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => {this.handleChange(e)}}/>
+              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => { this.handleChange(e) }} />
               <br />
               Size: (click on a icon button)
               <br />
-              <button className='button' onClick = {()=> {this.handleToggle()}}>Cancel</button>
-              <button className="button" onClick = {()=> {this.addCar()}}>Submit</button>
+              <button className='button' onClick={() => { this.handleToggle() }}>Cancel</button>
+              <button className="button" onClick={() => { this.addCar() }}>Submit</button>
             </div>
-        </div> 
-      
+          </div>
+
           :
 
-          <div> 
-            <Nav/>
-            <div className = 'myvehicle'>
-                <button className='button' onClick = {() => {this.handleToggle()}}>Add a Vehicle</button>
-                {mappedVehicles}
+          <div>
+            <Nav />
+            <div className='myvehicle'>
+              <button className='button' onClick={() => { this.handleToggle() }}>Add a Vehicle</button>
+              {mappedVehicles}
             </div>
-          </div> 
+          </div>
         }
       </div>
     );
