@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Wizard3.css";
+import "./Wizards.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
@@ -15,7 +15,7 @@ class Wizard3 extends Component {
     const { updateWizDescription, updateWizInstructions, updateWizSpaceSize, updateWizCovered, updateWizLit, updateWizCharging, updateWizCamera, updateWizFenced, updateWizGuarded } = this.props;
 
     return (
-      <div>
+      <div className = "wizards">
         <div className="wizard3">
 
           <h1>Please provide parking instructions and a description of your lot(s).</h1>

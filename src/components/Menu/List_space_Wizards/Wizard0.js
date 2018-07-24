@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Geocode from "react-geocode";
-import "./Wizard0.css";
+import "./Wizards.css";
 import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ class Wizard0 extends Component {
     const { updateWizAddress } = this.props;
 
     return (
-      <div>
+      <div className= "wizards">
         <div className="wizard0">
           <h1>Where is your parking space(s) located?</h1>
 

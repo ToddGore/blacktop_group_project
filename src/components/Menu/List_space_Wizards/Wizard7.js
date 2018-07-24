@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Wizard7.css";
+import "./Wizards.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
@@ -15,7 +15,7 @@ class Wizard7 extends Component {
     console.log(this.props)
 
     return (
-      <div>
+      <div className = "wizards">
         <div className="wizard7">
           <h1>Please specify below how you would like to be paid.</h1>
           <br />

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Wizard2.css";
+import "./Wizards.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
@@ -29,7 +29,7 @@ class Wizard2 extends Component {
     const { updateWizSpaceType } = this.props;
 
     return (
-      <div>
+      <div className ="wizards">
         <div className="wizard2">
           <h1>Please select your parking space quantity.</h1>
           <br />
