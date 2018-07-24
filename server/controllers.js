@@ -21,7 +21,7 @@ module.exports = {
 
         db.get_listing_preview([id])
         .then( preview => res.status(200).send(preview))
-        .catch( (err) => res.status(500).send(console.log(err)))
+        .catch( () => res.status(500).send())
     },
     getReservations:(req, res) => {
         const db = req.app.get('db');
@@ -37,7 +37,7 @@ module.exports = {
 
         db.get_vehicles([id])
         .then( vehicles => res.status(200).send(vehicles))
-        .catch( () => res.status(500).send())
+        .catch( (err) => res.status(500).send(console.log(err)))
     },
 
 
