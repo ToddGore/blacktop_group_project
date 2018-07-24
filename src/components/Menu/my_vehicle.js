@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios'
+import {storage} from './../Firebase/index'
 
 import Nav from "./../Nav/Nav";
 import "./my_vehicle.css";
@@ -10,12 +11,14 @@ import update_icon from './../Images/update_icon.svg'
 import no_image from './../Images/no_image.png'
 import add_image_icon from './../Images/add_image_icon.svg'
 
+
+
 export default class Myvehicle extends Component {
   constructor() {
     super();
 
     this.state = {
-      user_id: 1,
+      user: {id: 9},
       Year: "",
       Make: "",
       Model: "",
@@ -26,6 +29,7 @@ export default class Myvehicle extends Component {
       vehicles: [],
       toggle: false,
       edit: false,
+      progress:0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -33,6 +37,34 @@ export default class Myvehicle extends Component {
   
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  //this is for when someone uploads a new car image.
+  handleCarPic(e) {
+    if(e.target.files[0]) {
+        const car_pic = e.target.files[0];
+        this.setState({
+            car_pic: car_pic 
+        })
+    }
+  }
+  handleUpload = (e) => {
+    const {car_pic} = this.state;
+    const uploadTask = storage.ref(`main_images/${car_pic.name}`).put(car_pic);
+    uploadTask.on('state_changed', 
+    (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        this.setState({progress})
+    }, 
+    (error) => {
+        console.log(error)
+    }, 
+    () => {
+        storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
+            console.log(url);
+            this.setState({car_pic: url})
+            // AXIOS CALL TO SAVE IMAGE URL IN DB GOES HERE
+        })
+    });
   }
   handleEdit(e){
     this.setState({
@@ -53,14 +85,14 @@ export default class Myvehicle extends Component {
     this.setState({edit: !this.state.edit})
   }
   componentDidMount(){
-    let id = this.state.user_id
+    let id = this.state.user.id
     axios.get(`/api/vehicle/${id}`).then((res) => {
       this.setState({vehicles: res.data})
     })
   }
   addCar(){
     let body = {
-      user_id: this.state.user_id,
+      user_id: this.state.user.id,
       car_pic: this.state.car_pic,
       year: this.state.Year,
       make: this.state.Make,
@@ -74,6 +106,13 @@ export default class Myvehicle extends Component {
       this.setState({
         vehicles: res.data,
         toggle: false,
+        Year: '',
+        Make: '',
+        Model: '',
+        Color: '',
+        Size: '',
+        Plate: '',
+        car_pic: '',
       })
     })
   }
@@ -101,8 +140,10 @@ export default class Myvehicle extends Component {
       })
     }
   }
+  
 
   render() {
+
     let mappedVehicles = this.state.vehicles.map((e, i) => (
 
       <div key ={i}>
@@ -112,12 +153,12 @@ export default class Myvehicle extends Component {
           <img alt = '' src = {e.car_pic} style ={{height: '150px',margin: 'auto', display:'block'}}/> 
         : 
           <div>
-            {this.state.edit ? 
-                <div> 
-                  {/* <label for = 'upload-photo' style = {{curser: 'pointer'}}>
+            {this.state.edit ?
+                <div>
+                  <label htmlFor = 'upload-photo' style = {{curser: 'pointer'}}>
                     <img alt = ''src = {add_image_icon} style = {{height: '150px',margin: 'auto', display:'block'}}/>
                   </label>
-                  <input type='file' id = 'upload-photo' accept='image/*' style = {{height: '150px',margin: 'auto', display:'block',display: 'none'}}/> */}
+                  <input type='file' id = 'upload-photo' accept='image/*' style = {{height: '150px',margin: 'auto',display: 'none'}}/>
                 </div>
               :
                 <img alt = '' src = {no_image} style = {{height: '150px', margin: 'auto', display:'block'}}/>
@@ -196,20 +237,27 @@ export default class Myvehicle extends Component {
         <div>
           <Nav/>
             <div className="myvehicle">
-              <div style = {{height: "100px", backgroundColor: "lightgrey", width: "100px", margin: "auto", borderRadius: "50%", padding: "10px"}}>
-                  + Picture
-              </div> 
-              <input type='' className="input" value={this.state.Year}  name="Year" placeholder="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
+           
+                  <img alt = '' src = {this.state.car_pic} style = {{height: '150px'}}/> 
+              
+                <div>
+                  <progress value={this.state.progress} max='100' />
+                  <br />
+                  <input type='file' onChange={(e)=>{this.handleCarPic(e)}}/>
+                  <button onClick={(e)=> {this.handleUpload(e)}}>Upload</button>
+                </div>
+            
+              Year: <input type='' className="input" value={this.state.Year}  name="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
               <br />
-              <input type="" className="input" value={this.state.Make} name="Make" placeholder="Make" onChange={e => {this.handleChange(e)}}/>
+              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => {this.handleChange(e)}}/>
               <br />
-              <input type="" className="input" value={this.state.Model} name="Model" placeholder="Model" onChange={e => {this.handleChange(e)}}/>
+              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => {this.handleChange(e)}}/>
               <br />
-              <input type="" className="input" value={this.state.Color} name="Color" placeholder="Color" onChange={e => { this.handleChange(e) }}/>
+              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }}/>
               <br />
-              <input type="" className="input" value={this.state.Plate} name="Plate" placeholder="License Plate" onChange={e => {this.handleChange(e)}}/>
+              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => {this.handleChange(e)}}/>
               <br />
-              Size: (click on a button)
+              Size: (click on a icon button)
               <br />
               <button className='button' onClick = {()=> {this.handleToggle()}}>Cancel</button>
               <button className="button" onClick = {()=> {this.addCar()}}>Submit</button>

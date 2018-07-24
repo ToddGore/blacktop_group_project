@@ -10,7 +10,7 @@ export default class Mylistings extends Component {
 
         this.state = {
             mylistings: [],
-            id: 2
+            user:{},
         }
     }
 
@@ -19,6 +19,9 @@ export default class Mylistings extends Component {
         axios.get(`/api/listing/${id}`).then(res => {
             this.setState({mylistings: res.data})
         })
+        axios.get('/auth/user').then(res => {
+            this.setState({user: res.data})
+          })
     }
 
 
