@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import "./Wizard1.css";
 import backarrow from "./../../Images/backarrow.svg";
 import nextarrow from "./../../Images/nextarrow.svg";
@@ -13,14 +12,20 @@ class Wizard1 extends Component {
   render() {
 
     const { updateWizBuildingType } = this.props;
-    console.log(this.props)
+    // console.log(this.props)
 
     return (
       <div>
         <div className="wizard1">
-          Building Type
+          <h1>Please select your building type.</h1>
           <br />
-
+          <button onClick={() => updateWizBuildingType('Residential')} >Residential</button>
+          <br />
+          <button onClick={() => updateWizBuildingType('Business')} >Business</button>
+          <br />
+          <button onClick={() => updateWizBuildingType('Other')} >Other</button>
+          <br />
+          <br/>
           <Link to="/wizard0">
             <img
               alt=""
@@ -45,24 +50,18 @@ class Wizard1 extends Component {
             />
           </Link>
 
-          <br />
-          <button onClick={() => updateWizBuildingType('Residential')} >Residential</button>
-          <br />
-          <button onClick={() => updateWizBuildingType('Business')} >Business</button>
-          <br />
-          <button onClick={() => updateWizBuildingType('Other')} >Other</button>
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state){
-  console.log(state)
-  const {buildingType} = state;
+function mapStateToProps(state) {
+  // console.log(state)
+  const { buildingType } = state;
   return {
     buildingType: buildingType
   }
 }
 
-export default connect(mapStateToProps, {updateWizBuildingType })(Wizard1);
+export default connect(mapStateToProps, { updateWizBuildingType })(Wizard1);

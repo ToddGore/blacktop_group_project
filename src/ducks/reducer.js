@@ -11,9 +11,16 @@ const initialState = {
     buildingType: '',
     spaceType: '',
     spaceQuantity: 0,
+    spaceSize: '',
     description: '',
     instructions: '',
-    streetView: ''
+    streetView: '',
+    covered: false,
+    lit: false,
+    charging: false,
+    camera: false,
+    fenced: false,
+    guarded: false
 }
 
 // Actions are payloads of information that send data from the app to the store. 
@@ -32,9 +39,16 @@ const UPDATE_WIZ_ADDRESS = "UPDATE_WIZ_ADDRESS";
 const UPDATE_WIZ_BUILDING_TYPE = "UPDATE_WIZ_BUILDING_TYPE";
 const UPDATE_WIZ_SPACE_TYPE = "UPDATE_WIZ_SPACE_TYPE";
 const UPDATE_WIZ_SPACE_QUANTITY = "UPDATE_WIZ_SPACE_QUANTITY";
+const UPDATE_WIZ_SPACE_SIZE = "UPDATE_WIZ_SPACE_SIZE";
 const UPDATE_WIZ_DESCRIPTION = "UPDATE_WIZ_DESCRIPTION";
 const UPDATE_WIZ_INSTRUCTIONS = "UPDATE_WIZ_INSTRUCTIONS";
 const UPDATE_WIZ_STREET_VIEW = "UPDATE_WIZ_STREET_VIEW"
+const UPDATE_WIZ_COVERED = "UPDATE_WIZ_COVERED";
+const UPDATE_WIZ_LIT = "UPDATE_WIZ_LIT";
+const UPDATE_WIZ_CHARGING = "UPDATE_WIZ_CHARGING";
+const UPDATE_WIZ_CAMERA = "UPDATE_WIZ_CAMERA";
+const UPDATE_WIZ_FENCED = "UPDATE_WIZ_FENCED";
+const UPDATE_WIZ_GUARDED = "UPDATE_WIZ_GUARDED";
 
 
 // Reducers specify how the app's state changes in response to actions sent to the store.
@@ -69,6 +83,9 @@ export default function reducer(state = initialState, action) {
         case UPDATE_WIZ_SPACE_QUANTITY:
             return Object.assign({}, state, { spaceQuantity: action.payload });
 
+        case UPDATE_WIZ_SPACE_SIZE:
+            return Object.assign({}, state, { spaceSize: action.payload });
+
         case UPDATE_WIZ_DESCRIPTION:
             return Object.assign({}, state, { description: action.payload });
 
@@ -77,6 +94,24 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_WIZ_STREET_VIEW:
             return Object.assign({}, state, { streetView: action.payload });
+
+        case UPDATE_WIZ_COVERED:
+            return Object.assign({}, state, { covered: action.payload });
+
+        case UPDATE_WIZ_LIT:
+            return Object.assign({}, state, { lit: action.payload });
+
+        case UPDATE_WIZ_CHARGING:
+            return Object.assign({}, state, { charging: action.payload });
+
+        case UPDATE_WIZ_CAMERA:
+            return Object.assign({}, state, { camera: action.payload });
+
+        case UPDATE_WIZ_FENCED:
+            return Object.assign({}, state, { fenced: action.payload });
+
+        case UPDATE_WIZ_GUARDED:
+            return Object.assign({}, state, { guarded: action.payload });
 
         // Return the previous state in the default case.  We do that for any unknown actions.
         default:
@@ -139,6 +174,13 @@ export function updateWizSpaceQuantity(spaceQuantity) {
     }
 }
 
+export function updateWizSpaceSize(spaceSize) {
+    return {
+        type: UPDATE_WIZ_SPACE_SIZE,
+        payload: spaceSize
+    }
+}
+
 export function updateWizDescription(description) {
     return {
         type: UPDATE_WIZ_DESCRIPTION,
@@ -157,5 +199,47 @@ export function updateWizStreetView(streetView) {
     return {
         type: UPDATE_WIZ_STREET_VIEW,
         payload: streetView
+    }
+}
+
+export function updateWizCovered(covered) {
+    return {
+        type: UPDATE_WIZ_COVERED,
+        payload: covered
+    }
+}
+
+export function updateWizLit(lit) {
+    return {
+        type: UPDATE_WIZ_LIT,
+        payload: lit
+    }
+}
+
+export function updateWizCharging(charging) {
+    return {
+        type: UPDATE_WIZ_CHARGING,
+        payload: charging
+    }
+}
+
+export function updateWizCamera(camera) {
+    return {
+        type: UPDATE_WIZ_CAMERA,
+        payload: camera
+    }
+}
+
+export function updateWizFenced(fenced) {
+    return {
+        type: UPDATE_WIZ_FENCED,
+        payload: fenced
+    }
+}
+
+export function updateWizGuarded(guarded) {
+    return {
+        type: UPDATE_WIZ_GUARDED,
+        payload: guarded
     }
 }
