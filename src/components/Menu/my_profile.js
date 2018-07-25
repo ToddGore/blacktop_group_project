@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-
+import styled from 'styled-components'
 import Nav from "../Nav/Nav";
-import "./my_profile.css";
 import axios from 'axios'
+// import "./my_profile.css";
 
 export default class Myprofile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      user:{},
+      user: {},
       profilepicture: "",
       googlename: "",
       username: "",
@@ -23,88 +23,101 @@ export default class Myprofile extends Component {
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  handleEdit(){
-    this.setState({edit: !this.state.edit})
+  handleEdit() {
+    this.setState({ edit: !this.state.edit })
   }
-  componentDidMount(){
+  componentDidMount() {
     axios.get('/auth/user').then(res => {
-      this.setState({user: res.data})
+      this.setState({ user: res.data })
     })
   }
 
   render() {
+    console.log('profile ', this.props)
     return (
-      <div>
+      <ProfileCSS>
         <Nav />
         <div className="myprofile">
-          <img
-            alt=''
-            src={this.state.user.user_pic}
-            style={{
-              height: "150px",
-              width: "150px",
-              borderRadius: "50%",
-              margin: "auto"
-            }}
-          />
-          <hr/>
-          <p>Name: {this.state.user.username}</p>
-          <hr/>
-          {this.state.edit ?
-              <input
-                placeholder="Username"
-                type="username"
-                className="input"
-                name="username"
-                value={this.state.username}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            : 
-              <p>Username: </p>
-          }
-          <hr/>
-          {this.state.edit ? 
-              <input
-                placeholder="Email"
-                type="email"
-                className="input"
-                name="email"
-                value={this.state.email}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            :
-              <p>Email:</p>
-          }
-          <hr/>
-          {this.state.edit ? 
-              <input
-                placeholder="Phonenumber"
-                type="phonenumber"
-                className="input"
-                name="phonenumber"
-                value={this.state.phonenumber}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            :
-              <p>Phonenumber:</p>
-          }
-          <hr/>
-          {this.state.edit ?
-              <div> 
-                <button className='button' onClick = {() => {this.handleEdit()}}>Cancel</button>
-                <button className='button'>Submit</button>
-              </div>
-            :
-              <button className='button' onClick = {() => {this.handleEdit()}}>Edit</button>
-          }
+          <PicCSS>
+            {" "}
+            {/* Google Profile Pic */}
+          </PicCSS>
+          {/* <p>Google name will be displayed here</p> */}
+          <InputCSS>
+            <p>Tap an item to edit it</p>
+            <br />
+            <input
+              placeholder="Username"
+              disabled // Disables input to box
+              type="username"
+              className="input"
+              name="username"
+              value={this.state.username}
+              onChange={e => {
+                this.handleChange(e);
+              }}
+            />
+            <input
+              placeholder="Email"
+              type="email"
+              className="input"
+              name="email"
+              value={this.state.email}
+              onChange={e => {
+                this.handleChange(e);
+              }}
+            />
+            <input
+              placeholder="Phone Number"
+              type="phonenumber"
+              className="input"
+              name="phonenumber"
+              value={this.state.phonenumber}
+              onChange={e => {
+                this.handleChange(e);
+              }}
+            />
+
+          </InputCSS>
+          {/* <button className='button'>Button</button> */}
+          {/* <p>
+            Needs edit buttons for each input and also a submit button after
+            they have edited
+          </p> */}
         </div>
-      </div>
+      </ProfileCSS>
     );
   }
 }
+
+
+const ProfileCSS = styled.div`
+    height: 100vh;
+    padding-top: 10px;
+    background-color: var(--appbackgroundcolor);
+`
+
+const PicCSS = styled.div`
+    height: 150px;
+    width: 150px;
+    background-color: grey;
+    border-radius: 50%;
+    margin: auto;
+`;
+
+const InputCSS = styled.div`
+      margin-top: 40px;
+      & input {
+        text-indent: 10px;
+        margin: 5px 0;
+        border-radius: 25px;
+        /* border: 1px solid lightgray; */
+        border-width: 0px;
+        border:none;
+        box-shadow: none;
+        background-color: #EAECEE;
+        padding: 5px; 
+        width: 250px;
+        height: 25px;
+    }
+`;

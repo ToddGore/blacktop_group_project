@@ -2,17 +2,18 @@
 :root{
 
   /* MAIN APP */
-	--appbackgroundcolor: rgb(237, 237, 237);
+  /* --appbackgroundcolor: rgb(237, 237, 237); */
+  --appbackgroundcolor: white;
   --appfontcolor: black;
 
   /* BUTTONS */
-  --buttonbackgroundcolor: red;
+  --buttonbackgroundcolor: lightblue;
   
   /* NAV BAR */
   --navbackgroundcolor: red;
 
   /* POPUP */
-  --popupbackgroundcolor: blue;
+  --popupbackgroundcolor: rgba(0,0,0, 0.7);
 }
 
 /* MAIN APP CSS */
@@ -31,11 +32,28 @@
   box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 }
 .button{
-  background: var(--buttonbackgroundcolor);
+  /* background: var(--buttonbackgroundcolor); */
   height:40px;
   font-size:1.6em;
   padding:0 2em;
+  border-radius: 10px;
+  margin: 10px 0;
+  outline:none;
+  /* border: none; */
 }
+.gradient-button {
+  margin: 10px;
+  text-align: center;
+  background-size: 200% auto;
+  color: #FFF;
+  border-radius: 10px;
+  /* display: inline-block; */
+  border-radius: 25px;
+}
+.gradient-button-4 {
+  background-image: linear-gradient(to right, #6bdfe4 0%, #0072ff 51%, #00c6ff 100%)
+}
+
 
 
 
@@ -43,28 +61,30 @@
 
 .popup{
   padding-top: 50px;
-  height: 100%;
+  height: 465px;
   width: 100%;
-  z-index: 9;
   position: fixed;
   background-color: var(--popupbackgroundcolor);
+  z-index: 1;
+  /* margin-bottom: 10px; */
 }
 .popupbutton{
+  border-radius: 15px;
+  z-index: 9999;
   height: 40px;
   width: 215px;
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
   font-size: 20px;
-  color: black;
   padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
   letter-spacing: 2px;
-  background-color: black;
-  color: white;
+  background-color: var(--buttonbackgroundcolor);
+  color: black;
 }
 .hiddenPU{
 	top: -1500px;
