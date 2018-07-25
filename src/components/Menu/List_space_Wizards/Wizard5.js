@@ -7,8 +7,9 @@ import cancelbutton from "./../../Images/cancelbutton.svg";
 import { storage } from '../../Firebase/index';
 import add_image_icon from '../../Images/add_image_icon.svg';
 import {updateWizPicOne} from '../../../ducks/reducer';
+import {connect} from 'react-redux';
 
-export default class Wizard5 extends Component {
+class Wizard5 extends Component {
   
   handleCarPic(e) {
     if (e.target.files[0]) {
@@ -17,7 +18,7 @@ export default class Wizard5 extends Component {
       uploadTask.on('state_changed',
       () => {
         storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
-          this.setState({ car_pic: url })
+          this.props.updateWizPicOne(url)
         })
       });
     }
@@ -25,8 +26,9 @@ export default class Wizard5 extends Component {
   
   
   render() {
-
+    
     const {updateWizPicOne} = this.props;
+    console.log(this.props.picOne)
 
     return (
       <div className="wizards">
@@ -34,7 +36,7 @@ export default class Wizard5 extends Component {
 
           <h1>Add Pictures</h1>
           <br />
-
+          <img src={this.props.picOne} alt='' style={{width: "300px"}}/>
 
           <div>
             <label htmlFor='picture_input'>

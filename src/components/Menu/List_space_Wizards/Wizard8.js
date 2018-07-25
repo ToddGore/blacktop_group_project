@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-  import "./Wizards.css";
+import "./Wizards.css";
 import { connect } from 'react-redux';
 import backarrow from "./../../Images/backarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
+import axios from 'axios';
 
 class Wizard8 extends Component {
+
+  handleWizPost(){
+    axios.post('')
+    axios.post('/api/listing', {
+      
+    }).then(res => {
+   
+    })
+  }
+  
 
   render() {
     console.log(this.props)
 
     return (
-      <div className = "wizards">
+      <div className = "">
         <div className="wizard8">
 
           <h1>Here is a preview of your listing:</h1>
@@ -69,9 +80,10 @@ class Wizard8 extends Component {
           <p>venmo: {`${this.props.venmo}`}</p>
           <p>paypal: {`${this.props.paypal}`}</p>
           <p>apple pay: {`${this.props.applePay}`}</p>
+          <br/>
 
           <h3>Submitted Photos</h3>
-          <p>pic one: {this.props.picOne}</p>
+          <img src={this.props.picOne} alt='' style={{width: "300px"}} />
 
           {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 
@@ -86,7 +98,7 @@ class Wizard8 extends Component {
           </Link>
 
           <Link to="/mylistings">
-            <button className="button">Post</button>
+            <button className="button" onClick = {(e) =>{this.handleWizPost()}}>Submit Listing</button>
           </Link>
 
         </div>
