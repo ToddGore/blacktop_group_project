@@ -24,26 +24,27 @@ class Wizard8 extends Component {
       lat: lat,
       lng: lng
     })
-      .then(res => {
-        console.log("This is res.data", res)
-        axios.post('/api/feature', {
-          covered: covered,
-          lit: lit,
-          charging: charging,
-          camera: camera,
-          fenced: fenced,
-          guarded: guarded,
-          listing_id:res.data.id
-        })
-        // axios.post('/api/picture',{
-        //   pic_one: picOne,
-        //   pic_two: picTwo,
-        //   pic_three: picThree,
-        //   pic_four: picFour,
-        //   listing_id: res.data.id
-        // })
-        // axios.post('/api/')
-      })
+      // .then(res => {
+      //   console.log("This is res.data", res)
+      //   axios.post('/api/feature', {
+      //     covered: covered,
+      //     lit: lit,
+      //     charging: charging,
+      //     camera: camera,
+      //     fenced: fenced,
+      //     guarded: guarded,
+      //     listing_id:res.data.id
+      //   })
+      //   axios.post('/api/picture',{
+      //     pic_one: picOne,
+      //     pic_two: picTwo,
+      //     pic_three: picThree,
+      //     pic_four: picFour,
+      //     listing_id: res.data.id
+      //   })
+      //   axios.post('/api/')
+      // }
+  
 
   }
 
