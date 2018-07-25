@@ -15,12 +15,28 @@ module.exports = {
         .then( listings => res.status(200).send(listings))
         .catch( (err) => res.status(500).send(console.log(err)))
     },
+    getListingById:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+        
+        db.get_listing_by_id([id])
+        .then( listing => res.status(200).send(listing))
+        .catch( (err) => res.status(500).send(console.log(err)))
+    },
     getListingPreview:(req, res) => {
         const db = req.app.get('db');
         const {id} = req.params
 
         db.get_listing_preview([id])
         .then( preview => res.status(200).send(preview))
+        .catch( () => res.status(500).send())
+    },
+    getFeatures:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        db.get_features([id])
+        .then( features => res.status(200).send(features))
         .catch( () => res.status(500).send())
     },
     getReservations:(req, res) => {
@@ -105,14 +121,15 @@ module.exports = {
         const db = req.app.get('db');
         const {user_id, listing_id} = req.body
 
-        db.create_reservation([user_id, listing_id])
+        db.create_reservation([user_id, start_time, end_time, listing_id])
         .then( reservation => res.status(200).send(reservation))
         .catch( () => res.status(500).send())
     },
     createSchedule:(req, res) => {
         const db = req.app.get('db');
+        const {monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id} = req.body
 
-        db.create_schedule([])
+        db.create_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id])
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
@@ -190,8 +207,10 @@ module.exports = {
     },
     updateSchedule:(req, res) => {
         const db = req.app.get('db');
+        const {id} = req.params
+        const {monday, tuesday, wednesday, thursday, friday, saturday, sunday} = req.body
 
-        db.save_position([pos_x, pos_y, map_id, id])
+        db.update_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, id])
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },

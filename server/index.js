@@ -85,6 +85,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 app.get('/auth/user', (req, res) => {
     if (req.user){
+        console.log('hit')
         res.status(200).send(req.user);
     } else {
         res.status(401).send('Unauthorized user');
@@ -99,13 +100,15 @@ app.get('/auth/logout', (req, res) => {
 
 //Listing
 app.get('/api/listing', ctrl.getAllListings)
-app.get('/api/listing/:id', ctrl.getUserListings)
+app.get('/api/listing/:id', ctrl.getListingById)
+app.get('/api/userlisting/:id', ctrl.getUserListings)
 app.get('/api/preview/:id', ctrl.getListingPreview)
 app.post('/api/listing', ctrl.createListing)
 app.put('/api/listing/:id', ctrl.updateListing)
 app.delete('/api/listing/:id', ctrl.deleteListing)
 
 //Features
+app.get('/api/feature/:id', ctrl.getFeatures)
 app.post('/api/feature', ctrl.createFeatures)
 app.put('/api/feature/:id', ctrl.updateFeatures)
 
