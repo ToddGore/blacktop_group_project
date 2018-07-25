@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import background from '../Images/small_map.png';
-
-
 require('dotenv').config();
-
-
-
-
 
 export default function Login() {
     return (
@@ -20,9 +14,7 @@ export default function Login() {
             </Content>
         </Main>
     )
-
 }
-
 
 
 const Content = styled.div`

@@ -3,45 +3,70 @@ import Map from './../Map/Map';
 import Nav from './../Nav/Nav'
 import './Search.css'
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getUser } from '../../ducks/reducer'
 
-export default class Search extends Component {
-    constructor(){
+class Search extends Component {
+
+    constructor() {
         super();
-        this.state ={
-            markers:[]
+        this.state = {
+            isLoading: true,
+            markers: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        this.props.getUser();
         this.getListings();
-      }
-    
-      getListings() {
-          axios.get('api/listing').then(res => {
-            console.log(res.data)
-          this.setState({ markers: res.data })
-        });
-      }
-      
-    render() {
+    }
 
-        
-      
+    getListings() {
+        axios.get('api/listing').then(res => {
+            console.log(res.data)
+            this.setState({
+                markers: res.data,
+                isLoading: false
+            })
+
+        });
+    }
+
+    render() {
+        console.log(this.props);
         return (
             <div>
-                <Nav />
-                <div className='search'>Search</div>
+                {
+                    !this.state.isLoading ?
+                        <div>
 
-                <Map
-                    zoom={14}
-                    markers={this.state.markers}
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-                    containerElement={<div style={{ height: `400px` }} />}
-                    loadingElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
-                />
+                            <Nav />
+                            <div className='search'>Search</div>
 
+                            <Map
+                                zoom={14}
+                                markers={this.state.markers}
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+                                containerElement={<div style={{ height: `400px` }} />}
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                            />
+                        </div>
+                        :
+                        <div>
+                            <p>Loading</p>
+                        </div>
+
+                }
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps, { getUser })(Search);
