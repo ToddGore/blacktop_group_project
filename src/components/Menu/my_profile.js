@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { getUser } from './../../ducks/reducer'
 
+import styled from 'styled-components'
 import Nav from "../Nav/Nav";
-import "./my_profile.css";
 import axios from 'axios'
 
+
+
 class Myprofile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
+      user: {},
       profilepicture: "",
       googlename: "",
       username: "",
@@ -24,10 +27,10 @@ class Myprofile extends Component {
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  handleEdit(){
-    this.setState({edit: !this.state.edit})
+  handleEdit() {
+    this.setState({ edit: !this.state.edit })
   }
-  componentDidMount(){
+  componentDidMount() {
     axios.get('/auth/user').then(res => {
       this.props.getUser()
     })
@@ -80,3 +83,34 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getUser })(Myprofile);
+
+// const ProfileCSS = styled.div`
+//     height: 100vh;
+//     padding-top: 10px;
+//     background-color: var(--appbackgroundcolor);
+// `
+
+// const PicCSS = styled.div`
+//     height: 150px;
+//     width: 150px;
+//     background-color: grey;
+//     border-radius: 50%;
+//     margin: auto;
+// `;
+
+// const InputCSS = styled.div`
+//       margin-top: 40px;
+//       & input {
+//         text-indent: 10px;
+//         margin: 5px 0;
+//         border-radius: 25px;
+//         /* border: 1px solid lightgray; */
+//         border-width: 0px;
+//         border:none;
+//         box-shadow: none;
+//         background-color: #EAECEE;
+//         padding: 5px; 
+//         width: 250px;
+//         height: 25px;
+//     }
+// `;
