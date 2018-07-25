@@ -108,15 +108,6 @@ export default class Myvehicle extends Component {
   handleToggle() {
     this.setState({ toggle: !this.state.toggle })
   }
-  editToggle(e) {
-    this.setState({ edit: !this.state.edit })
-  }
-  componentDidMount() {
-    let id = this.state.user.id
-    axios.get(`/api/vehicle/${id}`).then((res) => {
-      this.setState({ vehicles: res.data })
-    })
-  }
   addCar() {
     let body = {
       user_id: this.state.user.id,
@@ -170,9 +161,7 @@ export default class Myvehicle extends Component {
 
 
   render() {
-
     let mappedVehicles = this.state.vehicles.map((e, i) => (
-
       <div key ={i}>
         <div style = {{boxShadow: '0px 1px 10px grey', padding: '20px', marginTop: '30px', textAlign: 'left'}}>
         {e.car_pic ?
@@ -243,10 +232,6 @@ export default class Myvehicle extends Component {
         </div>
       </div>
     ))
-
-
-
-    {/* THIS VIEW IS FOR WHEN YOU ARE ADDING A CAR */}
     return (
       <div>
         {this.state.view ? 
@@ -266,32 +251,30 @@ export default class Myvehicle extends Component {
                   </div>
               }
             
-              Year: <input type='' className="input" value={this.state.Year}  name="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
-              <br />
-              Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => { this.handleChange(e) }} />
-              <br />
-              Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => { this.handleChange(e) }} />
-              <br />
-              Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }} />
-              <br />
-              Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => { this.handleChange(e) }} />
-              <br />
-              Size: (click on a icon button)
-              <br />
-              <button className='button' onClick = {()=> {this.cancel()}}>Cancel</button>
-              <button className="button" onClick = {()=> {this.addCar()}}>Submit</button>
+                Year: <input type='' className="input" value={this.state.Year}  name="Year" onChange={e => {this.handleChange(e)}} maxLength = '4'/> 
+                <br />
+                Make: <input type="" className="input" value={this.state.Make} name="Make" onChange={e => { this.handleChange(e) }} />
+                <br />
+                Model: <input type="" className="input" value={this.state.Model} name="Model" onChange={e => { this.handleChange(e) }} />
+                <br />
+                Color: <input type="" className="input" value={this.state.Color} name="Color" onChange={e => { this.handleChange(e) }} />
+                <br />
+                Plate: <input type="" className="input" value={this.state.Plate} name="Plate" onChange={e => { this.handleChange(e) }} />
+                <br />
+                Size: (click on a icon button)
+                <br />
+                <button className='button' onClick = {()=> {this.cancel()}}>Cancel</button>
+                <button className="button" onClick = {()=> {this.addCar()}}>Submit</button>
+              </div>
             </div>
-          </div>
-
           :
-
-          <div> 
-            <Nav/>
-            <div className = 'myvehicle'>
-                <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
-                {mappedVehicles}
+            <div> 
+              <Nav/>
+              <div className = 'myvehicle'>
+                  <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
+                  {mappedVehicles}
+              </div>
             </div>
-          </div>
         }
       </div>
     );

@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { getUser } from './../../ducks/reducer'
 
 import Nav from "../Nav/Nav";
 import "./my_profile.css";
 import axios from 'axios'
 
-export default class Myprofile extends Component {
+class Myprofile extends Component {
   constructor() {
     super();
 
     this.state = {
-      user:{},
       profilepicture: "",
       googlename: "",
       username: "",
@@ -28,83 +29,54 @@ export default class Myprofile extends Component {
   }
   componentDidMount(){
     axios.get('/auth/user').then(res => {
-      this.setState({user: res.data})
+      this.props.getUser()
     })
   }
 
   render() {
+    console.log(this.props.user)
     return (
       <div>
         <Nav />
         <div className="myprofile">
-          <img
-            alt=''
-            src={this.state.user.user_pic}
-            style={{
-              height: "150px",
-              width: "150px",
-              borderRadius: "50%",
-              margin: "auto"
-            }}
-          />
-          <hr/>
-          <p>Name: {this.state.user.username}</p>
-          <hr/>
+          <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: "auto", marginTop:'30px'}}/>
           {this.state.edit ?
-              <input
-                placeholder="Username"
-                type="username"
-                className="input"
-                name="username"
-                value={this.state.username}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            : 
-              <p>Username: </p>
-          }
-          <hr/>
-          {this.state.edit ? 
-              <input
-                placeholder="Email"
-                type="email"
-                className="input"
-                name="email"
-                value={this.state.email}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            :
-              <p>Email:</p>
-          }
-          <hr/>
-          {this.state.edit ? 
-              <input
-                placeholder="Phonenumber"
-                type="phonenumber"
-                className="input"
-                name="phonenumber"
-                value={this.state.phonenumber}
-                onChange={e => {
-                  this.handleChange(e);
-                }}
-              />
-            :
-              <p>Phonenumber:</p>
-          }
-          <hr/>
-          {this.state.edit ?
-              <div> 
+              <div style={{textAlign: 'left', padding: '20px'}}> 
+                <p>Name: {this.props.user.username}</p>
+                <hr/>
+                Username: <input type="username" className="input" name="username" value={this.state.username} onChange={e => {this.handleChange(e)}}/>
+                <hr/>
+                Email: <input type="email" className="input" name="email" value={this.state.email} onChange={e => {this.handleChange(e)}}/>
+                <hr/>
+                Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => {this.handleChange(e);}}/>
+                <hr/>
                 <button className='button' onClick = {() => {this.handleEdit()}}>Cancel</button>
                 <button className='button'>Submit</button>
               </div>
-            :
-              <button className='button' onClick = {() => {this.handleEdit()}}>Edit</button>
+            : 
+            <div style={{textAlign: 'left', padding: '20px'}}>
+                <p>Name: {this.props.user.username}</p>
+                <hr/>
+                <p>Username: </p>
+                <hr/>
+                <p>Email:</p>
+                <hr/>
+                <p>Phonenumber:</p>
+                <hr/>
+                <button className='button' onClick = {() => {this.handleEdit()}}>Edit</button>
+              </div> 
           }
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { user } = state;
+  return {
+   user: user
+  }
+}
+
+export default connect(mapStateToProps, { getUser })(Myprofile);
