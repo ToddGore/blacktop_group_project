@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Map from './../Map/Map';
 import Nav from './../Nav/Nav'
-import './Search.css'
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer'
