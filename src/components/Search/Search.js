@@ -50,12 +50,12 @@ const SearchCSS = styled.div`
     height: 700px;
     padding-top: 50px;
     width: 100%;
-    background-image: url(${searchBackground});
+    /* background-image: url(${searchBackground}); */
 `;
 
 const Title = styled.h1`
     font-size: 1.5em;
     text-align: center;
-    color: white;
+    /* color: white; */
     padding: 10px 0;
 `;

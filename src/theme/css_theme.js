@@ -1,22 +1,36 @@
 // import styled from 'styled-components'
 import React from 'react';
 import styled from 'styled-components'
-import buttonNormal from './components/Images/nav_images/Normal.png'
 import './css_theme.css'
-
+import buttonBackground from '../components/Images/nav_images/Normal.png'
+import navBgDark from '../components/Images/nav_images/tab_bar_bas.png'
+import buttonBackgroundLT from '../components/Images/nav_images/Normal_light.jpg'
+import navBgLight from '../components/Images/nav_images/tab_bar_light.jpg'
 
 // http://colorpalettes.net/color-palette-2085
-const mainTheme = {
+export const mainTheme = {
     primaryYellow: "#fdd000",
+    primaryColor: "#A2A2A2",
     primaryGray: "#5d6d7c",
     primaryBlack: "#000000",
     primaryWhite: "#f2efe2",
-    fontFamily: "Roboto sans-serif"
+    fontFamily: "Roboto sans-serif",
+    backgroundImage: `${navBgDark}`,
+    buttonBackground: `${buttonBackground}`
 }
 
-// Font Roboto
+export const lightTheme = {
+    primaryColor: "#A2A2A2",
+    secondColor: "#A2A2A2",
+    thirdColor: "#000000",
+    fourthColor: "#f2efe2",
+    fontFamily: "Roboto sans-serif",
+    backgroundImage: `${navBgLight}`,
+    buttonBackground: `${buttonBackgroundLT}`
+}
 
 
+// Font Roboto set in globalStyle.js
 // H1 font size
 // Text box font size
 
@@ -32,7 +46,7 @@ export function IconChat(props) {
     const chatfill = props.chatfill || mainTheme.primaryYellow
     return (
         <div className="image-container-chat">
-            <img src={buttonNormal} />
+            <img src={props => props.theme.buttonBackground} />
 
             <div className="IconChat">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +73,7 @@ export function IconMenu(props) {
     const menufill = props.menufill || mainTheme.primaryYellow
     return (
         <div className="image-container-menu">
-            <img src={buttonNormal} />
+            <img src={props => props.theme.buttonBackground} />
 
             <div className="IconMenu">
 
@@ -86,7 +100,7 @@ export function IconSchedule(props) {
     const schedulefill = props.schedulefill || mainTheme.primaryYellow
     return (
         <div className="image-container-schedule">
-            <img src={buttonNormal} />
+            <img src={props => props.theme.buttonBackground} />
 
             <div className="IconSchedule">
                 <svg
@@ -119,7 +133,7 @@ export function IconSearch(props) {
     const searchfill = props.searchfill || mainTheme.primaryYellow
     return (
         <div className="image-container-search">
-            <img src={buttonNormal} />
+            <img src={props => props.theme.buttonBackground} />
 
             <div className="IconSearch">
                 <svg

@@ -77,46 +77,6 @@ export default class Myprofile extends Component {
                 this.handleChange(e);
               }}
             />
-            <input
-              placeholder="Street"
-              type="street"
-              className="input"
-              name="street"
-              value={this.state.street}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-            <input
-              placeholder="City"
-              type="city"
-              className="input"
-              name="city"
-              value={this.state.city}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-            <input
-              placeholder="State"
-              type="state"
-              className="input"
-              name="state"
-              value={this.state.usstate}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-            <input
-              placeholder="Zip"
-              type="zipcode"
-              className="input"
-              name="zipcode"
-              value={this.state.zipcode}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
 
           </InputCSS>
           {/* <button className='button'>Button</button> */}

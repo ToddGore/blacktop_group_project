@@ -8,9 +8,9 @@ import Popup from './Popup'
 // import Schedule_icon from './../Images/scheduleSVG.svg'
 import Menu_icon from './../Images/menuSVG.svg'
 
-import { IconSearch, IconChat, IconSchedule, IconMenu } from "../../css_theme"
-import navBackground from '../Images/nav_images/tab_bar_bas.png'
-import buttonNormal from '../Images/nav_images/Normal.png'
+import { IconSearch, IconChat, IconSchedule, IconMenu } from "../../theme/css_theme"
+// import navBackground from '../Images/nav_images/tab_bar_bas.png'
+// import buttonNormal from '../Images/nav_images/Normal.png'
 
 import styled from 'styled-components'
 // import { prependOnceListener } from 'cluster';
@@ -68,7 +68,8 @@ const NavCSS = styled.div`
     /* border: 1px solid red; */
     height: 55px;
     width: 100%;
-    background-image: url(${navBackground});
+    background-image: url(${props => props.theme.backgroundImage});
+
     /* background-color: ${props => props.theme.primaryBlack}; */
     position: fixed;
     bottom: 0;

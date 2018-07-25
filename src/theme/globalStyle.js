@@ -8,4 +8,7 @@ injectGlobal`
     margin: 0;
     font-family: sans-serif;
   }
+  h1 {
+    color: black;
+  }
 `
