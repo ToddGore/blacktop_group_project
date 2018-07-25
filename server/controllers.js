@@ -69,7 +69,9 @@ module.exports = {
             about, 
             instructions, 
             price, 
-            user_id
+            host_id,
+            lat,
+            lng
         } = req.body
 
         db.create_listing([
@@ -81,11 +83,16 @@ module.exports = {
             about, 
             instructions, 
             price, 
-            user_id
+            host_id,
+            lat,
+            lng
         ])
-        .then( () => res.status(200).send())
-        .catch( () => res.status(500).send())
+        .then( listing => res.status(200).send(listing))
+        .catch( (err) => res.status(500).send(
+            console.log(err)
+        ))
     },
+
     createFeatures:(req, res) => {
         const db = req.app.get('db');
         const {
@@ -109,6 +116,7 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
+
     createPictures:(req, res) => {
         const db = req.app.get('db');
         const {pic_one, pic_two, pic_three, pic_four, listing_id} = req.body
@@ -117,6 +125,7 @@ module.exports = {
         .then( pictures => res.status(200).send(pictures))
         .catch( () => res.status(500).send())
     },
+
     createReservation:(req, res) => {
         const db = req.app.get('db');
         const {user_id, listing_id} = req.body
@@ -125,6 +134,7 @@ module.exports = {
         .then( reservation => res.status(200).send(reservation))
         .catch( () => res.status(500).send())
     },
+
     createSchedule:(req, res) => {
         const db = req.app.get('db');
         const {monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id} = req.body
@@ -133,6 +143,7 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
+    
     createVehicle:(req, res) => {
         const db = req.app.get('db');
         const {user_id, car_pic, year, make, model, color, size, plate} = req.body
