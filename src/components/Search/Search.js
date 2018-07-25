@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
 import Map from './../Map/Map';
 import Nav from './../Nav/Nav'
-import './Search.css'
 import axios from 'axios';
+import styled from 'styled-components'
+import searchBackground from '../Images/Bg.png'
 
 export default class Search extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state ={
-            markers:[]
+        this.state = {
+            markers: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getListings();
-      }
-    
-      getListings() {
-          axios.get('api/listing').then(res => {
+    }
+
+    getListings() {
+        axios.get('api/listing').then(res => {
             console.log(res.data)
-          this.setState({ markers: res.data })
+            this.setState({ markers: res.data })
         });
-      }
-      
+    }
+
     render() {
 
-        
-      
-        return (
-            <div>
-                <Nav />
-                <div className='search'>Search</div>
 
+
+        return (
+            <SearchCSS>
+                <Title>Search</Title>
+                <Nav />
                 <Map
                     zoom={14}
                     markers={this.state.markers}
@@ -40,8 +40,22 @@ export default class Search extends Component {
                     loadingElement={<div style={{ height: `100%` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                 />
-
-            </div>
+            </SearchCSS>
         )
     }
 }
+
+const SearchCSS = styled.div`
+    /* border: 1px solid red; */
+    height: 700px;
+    padding-top: 50px;
+    width: 100%;
+    /* background-image: url(${searchBackground}); */
+`;
+
+const Title = styled.h1`
+    font-size: 1.5em;
+    text-align: center;
+    /* color: white; */
+    padding: 10px 0;
+`;
