@@ -70,6 +70,9 @@ class Wizard8 extends Component {
           <p>paypal: {`${this.props.paypal}`}</p>
           <p>apple pay: {`${this.props.applePay}`}</p>
 
+          <h3>Submitted Photos</h3>
+          <p>pic one: {this.props.picOne}</p>
+
           {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 
 
@@ -120,7 +123,8 @@ function mapStateToProps(state) {
     thursday: state.thursday,
     friday: state.friday,
     saturday: state.saturday,
-    sunday: state.sunday
+    sunday: state.sunday,
+    picOne: state.picOne
   }
 }
 

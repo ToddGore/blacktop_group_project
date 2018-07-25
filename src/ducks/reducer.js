@@ -32,7 +32,8 @@ const initialState = {
     thursday: false,
     friday: false,
     saturday: false,
-    sunday: false
+    sunday: false,
+    picOne: ''
 }
 
 // Actions are payloads of information that send data from the app to the store. 
@@ -73,6 +74,7 @@ const UPDATE_WIZ_THURSDAY = "UPDATE_WIZ_THURSDAY";
 const UPDATE_WIZ_FRIDAY = "UPDATE_WIZ_FRIDAY";
 const UPDATE_WIZ_SATURDAY = "UPDATE_WIZ_SATURDAY";
 const UPDATE_WIZ_SUNDAY = "UPDATE_WIZ_SUNDAY";
+const UPDATE_WIZ_PIC_ONE = "UPDATE_WIZ_PIC_ONE";
 
 
 
@@ -178,6 +180,9 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_WIZ_SUNDAY:
             return Object.assign({}, state, { sunday: action.payload });
+
+        case UPDATE_WIZ_PIC_ONE:
+            return Object.assign({}, state, { picOne: action.payload });
 
         // Return the previous state in the default case.  We do that for any unknown actions.
         default:
@@ -393,3 +398,11 @@ export function updateWizSunday(sunday) {
         payload: sunday
     }
 }
+
+export function updateWizPicOne(picOne) {
+    return {
+        type: UPDATE_WIZ_PIC_ONE,
+        payload: picOne
+    }
+}
+
