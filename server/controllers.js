@@ -135,7 +135,7 @@ module.exports = {
         .catch( () => res.status(500).send())
     },
 
-    createSchedule:(req, res) => {
+    createAvailability:(req, res) => {
         const db = req.app.get('db');
         const {monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id} = req.body
 
@@ -152,7 +152,15 @@ module.exports = {
         .then( vehicle => res.status(200).send(vehicle))
         .catch( () => res.status(500).send())
     },
+    
+ createPayment:(req, res) => {
+     const db = req.app.get('db');
+     const {cash, credit, venmo, pay_pal, apple_pay, listing_id} = req.body;
 
+     db.create_payments([cash, credit, venmo, pay_pal, apple_pay, listing_id])
+     .then( () => res.status(200).send())
+     .catch(() => res.status(500).send())
+ },
 
     //UPDATE CONTROLLERS
     updateFeatures:(req, res) => {
@@ -216,7 +224,7 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
-    updateSchedule:(req, res) => {
+    updateAvailability:(req, res) => {
         const db = req.app.get('db');
         const {id} = req.params
         const {monday, tuesday, wednesday, thursday, friday, saturday, sunday} = req.body
@@ -235,7 +243,15 @@ module.exports = {
         .catch( () => res.status(500).send())
     },
 
+    updatePayment: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        const {cash, credit, venmo, pay_pal, apple_pay} = req.body
+        db.update_payments([cash, credit, venmo, pay_pal, apple_pay, id])
 
+        .then( (payments) => res.status(200).send(payments))
+        .catch( () => res.status(500).send())
+    },
     //DELETE CONTROLLERS
     deleteListing:(req, res) => {
         const db = req.app.get('db');

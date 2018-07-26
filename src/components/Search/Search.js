@@ -22,7 +22,7 @@ class Search extends Component {
 
     getListings() {
         axios.get('api/listing').then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 markers: res.data,
                 isLoading: false
@@ -32,7 +32,7 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div>
                 {

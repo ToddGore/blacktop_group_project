@@ -10,10 +10,8 @@ import { connect } from "react-redux";
 class Wizard7 extends Component {
 
   render() {
-
     const { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay, updateWizRate } = this.props;
     // console.log(this.props.rate)
-
     return (
       <div className="wizards">
         <div className="wizard7">

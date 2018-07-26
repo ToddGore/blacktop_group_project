@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import background from '../Images/small_map.png';
+import bigPin from '../Images/giant_pin.png';
+
 require('dotenv').config();
+
+
 
 export default function Login() {
     return (

@@ -10,8 +10,7 @@ import { connect } from 'react-redux';
 class Wizard3 extends Component {
 
   render() {
-    console.log(this.props)
-
+    // console.log(this.props)
     const { updateWizDescription, updateWizInstructions, updateWizSpaceSize, updateWizCovered, updateWizLit, updateWizCharging, updateWizCamera, updateWizFenced, updateWizGuarded } = this.props;
 
     return (

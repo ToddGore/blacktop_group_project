@@ -32,7 +32,7 @@ export default class Nav extends Component {
 
     handlePopup() {
         this.setState({ popup: !this.state.popup })
-        console.log('Clicked')
+        // console.log('Clicked')
     }
     setFalse() {
         this.setState({ popup: false })

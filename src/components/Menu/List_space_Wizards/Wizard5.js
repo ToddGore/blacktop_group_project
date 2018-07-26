@@ -6,44 +6,80 @@ import nextarrow from "./../../Images/nextarrow.svg";
 import cancelbutton from "./../../Images/cancelbutton.svg";
 import { storage } from '../../Firebase/index';
 import add_image_icon from '../../Images/add_image_icon.svg';
-import {updateWizPicOne} from '../../../ducks/reducer';
-import {connect} from 'react-redux';
+import { updateWizPicOne, updateWizPicTwo, updateWizPicThree, updateWizPicFour } from '../../../ducks/reducer';
+import { connect } from 'react-redux';
 
 class Wizard5 extends Component {
-  
-  handleCarPic(e) {
+
+  handleCarPic(e, picNum) {
     if (e.target.files[0]) {
       const car_pic = e.target.files[0];
       const uploadTask = storage.ref(`main_images/${car_pic.name}`).put(car_pic);
       uploadTask.on('state_changed',
-      () => {
-        storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
-          this.props.updateWizPicOne(url)
-        })
-      });
+        () => {
+          storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
+            if (picNum === 1) {
+              this.props.updateWizPicOne(url)
+
+            } else if (picNum === 2) {
+              this.props.updateWizPicTwo(url)
+            } else if (picNum === 3) {
+              this.props.updateWizPicThree(url)
+            } else {
+              this.props.updateWizPicFour(url)
+            }
+
+          })
+        });
     }
   }
-  
-  
-  render() {
-    
-    const {updateWizPicOne} = this.props;
-    console.log(this.props.picOne)
 
+
+  render() {
+    // console.log(this.props.picOne)
+    // console.log(this.props.picTwo)
+    // console.log(this.props.picThree)
+    // console.log(this.props.picFour)
     return (
       <div className="wizards">
         <div className="wizard5">
 
           <h1>Add Pictures</h1>
           <br />
-          <img src={this.props.picOne} alt='' style={{width: "300px"}}/>
+          <img src={this.props.picOne} alt='' style={{ width: "300px" }} />
+          <img src={this.props.picTwo} alt='' style={{ width: "300px" }} />
+          <img src={this.props.picThree} alt='' style={{ width: "300px" }} />
+          <img src={this.props.picFour} alt='' style={{ width: "300px" }} />
+
 
           <div>
-            <label htmlFor='picture_input'>
+            <label htmlFor='picture_input1'>
               <img src={add_image_icon} alt='' style={{ height: '150px' }} />
             </label>
-            <input type='file' id='picture_input' onChange={(e) => { this.handleCarPic(e) }} style={{ display: 'none' }} />
+            <input type='file' id='picture_input1' onChange={(e) => { this.handleCarPic(e, 1) }} style={{ display: 'none' }} />
           </div>
+
+          <div>
+            <label htmlFor='picture_input2'>
+              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+            </label>
+            <input type='file' id='picture_input2' onChange={(e) => { this.handleCarPic(e, 2 )}} style={{ display: 'none' }} />
+          </div>
+
+          <div>
+            <label htmlFor='picture_input3'>
+              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+            </label>
+            <input type='file' id='picture_input3' onChange={(e) => { this.handleCarPic(e, 3) }} style={{ display: 'none' }} />
+          </div>
+
+          <div>
+            <label htmlFor='picture_input4'>
+              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+            </label>
+            <input type='file' id='picture_input4' onChange={(e) => { this.handleCarPic(e, 4) }} style={{ display: 'none' }} />
+          </div>
+
 
 
 
@@ -66,10 +102,13 @@ class Wizard5 extends Component {
 }
 
 function mapStateToProps(state) {
-  const { picOne } = state;
+  const { picOne, picTwo, picThree, picFour } = state;
   return {
-    picOne: picOne
+    picOne: picOne,
+    picTwo: picTwo,
+    picThree: picThree,
+    picFour: picFour
   }
 }
 
-export default connect(mapStateToProps, { updateWizPicOne })(Wizard5);
+export default connect(mapStateToProps, { updateWizPicOne, updateWizPicTwo, updateWizPicThree, updateWizPicFour })(Wizard5);

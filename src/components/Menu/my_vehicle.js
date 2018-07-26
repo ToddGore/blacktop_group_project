@@ -285,19 +285,11 @@ export default class Myvehicle extends Component {
 
           :
 
-<<<<<<< HEAD
-          <div>
-            <Nav />
-            <div className='myvehicle'>
-              <a className='button gradient-button gradient-button-4' onClick={() => { this.handleToggle() }}>Add a Vehicle</a>
-              {mappedVehicles}
-=======
           <div> 
             <Nav/>
             <div className = 'myvehicle'>
                 <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
                 {mappedVehicles}
->>>>>>> master
             </div>
           </div>
         }
