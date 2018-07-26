@@ -55,6 +55,14 @@ module.exports = {
         .then( vehicles => res.status(200).send(vehicles))
         .catch( (err) => res.status(500).send(console.log(err)))
     },
+    getHost:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        db.get_host([id])
+        .then( user => res.status(200).send(user))
+        .catch( () => res.status(500).send())
+    },
 
 
     //CREATE CONTROLLERS

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 class Listing extends Component {
     constructor(props) {
@@ -11,7 +11,8 @@ class Listing extends Component {
             listing: {},
             features: [],
             pictureArray: [],
-            isLoading: true
+            isLoading: true,
+            host: {}
         }
     }
 
@@ -20,12 +21,21 @@ class Listing extends Component {
 
     }
     getListingById = () => {
-        axios.get(`/api/listing/5`).then(res => {
+        axios.get(`/api/listing/6`).then(res => {
             this.setState({
                 listing: res.data[0],
                 isLoading: false
             })
             this.getPicArray()
+            this.getHost(res.data[0].host_id)
+        })
+    }
+    getHost = (id) => {
+        console.log('hit')
+        axios.get(`/api/host/${id}`).then(res => {
+            this.setState({
+                host: res.data[0]
+            })
         })
     }
     getPicArray = () => {
@@ -47,7 +57,8 @@ class Listing extends Component {
     }
 
     render() {
-        const { listing, pictureArray } = this.state
+        const { listing, pictureArray, host} = this.state
+        console.log(host)
         let mappedPictures = pictureArray.map((picture, i) => {
             return(
                 <div key={i}>
@@ -59,19 +70,24 @@ class Listing extends Component {
             <div>
                 {this.state.isLoading ?
                  <div>
-                     <p>Loading . . .</p>
+                     <p>LOADING . . .</p>
                  </div>  
                  :
                     <div>
+                        <Link to='/search'>
+                            <h4>BACK</h4>
+                        </Link>
                         <h2>Details</h2>
                         <div>
-                            <Carousel showThumbs={false} showStatus={false}>
+                            <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
                                {mappedPictures}
                             </Carousel>
                         </div>
+                        <hr/>
                         <div>
                             <p>{listing.address}</p>
                         </div>
+                        <hr/>
                         <div>
                             <p>{listing.num_spaces}</p>
                             <p>{listing.space_size}</p>
@@ -82,10 +98,17 @@ class Listing extends Component {
                             <p>fenced:{listing.fenced ? 'true' : 'false'}</p>
                             <p>guarded:{listing.guarded ? 'true' : 'false'}</p>
                         </div>
+                        <hr/>
                         <div>
-                            <p>About</p>
+                            <h3>About this Space</h3>
+                            <p>Hosted by {host.username}</p>
+                            <img src={host.user_pic} style={{width: '50px'}}/>
+                            <br/>
+                            <button>EMAIL</button>
                         </div>
+                        <hr/>
                         <div>
+                            <h3>Listing Schedule:</h3>
                             <p>Monday:{listing.monday ? 'true' : 'false'}</p>
                             <p>Tuesday:{listing.tuesday ? 'true' : 'false'}</p>
                             <p>Wednesday:{listing.wednesday ? 'true' : 'false'}</p>
@@ -94,6 +117,7 @@ class Listing extends Component {
                             <p>Saturday:{listing.saturday ? 'true' : 'false'}</p>
                             <p>Sunday:{listing.sunday ? 'true' : 'false'}</p>
                         </div>
+                        <hr/>
                         <Link to='/checkout'>
                             <span>Checkout</span>
                         </Link>
