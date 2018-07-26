@@ -3,12 +3,6 @@ import {createStore, applyMiddleware, bindActionCreators} from 'redux';
 import reducer from './reducer';
 import promiseMiddleware from 'redux-promise-middleware';
 
-<<<<<<< HEAD
-export default createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(promiseMiddleware()));
-=======
 
 // The Store is the object that brings the actions and reducers together. 
 // The store holds application state, allows access to state, and allows state to be updated via dispatch(action).
@@ -23,4 +17,3 @@ export default createStore(
     // The Redux store saves the complete state tree returned by the root reducer.
 
 export default createStore(reducer, applyMiddleware(promiseMiddleware()));
->>>>>>> master
