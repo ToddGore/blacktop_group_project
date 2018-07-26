@@ -50,8 +50,8 @@ class Wizard8 extends Component {
 
   render() {
 
-    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, rate } = this.props.state;
-    console.log(this.props)
+    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
+    // console.log(this.props)
 
     return (
       <div className="">
@@ -122,6 +122,9 @@ class Wizard8 extends Component {
 
           <h3>Submitted Photos</h3>
           <img src={picOne} alt='' style={{ width: "300px" }} />
+          <img src={picTwo} alt='' style={{ width: "300px" }} />
+          <img src={picThree} alt='' style={{ width: "300px" }} />
+          <img src={picFour} alt='' style={{ width: "300px" }} />
 
           {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 

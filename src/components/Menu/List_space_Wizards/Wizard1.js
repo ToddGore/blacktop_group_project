@@ -12,7 +12,7 @@ class Wizard1 extends Component {
   render() {
 
     const { updateWizBuildingType } = this.props;
-    console.log(this.props)
+    // console.log(this.props)
 
     return (
       <div className = "wizards">

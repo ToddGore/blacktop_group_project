@@ -17,9 +17,9 @@ class Wizard0 extends Component {
   handleClick = () => {
     // console.log(this.props.address);
     Geocode.fromAddress(this.props.address).then(response => {
-      console.log(response)
+      // console.log(response)
       const { lat, lng } = response.results[0].geometry.location
-      console.log(lat, lng);
+      // console.log(lat, lng);
       this.props.updateWizAddress(this.props.address);
       this.props.updateWizLat(lat);
       this.props.updateWizLng(lng);
