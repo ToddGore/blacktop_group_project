@@ -127,6 +127,16 @@ app.get('/api/reservation/:id', ctrl.getReservations)
 app.post('/api/reservation', ctrl.createReservation)
 app.delete('/api/reservation/:id', ctrl.deleteReservation)
 
+// Availability
+// app.post('/api/availability', ctrl.createAvailability)
+// app.put('/api/availability/:id', ctrl.updateAvailability)
+
+// Payment
+// app.post('/api/payment', ctrl.createPayment)
+// app.put('/api/payment/:id', ctrl.updatePayment)
+
+
+
 
 
 

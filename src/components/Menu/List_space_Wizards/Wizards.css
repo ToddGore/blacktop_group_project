@@ -4,12 +4,16 @@
     background-color: var(--appbackgroundcolor);
 }
 
-/* .wizard1{
+/* .wizard0 {
 
 }
 
-.wizard2 { */
-/* 
+.wizard1{
+
+}
+
+.wizard2 {
+
 }
 
 .wizard3 {
@@ -28,11 +32,11 @@
 
 }
 
-.wizard7 { */
+.wizard7 {
 
-/* }
+ } */
 
-.wizard8 {
-    
+ .wizard8 {
+    padding-top: 10px;
+    background-color: var(--appbackgroundcolor);
 }
-     */

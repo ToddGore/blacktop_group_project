@@ -32,7 +32,10 @@ const initialState = {
     thursday: false,
     friday: false,
     saturday: false,
-    sunday: false
+    sunday: false,
+    picOne: '',
+    rate: 0,
+    currentListing: 0
 }
 
 // Actions are payloads of information that send data from the app to the store. 
@@ -73,6 +76,9 @@ const UPDATE_WIZ_THURSDAY = "UPDATE_WIZ_THURSDAY";
 const UPDATE_WIZ_FRIDAY = "UPDATE_WIZ_FRIDAY";
 const UPDATE_WIZ_SATURDAY = "UPDATE_WIZ_SATURDAY";
 const UPDATE_WIZ_SUNDAY = "UPDATE_WIZ_SUNDAY";
+const UPDATE_WIZ_PIC_ONE = "UPDATE_WIZ_PIC_ONE";
+const UPDATE_WIZ_RATE = "UPDATE_WIZ_RATE";
+const UPDATE_CURRENT_LISTING = "UPDATE_CURRENT_LISTING";
 
 
 
@@ -179,6 +185,15 @@ export default function reducer(state = initialState, action) {
         case UPDATE_WIZ_SUNDAY:
             return Object.assign({}, state, { sunday: action.payload });
 
+        case UPDATE_WIZ_PIC_ONE:
+            return Object.assign({}, state, { picOne: action.payload });
+
+        case UPDATE_WIZ_RATE:
+            return Object.assign({}, state, { rate: action.payload });
+
+        case UPDATE_CURRENT_LISTING:
+            return Object.assign({}, state, {currentListing:action.payload});
+
         // Return the previous state in the default case.  We do that for any unknown actions.
         default:
             return state;
@@ -191,6 +206,7 @@ export default function reducer(state = initialState, action) {
 
 export function getUser() {
     let userData = axios.get('./auth/user').then(res => res.data);
+    console.log(userData)
     return {
         type: GET_USER_DATA,
         payload: userData
@@ -393,3 +409,25 @@ export function updateWizSunday(sunday) {
         payload: sunday
     }
 }
+
+export function updateWizPicOne(picOne) {
+    return {
+        type: UPDATE_WIZ_PIC_ONE,
+        payload: picOne
+    }
+}
+
+export function updateWizRate(rate) {
+    return {
+        type: UPDATE_WIZ_RATE,
+        payload: rate
+    }
+}
+
+export function UpdateCurrentListing(currentListing){
+    return {
+        type: UPDATE_CURRENT_LISTING,
+        payload: currentListing
+    }
+}
+
