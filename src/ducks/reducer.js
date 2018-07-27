@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { bindActionCreators } from '../../node_modules/redux';
+// import { bindActionCreators } from '../../node_modules/redux';
 //bindActionCreators is used when you want to pass some action creators down to a component that isn't aware of Redux, 
 // and you don't want to pass dispatch or the Redux store to it.
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Wizards.css";
-import backarrow from "./../../Images/backarrow.svg";
-import nextarrow from "./../../Images/nextarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import rightarrow_icon from './../../newImages/rightarrow_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import { updateWizBuildingType } from "../../../ducks/reducer";
 import { connect } from "react-redux";
 
@@ -15,30 +15,31 @@ class Wizard1 extends Component {
     console.log(this.props)
 
     return (
-      <div className = "wizards">
+      <div className = "reset">
         <div className="wizard1">
           <h1>Please select your building type.</h1>
           <br />
 
-          <button onClick={() => updateWizBuildingType('Residential')} >Residential</button>
+          <button className='smallbutton'onClick={() => updateWizBuildingType('Residential')} >Residential</button>
           <br />
-          <button onClick={() => updateWizBuildingType('Business')} >Business</button>
+          <button className='smallbutton'onClick={() => updateWizBuildingType('Business')} >Business</button>
           <br />
-          <button onClick={() => updateWizBuildingType('Other')} >Other</button>
+          <button className='smallbutton'onClick={() => updateWizBuildingType('Other')} >Other</button>
           <br />
           <br />
+          <div className='nav'>
+            <Link to="/wizard0">
+              <img className='wizardnav'alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/wizard0">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+            <Link to="/search">
+              <img className='wizardnav'alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/wizard2">
-            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+            <Link to="/wizard2">
+              <img className='wizardnav'alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div> 
 
         </div>
       </div>

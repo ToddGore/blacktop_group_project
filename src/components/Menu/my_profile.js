@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { getUser } from './../../ducks/reducer'
-
-import styled from 'styled-components'
 import Nav from "../Nav/Nav";
 import axios from 'axios'
 
@@ -37,14 +35,15 @@ class Myprofile extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     return (
       <div>
         <Nav />
         <div className="myprofile">
-          <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: "auto", marginTop:'30px'}}/>
           {this.state.edit ?
-              <div style={{textAlign: 'left', padding: '20px'}}> 
+              <div className='card'>
+                <div>
+                  <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
+                </div>
                 <p>Name: {this.props.user.username}</p>
                 <hr/>
                 Username: <input type="username" className="input" name="username" value={this.state.username} onChange={e => {this.handleChange(e)}}/>
@@ -53,20 +52,23 @@ class Myprofile extends Component {
                 <hr/>
                 Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => {this.handleChange(e);}}/>
                 <hr/>
-                <button className='button' onClick = {() => {this.handleEdit()}}>Cancel</button>
-                <button className='button'>Submit</button>
+                <button className='smallbutton' onClick = {() => {this.handleEdit()}}>Cancel</button>
+                <button className='smallbutton'>Submit</button>
               </div>
             : 
-            <div style={{textAlign: 'left', padding: '20px'}}>
-                <p>Name: {this.props.user.username}</p>
+            <div className='card'>
+              <div>
+                <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
+              </div>
+                <text>Name: {this.props.user.username}</text>
                 <hr/>
-                <p>Username: </p>
+                <text>Username: </text>
                 <hr/>
-                <p>Email:</p>
+                <text>Email:</text>
                 <hr/>
-                <p>Phonenumber:</p>
+                <text>Phonenumber:</text>
                 <hr/>
-                <button className='button' onClick = {() => {this.handleEdit()}}>Edit</button>
+                <button className='smallbutton' onClick = {() => {this.handleEdit()}}>Edit</button>
               </div> 
           }
         </div>

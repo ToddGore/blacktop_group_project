@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom'
 
 import Popup from './Popup'
 
-// import Search_icon from './../Images/search2SVG.svg'
-// import Message_icon from './../Images/chatSVG.svg'
-// import Schedule_icon from './../Images/scheduleSVG.svg'
-import Menu_icon from './../Images/menuSVG.svg'
-
-import { IconSearch, IconChat, IconSchedule, IconMenu } from "../../theme/css_theme"
-// import navBackground from '../Images/nav_images/tab_bar_bas.png'
-// import buttonNormal from '../Images/nav_images/Normal.png'
-
-import styled from 'styled-components'
-// import { prependOnceListener } from 'cluster';
+// import mylistings_icon from './../newImages/mylistings_icon.svg'
+import reservations_icon_blue from './../newImages/reservations_icon_blue.svg'
+import reservations_icon_white from './../newImages/reservations_icon_white.svg'
+import search_icon_blue from './../newImages/search_icon_blue.svg'
+import search_icon_white from './../newImages/search_icon_white.svg'
+import mylistings_icon_blue from './../newImages/mylistings_icon_blue.svg'
+import mylistings_icon_white from './../newImages/mylistings_icon_white.svg'
 
 
 
@@ -24,7 +20,8 @@ export default class Nav extends Component {
         super(props)
 
         this.state = {
-            popup: false
+            popup: false,
+            selected:''
         }
         this.handlePopup = this.handlePopup.bind(this)
         this.setFalse = this.setFalse.bind(this)
@@ -37,42 +34,40 @@ export default class Nav extends Component {
     setFalse() {
         this.setState({ popup: false })
     }
-
+    
 
 
     render() {
         return (
             <div>
-                <NavCSS>
-                    <Link to='/search'>
-                        <IconSearch onClick={this.setFalse} />
-                    </Link>
-                    <Link to='/messages'>
-                        <IconChat onClick={this.setFalse} />
-                    </Link>
-                    <Link to='/reservations'>
-                        <IconSchedule onClick={this.setFalse} />
-                    </Link>
-                    {/* <IconMenu onClick={this.handlePopup} /> */}
-                    {/* <IconMenu onClick={() => alert('Hello')} /> */}
-                    <img src={Menu_icon} alt='' className='Size' onClick={this.handlePopup} />
-                </NavCSS >
+                <div className='nav'>
+
+                {window.location.href.includes('/search') ? 
+                    <Link to='/search'><img alt='' src={search_icon_blue} className='size'/></Link>
+                  :
+                    <Link to='/search'><img alt='' src={search_icon_white} className='size'/></Link>
+                }
+
+                {window.location.href.includes('/mylistings') ?
+                    <Link to='/mylistings'><img alt='' src={mylistings_icon_blue} className='size' style={{height: '30px',width:'30px', marginTop:'9px'}}/></Link>
+                  :
+                    <Link to='/mylistings'><img alt='' src={mylistings_icon_white} className='size' style={{height: '30px',width:'30px', marginTop:'9px'}}/></Link>
+                }
+
+                {window.location.href.includes('/reservations') ?
+                    <Link to='/reservations'><img alt='' src={reservations_icon_blue} className='size'style={{height: '40px', marginTop:'5px',width:'40px'}}/></Link>
+                  :
+                    <Link to='/reservations'><img alt='' src={reservations_icon_white} className='size'style={{height: '40px', marginTop:'5px',width:'40px'}}/></Link>
+                }
+                    {/* <img src={Menu_icon} alt='' className='size' onClick={this.handlePopup} style={{height: '40px', marginTop:'5px',width:'40px'}}/> */}
+                    <div onClick = {this.handlePopup} className = {this.state.popup ? 'barbox barbox1' : 'barbox'}>
+                        <div className = {this.state.popup ? 'bar bar1' : 'bar'}></div> 
+                        <div className = {this.state.popup ? 'bar bar2' : 'bar'}></div> 
+                    </div>
+                </div >
                 <Popup handlePopup={this.state.popup} />
             </div >
         )
     }
 }
 
-
-const NavCSS = styled.div`
-    /* border: 1px solid red; */
-    height: 55px;
-    width: 100%;
-    background-image: url(${props => props.theme.backgroundImage});
-
-    /* background-color: ${props => props.theme.primaryBlack}; */
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: space-around;
-`;

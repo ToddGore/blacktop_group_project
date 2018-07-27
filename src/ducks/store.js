@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, bindActionCreators} from 'redux';
+import {createStore, applyMiddleware, /*bindActionCreators*/} from 'redux';
 // create store allows us to export the creation of our store
 import reducer from './reducer';
 import promiseMiddleware from 'redux-promise-middleware';

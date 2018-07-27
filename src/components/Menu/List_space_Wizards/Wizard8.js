@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // import "./Wizards.css";
 import { connect } from 'react-redux';
-import backarrow from "./../../Images/backarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import post_icon from './../../newImages/post_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 
 class Wizard8 extends Component {
 
   render() {
-    console.log(this.props)
 
     return (
-      <div className = "wizards">
+      <div className = "reset">
         <div className="wizard8">
 
           <h1>Here is a preview of your listing:</h1>
@@ -74,17 +74,18 @@ class Wizard8 extends Component {
 
 
           <br />
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
 
-          <Link to="/wizard7">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/mylistings">
-            <button className="button">Post</button>
-          </Link>
+          <div className='nav'>
+            <Link to="/wizard7">
+              <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/search">
+              <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/mylistings">
+              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div>
 
         </div>
       </div>
