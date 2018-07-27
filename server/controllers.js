@@ -10,6 +10,7 @@ module.exports = {
     getUserListings: (req, res) => {
         const db = req.app.get('db');
         const { id } = req.params
+        console.log(req.body)
 
         db.get_user_listings([id])
             .then(listings => res.status(200).send(listings))
@@ -73,7 +74,7 @@ module.exports = {
             lat,
             lng
         } = req.body
-        console.log(req.body)
+        // console.log(req.body)
 
         db.create_listing([
             address,
@@ -105,7 +106,7 @@ module.exports = {
             guarded,
             listing_id
         } = req.body
-        console.log(req.body)
+        // console.log(req.body)
 
         db.create_features([
             covered,
@@ -122,7 +123,7 @@ module.exports = {
     createPictures: (req, res) => {
         const db = req.app.get('db');
         const { pic_one, pic_two, pic_three, pic_four, listing_id } = req.body
-        console.log(req.body)
+        // console.log(req.body)
 
         db.create_picture([pic_one, pic_two, pic_three, pic_four, listing_id])
             .then(pictures => res.status(200).send(pictures))
@@ -141,7 +142,7 @@ module.exports = {
     createAvailability: (req, res) => {
         const db = req.app.get('db');
         const { monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id } = req.body
-        console.log(req.body)
+        // console.log(req.body)
 
         db.create_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id])
             .then(() => res.status(200).send())
@@ -160,7 +161,7 @@ module.exports = {
     createPayment: (req, res) => {
         const db = req.app.get('db');
         const { cash, credit, venmo, pay_pal, apple_pay, listing_id } = req.body;
-        console.log(req.body)
+        
 
         db.create_payments([cash, credit, venmo, pay_pal, apple_pay, listing_id])
             .then(() => res.status(200).send())
