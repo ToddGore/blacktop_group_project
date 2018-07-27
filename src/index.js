@@ -5,19 +5,15 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import { Provider } from 'react-redux'
 import store from './ducks/store'
-import { ThemeProvider } from 'styled-components'
-import { mainTheme, lightTheme } from './theme/css_theme'
 import './theme/globalStyle'
 
-{/* the Provider component provides the store to our app
-This is done by wrapping HashRouter with Provider and giving the Provider component a 'store' prop that equals store */}
+// the Provider component provides the store to our app
+// This is done by wrapping HashRouter with Provider and giving the Provider component a 'store' prop that equals store
 
 ReactDOM.render(
     <Provider store={store}>
         <HashRouter>
-            <ThemeProvider theme={mainTheme}>
                 <App />
-            </ThemeProvider>
         </HashRouter>
     </Provider>
     , document.getElementById('root')

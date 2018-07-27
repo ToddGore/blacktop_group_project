@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 import Nav from './../Nav/Nav'
 import './my_listings.css'
 import { connect } from 'react-redux';
@@ -51,7 +53,9 @@ class Mylistings extends Component {
         return (
             <div>
                 <Nav/>
-                <div className = 'mylistings'>
+                <div className = 'reset'>
+                <Link to='/wizard0'><button className='bigbutton'>Add a Listing</button></Link>
+                <p>My listings will be displayed here</p>
                 {mappedlistings}
                 </div> 
             </div>
