@@ -9,7 +9,8 @@ import axios from 'axios';
 class Wizard8 extends Component {
 
   handleWizPost() {
-    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, rate } = this.props.state;
+
+    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
 
     axios.post('/api/listing', {
       address: address,
@@ -24,29 +25,34 @@ class Wizard8 extends Component {
       lat: lat,
       lng: lng
     })
-      // .then(res => {
-      //   console.log("This is res.data", res)
-      //   axios.post('/api/feature', {
-      //     covered: covered,
-      //     lit: lit,
-      //     charging: charging,
-      //     camera: camera,
-      //     fenced: fenced,
-      //     guarded: guarded,
-      //     listing_id:res.data.id
-      //   })
-      //   axios.post('/api/picture',{
-      //     pic_one: picOne,
-      //     pic_two: picTwo,
-      //     pic_three: picThree,
-      //     pic_four: picFour,
-      //     listing_id: res.data.id
-      //   })
-      //   axios.post('/api/')
-      // }
+      .then((res => {
+        console.log("This is res.data", res.data)
+          axios.post('/api/feature', {
+          covered: covered,
+          lit: lit,
+          charging: charging,
+          camera: camera,
+          fenced: fenced,
+          guarded: guarded,
+          listing_id: res.data[0].id
+        })
+      }))
+
+          .then(res => {
+            console.log(res.data)
+            axios.post('/api/picture', {
+              pic_one: picOne,
+              pic_two: picTwo,
+              pic_three: picThree,
+              pic_four: picFour,
+              listing_id: res.data[0].id
+            })
+          })
+      }
   
 
-  }
+
+ 
 
   render() {
 
