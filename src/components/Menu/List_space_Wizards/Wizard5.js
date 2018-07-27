@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Wizards.css";
-import backarrow from "./../../Images/backarrow.svg";
-import nextarrow from "./../../Images/nextarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import rightarrow_icon from './../../newImages/rightarrow_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import { storage } from '../../Firebase/index';
 import add_image_icon from '../../Images/add_image_icon.svg';
 import { updateWizPicOne, updateWizPicTwo, updateWizPicThree, updateWizPicFour } from '../../../ducks/reducer';
@@ -41,11 +41,12 @@ class Wizard5 extends Component {
     // console.log(this.props.picThree)
     // console.log(this.props.picFour)
     return (
-      <div className="wizards">
+      <div className = "reset">
         <div className="wizard5">
 
           <h1>Add Pictures</h1>
           <br />
+
           <img src={this.props.picOne} alt='' style={{ width: "300px" }} />
           <img src={this.props.picTwo} alt='' style={{ width: "300px" }} />
           <img src={this.props.picThree} alt='' style={{ width: "300px" }} />
@@ -82,19 +83,19 @@ class Wizard5 extends Component {
 
 
 
+          <div className='nav'>
+            <Link to="/wizard4">
+              <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/wizard4">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+            <Link to="/search">
+              <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/wizard6">
-            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
+            <Link to="/wizard6">
+              <img className='wizardnav' alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div>
         </div>
       </div>
     );

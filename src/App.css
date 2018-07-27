@@ -1,76 +1,220 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
 :root{
-
   /* MAIN APP */
-  /* --appbackgroundcolor: rgb(237, 237, 237); */
+  --appbackgroundcolor: rgb(237, 237, 237);
   --appbackgroundcolor: white;
   --appfontcolor: black;
-
-  /* BUTTONS */
-  --buttonbackgroundcolor: lightblue;
+  --appgradient: linear-gradient(rgb(43, 43, 43), rgb(70, 70, 70));
+  --bordercolor: 0px 0px 0px 3px rgba(0, 130, 252, 0.877);
+  --cardboxshadow: 0px 1px 5px 1px rgb(182, 182, 182);
   
-  /* NAV BAR */
-  --navbackgroundcolor: red;
-
+  /* LOGIN PAGE */
+  --logingradient: radial-gradient(circle, rgba(0, 130, 252, 0.877),black 80%);
+  
+  /* BUTTONS */
+  --buttonbackgroundcolor: rgb(43, 43, 43);
+  
   /* POPUP */
-  --popupbackgroundcolor: rgba(0,0,0, 0.7);
+  --popupbackgroundcolor:  rgba(0, 130, 252);
+}
+
+/* THIS IS THE RESET FOR THE FORMAT OF A PAGE */
+.reset{
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 70px;
+  background: var(--appbackgroundcolor);
 }
 
 /* MAIN APP CSS */
-
 .App {
+  font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
   color: var(--appfontcolor);
 }
 .input{
-  height: 34px;
-  width: 80%;
-  border-radius: 3px;
-  border: 1px solid transparent;
   border-top: none;
-  border-bottom: 1px solid #DDD;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
-}
-.button{
-  /* background: var(--buttonbackgroundcolor); */
-  height:40px;
-  font-size:1.6em;
-  padding:0 2em;
-  border-radius: 10px;
-  margin: 10px 0;
-  outline:none;
-  /* border: none; */
-}
-.gradient-button {
+  height: 20px;
+  width: 82%;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  outline: none;
   margin: 10px;
-  text-align: center;
-  background-size: 200% auto;
-  color: #FFF;
-  border-radius: 10px;
-  /* display: inline-block; */
-  border-radius: 25px;
+  box-shadow: 0px 0px 5px 1px rgb(211, 211, 211);
 }
-.gradient-button-4 {
-  background-image: linear-gradient(to right, #6bdfe4 0%, #0072ff 51%, #00c6ff 100%)
+p .input{
+  border-top: none;
+  height: 20px;
+  width: 82%;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  outline: none;
+  box-shadow: 0px 0px 5px 1px rgb(211, 211, 211);
+}
+.input:focus{
+  box-shadow: var(--bordercolor);
+}
+.bigbutton{
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 0px 0px;
+  font-size: 20px;
+  width: 75%;
+  margin: 10px 0 10px 0;
+  background: var(--appgradient);
+}
+.bigbutton:active{
+  box-shadow: var(--bordercolor)
+}
+.smallbutton{
+  border: none;
+  outline: none;
+  color: white;
+  margin: 7px;
+  font-size: 13px;
+  padding: 7px;
+  border-radius: 5px;
+  width: 150px;
+  box-shadow: 0px 0px 0px 0px;
+  background: var(--appgradient);
+}
+.smallbutton:focus{
+  box-shadow: var(--bordercolor);
+}
+.smallbutton:active{
+  box-shadow: var(--bordercolor);
+}
+.roundbutton{
+  border: none;
+  outline: none;
+  color: white;
+  margin: 5px;
+  font-size: 13px;
+  padding: 12px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 0px 0px 0px;
+  background: var(--appgradient);
+}
+.roundbutton:active{
+  box-shadow: var(--bordercolor);
+}
+.card{
+  box-shadow: 0px 1px 5px 1px rgb(182, 182, 182);
+  margin: 20px auto 20px auto;
+  padding: 20px;
+  width: 80%;
+  text-align: left;
 }
 
-
+/* LOGIN PAGE */
+.loginmain{
+  height: 90vh;
+  display: flex;
+  background:var(--logingradient);
+  align-content: center;
+}
+.login{
+  margin: auto;
+  background: white;
+  border-radius: 5px;
+}
 
 
 /* POPUP CSS */
+.iconholder{
+  background: var(--popupbackgroundcolor);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
 
-.popup{
-  padding-top: 50px;
-  height: 465px;
-  width: 100%;
+.icon1{
   position: fixed;
-  background-color: var(--popupbackgroundcolor);
+  top: 78%;
+  left: 78%;
+  animation-delay: 0.1s;
+}
+.icon2{
+  position: fixed;
+  top: 64%;
+  left: 78%;
+  animation-delay: 0.2s;
+}
+.icon3{
+  position: fixed;
+  top: 50%;
+  left: 78%;
+  animation-delay: 0.3s;
+}
+.popupicon{
+  height: 35px;
+}
+.popup{
+  height: 50%;
+  width: 50%;
+  position: fixed;
   z-index: 1;
-  /* margin-bottom: 10px; */
+  background: var(--popupbackgroundcolor);
 }
 .popupbutton{
-  border-radius: 15px;
-  z-index: 9999;
+  border-radius: 5px;
   height: 40px;
   width: 215px;
   margin: auto;
@@ -83,9 +227,99 @@
   justify-content: center;
   text-decoration: none;
   letter-spacing: 2px;
-  background-color: var(--buttonbackgroundcolor);
-  color: black;
+  color: white;
+  background: var(--appgradient);
 }
-.hiddenPU{
-	top: -1500px;
+
+.hidden{
+  display: none;
+}
+
+/* NAV CSS */
+.nav{
+  height: 55px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  z-index: 4;
+  background: var(--appgradient);
+}
+.size{
+  height: 45px;
+	width: 45px;
+	padding: 3px 10px 3px 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2px;
+}
+.barbox {
+  margin-top: 17px;
+  float: right;
+  transition: 0.3s;
+  height: 20px;
+}
+.bar {
+  background-color: whitesmoke;
+  height: 4px;
+  width: 35px;
+  border-radius: 3px;
+  margin-top: 4px;
+  transition: 0.1s 0.3s;
+}
+.barbox1 {
+  transform: rotate(90deg);
+  /* margin: 0 */
+}
+.bar1 {
+  transform: rotate(45deg) translate(3.5px,4px);
+  background: red;
+}
+.bar2 {
+  transform: rotate(-45deg) translate(1.5px, -2px);
+  background: red;
+}
+
+
+/* WIZARD NAV */
+.wizardnav{
+  margin-top: 50%;
+}
+
+/* SEARCH */
+.search{
+  background: var(--popupbackgroundcolor);
+  outline: none;
+  border: 1px solid transparent;
+  color: white;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px 0 10px;
+}
+.search::placeholder{
+  color: rgb(221, 221, 221);
+}
+/* MY VEHICLES */
+
+.carpic{
+  height: 150px;
+  margin: 10px auto 20px auto;
+  display:block;
+  position:relative;
+  box-shadow: var(--cardboxshadow);
+}
+#addimageicon{
+  height: 100px;
+  margin: 10px auto 20px auto;
+  display:block;
+  position:relative;
+}
+.ptag{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Geocode from "react-geocode";
 import "./Wizards.css";
-import nextarrow from "./../../Images/nextarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import rightarrow_icon from './../../newImages/rightarrow_icon.svg'
 import { connect } from 'react-redux';
 import { updateWizLat, updateWizLng, updateWizAddress } from '../../../ducks/reducer'
 
@@ -35,20 +35,21 @@ class Wizard0 extends Component {
     const { updateWizAddress } = this.props;
 
     return (
-      <div className= "wizards">
+      <div className= "reset">
         <div className="wizard0">
           <h1>Where is your parking space(s) located?</h1>
 
           <input type="" className="input" onChange={e => { updateWizAddress(e.target.value) }} />
           <br />
-
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/wizard1" onClick={() => { this.handleClick() }}>
-            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+          <div className='nav'>
+            <Link to="#" style={{opacity:'0', width: '30px'}}></Link>
+            <Link to="/search">
+              <img className='wizardnav'alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/wizard1" onClick={() => { this.handleClick() }}>
+              <img className='wizardnav'alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div> 
 
         </div>
       </div>

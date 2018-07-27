@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Wizards.css";
 import { connect } from 'react-redux';
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import post_icon from './../../newImages/post_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import backarrow from "./../../Images/backarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
 import axios from 'axios';
 
 class Wizard8 extends Component {
@@ -70,13 +72,10 @@ class Wizard8 extends Component {
   }
 
   render() {
-
     const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
     // console.log(this.props)
-
     return (
-      <div className="">
-        <div className="wizard8">
+      <div className="reset">
 
           <h1>Here is a preview of your listing:</h1>
           <br />
@@ -151,10 +150,18 @@ class Wizard8 extends Component {
 
 
           <br />
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
 
+          <div className='nav'>
+            <Link to="/wizard7">
+              <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/search">
+              <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/mylistings">
+              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div>
           <Link to="/wizard7">
             <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
@@ -162,8 +169,6 @@ class Wizard8 extends Component {
           <Link to="/mylistings">
             <button className="button" onClick={(e) => { this.handleWizPost() }}>Submit Listing</button>
           </Link>
-
-        </div>
       </div>
     );
   }

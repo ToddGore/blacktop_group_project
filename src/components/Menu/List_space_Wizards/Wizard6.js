@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Wizards.css";
-import backarrow from "./../../Images/backarrow.svg";
-import nextarrow from "./../../Images/nextarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import rightarrow_icon from './../../newImages/rightarrow_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import { updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday, updateWizFriday, updateWizSaturday, updateWizSunday } from "../../../ducks/reducer";
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ class Wizard6 extends Component {
 const {updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday, updateWizFriday, updateWizSaturday, updateWizSunday} = this.props;
 
     return (
-      <div className = "wizards">
+      <div className = "reset">
         <div className="wizard6">
 
           <h1>Please indicate all available days for your parking space(s).</h1>
@@ -53,18 +53,19 @@ const {updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday,
           onChange={(e) => { updateWizSunday(true) }}/>
           <label htmlFor="Sunday" >Sunday</label>
           <br />
+          <div className='nav'>
+            <Link to="/wizard5">
+              <img className='wizardnav'alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/wizard5">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+            <Link to="/search">
+              <img className='wizardnav'alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
 
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/wizard7">
-            <img alt="" src={nextarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
+            <Link to="/wizard7">
+              <img className='wizardnav'alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div> 
 
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-maps";
+import map_pin_icon from './../newImages/map_pin_icon.svg'
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
+
 
 
 class Map extends Component {
@@ -70,24 +72,12 @@ class Map extends Component {
                     bounds={this.props.bounds}
                     onPlacesChanged={this.onPlacesChanged.bind(this)}
                 >
-                    <input
-                        type="text"
-                        placeholder="Customized your placeholder"
-                        style={{
-                            boxSizing: `border-box`,
-                            border: `1px solid transparent`,
-                            width: `240px`,
-                            height: `32px`,
-                            padding: `0 12px`,
-                            borderRadius: `3px`,
-                            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                            fontSize: `14px`,
-                            outline: `none`,
-                            textOverflow: `ellipses`,
-                        }}
-                    />
+                <input
+                    type="text"
+                    placeholder="Search"
+                    className='search'
+                />
                 </StandaloneSearchBox>
-
                 <GoogleMap
                     onZoomChanged={this.zoomChanged.bind(this)}
                     ref={this.mapLoaded.bind(this)}
@@ -95,23 +85,16 @@ class Map extends Component {
                     defaultZoom={this.props.zoom}
                     center={this.state.center}
                 >
-
-                     
-
                     {markers.map((marker, i) => (
-                        
                         <Marker
                         key = {i}
                         {...marker} 
                         position = {this.props.markers[i]}
-                        icon = {`https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png`}
+                        icon = {map_pin_icon}
                         />
-                        
-                    )
-                )}
-
+                        )
+                    )}
                 </GoogleMap>
-
             </div>
         );
     }
