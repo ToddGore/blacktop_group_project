@@ -16,7 +16,7 @@ class Wizard7 extends Component {
       <div className = "reset">
         <div className="wizard7">
           <h1>Please specify your hourly rate below.</h1>
-          <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(e.target.value) }} />
+          <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(Number(e.target.value)) }} />
           <br />
 
           <h1>Please specify below how you would like to be paid.</h1>
