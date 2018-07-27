@@ -25,7 +25,6 @@ class Wizard2 extends Component {
   }
 
   render() {
-
     const { updateWizSpaceType } = this.props;
 
     return (

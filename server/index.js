@@ -41,21 +41,24 @@ passport.use( new Auth0Strategy({
     clientID: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     callbackURL: CALLBACK_URL,
-    scope: 'openid profile'
+    scope: 'openid email profile'
     // when the user authenticates, this is what we will get back
 }, (accessToken, refreshToken, extraParams, profile, done) => {
-    // this is where auth0 send info back from google
+    // this is where auth0 sends info back from google
     const db = app.get('db')
     // here, we are asking passport to retrieve the value of db, which is set above
-    let {displayName, picture, id} = profile;
+    let {displayName, picture, id, emails} = profile;
+    // console.log("this is the profile:", profile)
     // the id used here is the auth_id from the database
+    // the profile contains email as emails: [ { value: 'fairfaxkatrina@gmail.com' } ]
     db.find_user([id]).then(user => {
+        // console.log("this is the user:", user)
         // here, we query our sql database to see if there is a user with the passed in id
         // the info we are getting back is an object that is nested in an array
         if(user[0]){
             done(null, user[0].id)
         } else {
-            db.create_user([displayName, id, picture]).then((createdUser) => {
+            db.create_user([displayName, id, picture, emails[0].value]).then((createdUser) => {
                 done(null, createdUser[0].id)
             })
         }
@@ -85,7 +88,9 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 app.get('/auth/user', (req, res) => {
     if (req.user){
+        // console.log('hit')
         res.status(200).send(req.user);
+        // console.log("this is req.user:", req.user)
     } else {
         res.status(401).send('Unauthorized user');
     }
@@ -99,13 +104,15 @@ app.get('/auth/logout', (req, res) => {
 
 //Listing
 app.get('/api/listing', ctrl.getAllListings)
-app.get('/api/listing/:id', ctrl.getUserListings)
+app.get('/api/listing/:id', ctrl.getListingById)
+app.get('/api/userlisting/:id', ctrl.getUserListings)
 app.get('/api/preview/:id', ctrl.getListingPreview)
 app.post('/api/listing', ctrl.createListing)
 app.put('/api/listing/:id', ctrl.updateListing)
 app.delete('/api/listing/:id', ctrl.deleteListing)
 
 //Features
+app.get('/api/feature/:id', ctrl.getFeatures)
 app.post('/api/feature', ctrl.createFeatures)
 app.put('/api/feature/:id', ctrl.updateFeatures)
 
@@ -124,8 +131,13 @@ app.get('/api/reservation/:id', ctrl.getReservations)
 app.post('/api/reservation', ctrl.createReservation)
 app.delete('/api/reservation/:id', ctrl.deleteReservation)
 
+// Availability
+app.post('/api/availability', ctrl.createAvailability)
+app.put('/api/availability/:id', ctrl.updateAvailability)
 
-
+// Payment
+app.post('/api/payment', ctrl.createPayment)
+app.put('/api/payment/:id', ctrl.updatePayment)
 
 
 const port = 4000;

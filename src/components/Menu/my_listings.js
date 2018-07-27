@@ -4,29 +4,26 @@ import {Link} from 'react-router-dom'
 
 import Nav from './../Nav/Nav'
 import './my_listings.css'
+import { connect } from 'react-redux';
 
-export default class Mylistings extends Component {
+class Mylistings extends Component {
     constructor(){
         super()
 
         this.state = {
-            mylistings: [],
-            user:{},
+            mylistings: []
         }
     }
 
     componentDidMount(){
-        let id = this.state.id
-        axios.get(`/api/listing/${id}`).then(res => {
+        axios.get(`/api/listing/${this.props.user.id}`).then(res => {
             this.setState({mylistings: res.data})
         })
-        axios.get('/auth/user').then(res => {
-            this.setState({user: res.data})
-          })
     }
 
 
     render() {
+        console.log(this.props.user);
         let mappedlistings = this.state.mylistings.map((e,i) => (
             <div key = {i}>
                 <p>Display Username?</p>
@@ -65,3 +62,12 @@ export default class Mylistings extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+    
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Mylistings);

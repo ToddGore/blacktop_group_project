@@ -4,19 +4,21 @@ import "./Wizards.css";
 import cancel_icon from './../../newImages/cancel_icon.svg'
 import rightarrow_icon from './../../newImages/rightarrow_icon.svg'
 import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
-import { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay } from "../../../ducks/reducer";
+import { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay, updateWizRate } from "../../../ducks/reducer";
 import { connect } from "react-redux";
 
 class Wizard7 extends Component {
 
   render() {
-
-    const { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay } = this.props;
-    console.log(this.props)
-
+    const { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay, updateWizRate } = this.props;
+    // console.log(this.props.rate)
     return (
       <div className = "reset">
         <div className="wizard7">
+          <h1>Please specify your hourly rate below.</h1>
+          <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(e.target.value) }} />
+          <br />
+
           <h1>Please specify below how you would like to be paid.</h1>
           <br />
 
@@ -59,14 +61,15 @@ class Wizard7 extends Component {
 };
 
 function mapStateToProps(state) {
-  const { cash, credit, venmo, paypal, applepay } = state;
+  const { cash, credit, venmo, paypal, applepay, rate } = state;
   return {
     cash: cash,
     credit: credit,
     venmo: venmo,
     paypal: paypal,
-    applepay: applepay
+    applepay: applepay,
+    rate: rate
   }
 };
 
-export default connect(mapStateToProps, {updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay})(Wizard7);
+export default connect(mapStateToProps, { updateWizCash, updateWizCredit, updateWizVenmo, updateWizPaypal, updateWizApplePay, updateWizRate})(Wizard7);

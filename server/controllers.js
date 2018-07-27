@@ -15,12 +15,28 @@ module.exports = {
         .then( listings => res.status(200).send(listings))
         .catch( (err) => res.status(500).send(console.log(err)))
     },
+    getListingById:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+        
+        db.get_listing_by_id([id])
+        .then( listing => res.status(200).send(listing))
+        .catch( (err) => res.status(500).send(console.log(err)))
+    },
     getListingPreview:(req, res) => {
         const db = req.app.get('db');
         const {id} = req.params
 
         db.get_listing_preview([id])
         .then( preview => res.status(200).send(preview))
+        .catch( () => res.status(500).send())
+    },
+    getFeatures:(req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+
+        db.get_features([id])
+        .then( features => res.status(200).send(features))
         .catch( () => res.status(500).send())
     },
     getReservations:(req, res) => {
@@ -53,7 +69,9 @@ module.exports = {
             about, 
             instructions, 
             price, 
-            user_id
+            host_id,
+            lat,
+            lng
         } = req.body
 
         db.create_listing([
@@ -65,11 +83,16 @@ module.exports = {
             about, 
             instructions, 
             price, 
-            user_id
+            host_id,
+            lat,
+            lng
         ])
-        .then( () => res.status(200).send())
-        .catch( () => res.status(500).send())
+        .then( listing => res.status(200).send(listing))
+        .catch( (err) => res.status(500).send(
+            console.log(err)
+        ))
     },
+
     createFeatures:(req, res) => {
         const db = req.app.get('db');
         const {
@@ -93,6 +116,7 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
+
     createPictures:(req, res) => {
         const db = req.app.get('db');
         const {pic_one, pic_two, pic_three, pic_four, listing_id} = req.body
@@ -101,21 +125,25 @@ module.exports = {
         .then( pictures => res.status(200).send(pictures))
         .catch( () => res.status(500).send())
     },
+
     createReservation:(req, res) => {
         const db = req.app.get('db');
         const {user_id, listing_id} = req.body
 
-        db.create_reservation([user_id, listing_id])
+        db.create_reservation([user_id, start_time, end_time, listing_id])
         .then( reservation => res.status(200).send(reservation))
         .catch( () => res.status(500).send())
     },
-    createSchedule:(req, res) => {
-        const db = req.app.get('db');
 
-        db.create_schedule([])
+    createAvailability:(req, res) => {
+        const db = req.app.get('db');
+        const {monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id} = req.body
+
+        db.create_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, listing_id])
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
+    
     createVehicle:(req, res) => {
         const db = req.app.get('db');
         const {user_id, car_pic, year, make, model, color, size, plate} = req.body
@@ -124,7 +152,15 @@ module.exports = {
         .then( vehicle => res.status(200).send(vehicle))
         .catch( () => res.status(500).send())
     },
+    
+ createPayment:(req, res) => {
+     const db = req.app.get('db');
+     const {cash, credit, venmo, pay_pal, apple_pay, listing_id} = req.body;
 
+     db.create_payments([cash, credit, venmo, pay_pal, apple_pay, listing_id])
+     .then( () => res.status(200).send())
+     .catch(() => res.status(500).send())
+ },
 
     //UPDATE CONTROLLERS
     updateFeatures:(req, res) => {
@@ -188,10 +224,12 @@ module.exports = {
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
-    updateSchedule:(req, res) => {
+    updateAvailability:(req, res) => {
         const db = req.app.get('db');
+        const {id} = req.params
+        const {monday, tuesday, wednesday, thursday, friday, saturday, sunday} = req.body
 
-        db.save_position([pos_x, pos_y, map_id, id])
+        db.update_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, id])
         .then( () => res.status(200).send())
         .catch( () => res.status(500).send())
     },
@@ -205,7 +243,15 @@ module.exports = {
         .catch( () => res.status(500).send())
     },
 
+    updatePayment: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        const {cash, credit, venmo, pay_pal, apple_pay} = req.body
+        db.update_payments([cash, credit, venmo, pay_pal, apple_pay, id])
 
+        .then( (payments) => res.status(200).send(payments))
+        .catch( () => res.status(500).send())
+    },
     //DELETE CONTROLLERS
     deleteListing:(req, res) => {
         const db = req.app.get('db');
