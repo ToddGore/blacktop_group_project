@@ -26,8 +26,8 @@ class Wizard8 extends Component {
       lng: lng
     })
       .then((res => {
-        console.log("This is res.data", res.data)
-          axios.post('/api/feature', {
+        console.log(res)
+        axios.post('/api/feature', {
           covered: covered,
           lit: lit,
           charging: charging,
@@ -36,23 +36,38 @@ class Wizard8 extends Component {
           guarded: guarded,
           listing_id: res.data[0].id
         })
+          
+        
+        axios.post('/api/picture', {
+          pic_one: picOne,
+          pic_two: picTwo,
+          pic_three: picThree,
+          pic_four: picFour,
+          listing_id: res.data[0].id
+        })
+
+        axios.post('/api/availability', {
+          monday: monday,
+          tuesday: tuesday, 
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
+          listing_id: res.data[0].id
+        })
+
+        axios.post('api/payment', {
+          cash: cash,
+          credit: credit,
+          venmo: venmo,
+          pay_pal: paypal,
+          apple_pay: applePay,
+          listing_id:res.data[0].id
+        })
+          
       }))
-
-          .then(res => {
-            console.log(res.data)
-            axios.post('/api/picture', {
-              pic_one: picOne,
-              pic_two: picTwo,
-              pic_three: picThree,
-              pic_four: picFour,
-              listing_id: res.data[0].id
-            })
-          })
-      }
-  
-
-
- 
+  }
 
   render() {
 
