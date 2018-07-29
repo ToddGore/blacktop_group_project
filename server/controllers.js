@@ -1,3 +1,7 @@
+// Added for nodemailer
+const nodemailer = require('nodemailer');
+
+
 module.exports = {
     //GET CONTROLLERS
     getAllListings: (req, res) => {
@@ -161,12 +165,37 @@ module.exports = {
     createPayment: (req, res) => {
         const db = req.app.get('db');
         const { cash, credit, venmo, pay_pal, apple_pay, listing_id } = req.body;
-        
+
 
         db.create_payments([cash, credit, venmo, pay_pal, apple_pay, listing_id])
             .then(() => res.status(200).send())
             .catch(() => res.status(500).send())
     },
+    // Added for nodemailer
+    createMail: (req, res) => {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
+            }
+        });
+        var mailOptions = {
+            from: process.env.EMAIL,
+            to: process.env.EMAIL,
+            subject: req.body.subject,
+            html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.email}`
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        })
+        res.status(200).send()
+    },
+
 
     //UPDATE CONTROLLERS
     updateFeatures: (req, res) => {
