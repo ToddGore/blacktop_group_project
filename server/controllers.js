@@ -136,9 +136,9 @@ module.exports = {
 
     createReservation:(req, res) => {
         const db = req.app.get('db');
-        const {user_id, listing_id} = req.body
+        const {user_id, vehicle_id, start_time, end_time, payment_type, total, listing_id} = req.body
 
-        db.create_reservation([user_id, start_time, end_time, listing_id])
+        db.create_reservation([user_id, vehicle_id, start_time, end_time, payment_type, total, listing_id])
         .then( reservation => res.status(200).send(reservation))
         .catch( () => res.status(500).send())
     },
