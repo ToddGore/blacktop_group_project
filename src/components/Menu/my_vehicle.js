@@ -279,13 +279,14 @@ export default class Myvehicle extends Component {
               </div>
             </div>
           :
-            <div> 
-              <Nav/>
-              <div className = 'reset'>
-                  <button className='bigbutton' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
-                  {mappedVehicles}
-              </div>
+
+          <div> 
+            <Nav/>
+            <div className = 'myvehicle'>
+                <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
+                {mappedVehicles}
             </div>
+          </div>
         }
       </div>
     );

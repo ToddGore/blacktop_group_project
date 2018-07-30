@@ -88,7 +88,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 app.get('/auth/user', (req, res) => {
     if (req.user){
-        // console.log('hit')
         res.status(200).send(req.user);
         // console.log("this is req.user:", req.user)
     } else {
@@ -101,6 +100,9 @@ app.get('/auth/logout', (req, res) => {
     // this is a built in method in passport that kills the session and resets the user property
     res.redirect('http://localhost:3000');
 });
+
+// User
+app.get('/api/host/:id', ctrl.getHost)
 
 //Listing
 app.get('/api/listing', ctrl.getAllListings)
