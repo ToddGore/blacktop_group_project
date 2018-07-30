@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Wizards.css";
 import { connect } from 'react-redux';
+import cancel_icon from './../../newImages/cancel_icon.svg'
+import post_icon from './../../newImages/post_icon.svg'
+import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import backarrow from "./../../Images/backarrow.svg";
-import cancelbutton from "./../../Images/cancelbutton.svg";
 import axios from 'axios';
 
 class Wizard8 extends Component {
 
   handleWizPost() {
-    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, rate } = this.props.state;
+
+    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
 
     axios.post('/api/listing', {
       address: address,
@@ -24,38 +27,55 @@ class Wizard8 extends Component {
       lat: lat,
       lng: lng
     })
-      // .then(res => {
-      //   console.log("This is res.data", res)
-      //   axios.post('/api/feature', {
-      //     covered: covered,
-      //     lit: lit,
-      //     charging: charging,
-      //     camera: camera,
-      //     fenced: fenced,
-      //     guarded: guarded,
-      //     listing_id:res.data.id
-      //   })
-      //   axios.post('/api/picture',{
-      //     pic_one: picOne,
-      //     pic_two: picTwo,
-      //     pic_three: picThree,
-      //     pic_four: picFour,
-      //     listing_id: res.data.id
-      //   })
-      //   axios.post('/api/')
-      // }
-  
+      .then((res => {
+        console.log(res)
+        axios.post('/api/feature', {
+          covered: covered,
+          lit: lit,
+          charging: charging,
+          camera: camera,
+          fenced: fenced,
+          guarded: guarded,
+          listing_id: res.data[0].id
+        })
+          
+        
+        axios.post('/api/picture', {
+          pic_one: picOne,
+          pic_two: picTwo,
+          pic_three: picThree,
+          pic_four: picFour,
+          listing_id: res.data[0].id
+        })
 
+        axios.post('/api/availability', {
+          monday: monday,
+          tuesday: tuesday, 
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
+          listing_id: res.data[0].id
+        })
+
+        axios.post('api/payment', {
+          cash: cash,
+          credit: credit,
+          venmo: venmo,
+          pay_pal: paypal,
+          apple_pay: applePay,
+          listing_id:res.data[0].id
+        })
+          
+      }))
   }
 
   render() {
-
-    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, rate } = this.props.state;
-    console.log(this.props)
-
+    const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
+    // console.log(this.props)
     return (
-      <div className="">
-        <div className="wizard8">
+      <div className="reset">
 
           <h1>Here is a preview of your listing:</h1>
           <br />
@@ -122,15 +142,26 @@ class Wizard8 extends Component {
 
           <h3>Submitted Photos</h3>
           <img src={picOne} alt='' style={{ width: "300px" }} />
+          <img src={picTwo} alt='' style={{ width: "300px" }} />
+          <img src={picThree} alt='' style={{ width: "300px" }} />
+          <img src={picFour} alt='' style={{ width: "300px" }} />
 
           {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 
 
           <br />
-          <Link to="/search">
-            <img alt="" src={cancelbutton} style={{ height: "30px", width: "30px" }} />
-          </Link>
 
+          <div className='nav'>
+            <Link to="/wizard7">
+              <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/search">
+              <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+            <Link to="/mylistings">
+              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} />
+            </Link>
+          </div>
           <Link to="/wizard7">
             <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
           </Link>
@@ -138,8 +169,6 @@ class Wizard8 extends Component {
           <Link to="/mylistings">
             <button className="button" onClick={(e) => { this.handleWizPost() }}>Submit Listing</button>
           </Link>
-
-        </div>
       </div>
     );
   }

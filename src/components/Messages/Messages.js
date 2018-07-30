@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
 import Nav from './../Nav/Nav'
-import styled from 'styled-components'
-import searchBackground from '../Images/Bg.png'
 
 
 
@@ -25,30 +22,15 @@ export default class Messages extends Component {
         ))
 
         return (
-            <ChatCSS>
-                <Title>Chat</Title>
-                <Nav />
+            <div>
+                <Nav/>
+                <p>Messaging</p>
                 <div>
-                    <button className='button gradient-button gradient-button-4' onClick={() => { this.setState({ toggle: true }) }}>Lots Im asking about</button>
-                    <button className='button gradient-button gradient-button-4' onClick={() => { this.setState({ toggle: false }) }}>Lots Im hosting</button>
+                    <button className='smallbutton' onClick={() => { this.setState({ toggle: true }) }}>Lots Im asking about</button>
+                    <button className='smallbutton' onClick={() => { this.setState({ toggle: false }) }}>Lots Im hosting</button>
                     {this.state.toggle ? <div>{mappedmessages1}</div> : <div><p>Not a list</p></div>}
                 </div>
-            </ChatCSS>
+            </div>
         )
     }
 }
-
-const ChatCSS = styled.div`
-    /* border: 1px solid red; */
-    height: 700px;
-    width: 100%;
-    /* background-image: url(${searchBackground}); */
-    /* color: white; */
-`;
-
-const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    /* color: white; */
-    padding: 20px 0;
-`;

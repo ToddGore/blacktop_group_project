@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { bindActionCreators } from '../../node_modules/redux';
+// import { bindActionCreators } from '../../node_modules/redux';
 //bindActionCreators is used when you want to pass some action creators down to a component that isn't aware of Redux, 
 // and you don't want to pass dispatch or the Redux store to it.
 
@@ -33,7 +33,10 @@ const initialState = {
     friday: false,
     saturday: false,
     sunday: false,
-    picOne: '',
+    picOne: null,
+    picTwo: null,
+    picThree: null,
+    picFour: null,
     rate: 0,
     currentListing: 0
 }
@@ -79,6 +82,10 @@ const UPDATE_WIZ_SUNDAY = "UPDATE_WIZ_SUNDAY";
 const UPDATE_WIZ_PIC_ONE = "UPDATE_WIZ_PIC_ONE";
 const UPDATE_WIZ_RATE = "UPDATE_WIZ_RATE";
 const UPDATE_CURRENT_LISTING = "UPDATE_CURRENT_LISTING";
+const UPDATE_WIZ_PIC_TWO = "UPDATE_WIZ_PIC_TWO";
+const UPDATE_WIZ_PIC_THREE = "UPDATE_WIZ_PIC_THREE";
+const UPDATE_WIZ_PIC_FOUR = "UPDATE_WIZ_PIC_FOUR";
+
 
 
 
@@ -192,7 +199,16 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { rate: action.payload });
 
         case UPDATE_CURRENT_LISTING:
-            return Object.assign({}, state, {currentListing:action.payload});
+            return Object.assign({}, state, { currentListing: action.payload });
+
+        case UPDATE_WIZ_PIC_TWO:
+            return Object.assign({}, state, { picTwo: action.payload });
+
+        case UPDATE_WIZ_PIC_THREE:
+            return Object.assign({}, state, { picThree: action.payload });
+
+        case UPDATE_WIZ_PIC_FOUR:
+            return Object.assign({}, state, { picFour: action.payload });
 
         // Return the previous state in the default case.  We do that for any unknown actions.
         default:
@@ -206,7 +222,7 @@ export default function reducer(state = initialState, action) {
 
 export function getUser() {
     let userData = axios.get('./auth/user').then(res => res.data);
-    console.log(userData)
+    // console.log(userData)
     return {
         type: GET_USER_DATA,
         payload: userData
@@ -424,10 +440,31 @@ export function updateWizRate(rate) {
     }
 }
 
-export function UpdateCurrentListing(currentListing){
+export function UpdateCurrentListing(currentListing) {
     return {
         type: UPDATE_CURRENT_LISTING,
         payload: currentListing
+    }
+}
+
+export function updateWizPicTwo(picTwo) {
+    return {
+        type: UPDATE_WIZ_PIC_TWO,
+        payload: picTwo
+    }
+}
+
+export function updateWizPicThree(picThree) {
+    return {
+        type: UPDATE_WIZ_PIC_THREE,
+        payload: picThree
+    }
+}
+
+export function updateWizPicFour(picFour) {
+    return {
+        type: UPDATE_WIZ_PIC_FOUR,
+        payload: picFour
     }
 }
 

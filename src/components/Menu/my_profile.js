@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import styled from 'styled-components'
+import { connect } from 'react-redux';
+import { getUser } from './../../ducks/reducer'
 import Nav from "../Nav/Nav";
 import axios from 'axios'
-// import "./my_profile.css";
 
-export default class Myprofile extends Component {
+
+
+class Myprofile extends Component {
   constructor(props) {
     super(props);
 
@@ -28,96 +30,89 @@ export default class Myprofile extends Component {
   }
   componentDidMount() {
     axios.get('/auth/user').then(res => {
-      this.setState({ user: res.data })
+      this.props.getUser()
     })
   }
 
   render() {
-    console.log('profile ', this.props)
     return (
-      <ProfileCSS>
+      <div>
         <Nav />
         <div className="myprofile">
-          <PicCSS>
-            {" "}
-            {/* Google Profile Pic */}
-          </PicCSS>
-          {/* <p>Google name will be displayed here</p> */}
-          <InputCSS>
-            <p>Tap an item to edit it</p>
-            <br />
-            <input
-              placeholder="Username"
-              disabled // Disables input to box
-              type="username"
-              className="input"
-              name="username"
-              value={this.state.username}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-            <input
-              placeholder="Email"
-              type="email"
-              className="input"
-              name="email"
-              value={this.state.email}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-            <input
-              placeholder="Phone Number"
-              type="phonenumber"
-              className="input"
-              name="phonenumber"
-              value={this.state.phonenumber}
-              onChange={e => {
-                this.handleChange(e);
-              }}
-            />
-
-          </InputCSS>
-          {/* <button className='button'>Button</button> */}
-          {/* <p>
-            Needs edit buttons for each input and also a submit button after
-            they have edited
-          </p> */}
+          {this.state.edit ?
+              <div className='card'>
+                <div>
+                  <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
+                </div>
+                <p>Name: {this.props.user.username}</p>
+                <hr/>
+                Username: <input type="username" className="input" name="username" value={this.state.username} onChange={e => {this.handleChange(e)}}/>
+                <hr/>
+                Email: <input type="email" className="input" name="email" value={this.state.email} onChange={e => {this.handleChange(e)}}/>
+                <hr/>
+                Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => {this.handleChange(e);}}/>
+                <hr/>
+                <button className='smallbutton' onClick = {() => {this.handleEdit()}}>Cancel</button>
+                <button className='smallbutton'>Submit</button>
+              </div>
+            : 
+            <div className='card'>
+              <div>
+                <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
+              </div>
+                <text>Name: {this.props.user.username}</text>
+                <hr/>
+                <text>Username: </text>
+                <hr/>
+                <text>Email:</text>
+                <hr/>
+                <text>Phonenumber:</text>
+                <hr/>
+                <button className='smallbutton' onClick = {() => {this.handleEdit()}}>Edit</button>
+              </div> 
+          }
         </div>
-      </ProfileCSS>
+      </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  const { user } = state;
+  return {
+   user: user
+  }
+}
 
-const ProfileCSS = styled.div`
-    height: 100vh;
-    padding-top: 10px;
-    background-color: var(--appbackgroundcolor);
-`
+export default connect(mapStateToProps, { getUser })(Myprofile);
 
-const PicCSS = styled.div`
-    height: 150px;
-    width: 150px;
-    background-color: grey;
-    border-radius: 50%;
-    margin: auto;
-`;
+// const ProfileCSS = styled.div`
+//     height: 100vh;
+//     padding-top: 10px;
+//     background-color: var(--appbackgroundcolor);
+// `
 
-const InputCSS = styled.div`
-      margin-top: 40px;
-      & input {
-        text-indent: 10px;
-        margin: 5px 0;
-        border-radius: 25px;
-        /* border: 1px solid lightgray; */
-        border-width: 0px;
-        border:none;
-        box-shadow: none;
-        background-color: #EAECEE;
-        padding: 5px; 
-        width: 250px;
-        height: 25px;
-    }
-`;
+// const PicCSS = styled.div`
+//     height: 150px;
+//     width: 150px;
+//     background-color: grey;
+//     border-radius: 50%;
+//     margin: auto;
+// `;
+
+// const InputCSS = styled.div`
+//       margin-top: 40px;
+//       & input {
+//         text-indent: 10px;
+//         margin: 5px 0;
+//         border-radius: 25px;
+//         /* border: 1px solid lightgray; */
+//         border-width: 0px;
+//         border:none;
+//         box-shadow: none;
+//         background-color: #EAECEE;
+//         padding: 5px; 
+//         width: 250px;
+//         height: 25px;
+//     }
+// `;
