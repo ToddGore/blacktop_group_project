@@ -1,14 +1,16 @@
+import {Link} from 'react-router-dom';
 import React, { Component } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker,InfoWindow } from "react-google-maps";
 import map_pin_icon from './../newImages/map_pin_icon.svg'
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
-
 
 
 class Map extends Component {
     constructor() {
         super();
         this.state = {
+            currentListing: {},
+            selectedMarker: null,
             map: null,
             searchBox: null,
             center: {
@@ -60,6 +62,11 @@ class Map extends Component {
         })
     }
 
+    markerOnClickHandler(marker){
+        console.log(marker)
+        this.setState({selectedMarker: marker.id})
+        this.setState({currentListing: marker})
+    }
 
     render() {
         const markers = this.props.markers;
@@ -91,10 +98,30 @@ class Map extends Component {
                         {...marker} 
                         position = {this.props.markers[i]}
                         icon = {map_pin_icon}
-                        />
+                        onClick = {(e)=>this.markerOnClickHandler(marker)}
+                        >
+                      {
+                        this.state.selectedMarker===marker.id?
+                            <InfoWindow>
+                                <div>
+                                <span>${marker.price.toFixed(2)}</span>
+                                </div>
+                                </InfoWindow>
+                                :''
+                                
+                      } 
+                        </Marker>
                         )
                     )}
                 </GoogleMap>
+                <div>
+                    Listing Info
+                    <p>Address: {this.state.currentListing.address}</p>
+                    <p>Rate: ${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
+                    <Link to = {`/listing_details/`+ this.state.currentListing.id}>
+                    <button>Details</button>
+                    </Link>
+                </div>
             </div>
         );
     }

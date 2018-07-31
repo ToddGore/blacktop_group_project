@@ -5,4 +5,4 @@ SET covered = $1,
     camera = $4,
     fenced = $5,
     guarded = $6
-WHERE id = $7
+WHERE listing_id = $7

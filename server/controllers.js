@@ -14,7 +14,7 @@ module.exports = {
     getUserListings: (req, res) => {
         const db = req.app.get('db');
         const { id } = req.params
-        console.log(req.body)
+        // console.log(req.body)
 
         db.get_user_listings([id])
             .then(listings => res.status(200).send(listings))
@@ -103,7 +103,7 @@ module.exports = {
         ])
             .then(listing => res.status(200).send(listing))
             .catch((err) => res.status(500).send(
-                console.log(err)
+                // console.log(err)
             ))
     },
 
@@ -235,7 +235,10 @@ module.exports = {
             id
         ])
             .then(() => res.status(200).send())
-            .catch(() => res.status(500).send())
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send();
+            })
     },
     updateListing: (req, res) => {
         const db = req.app.get('db');
@@ -281,7 +284,10 @@ module.exports = {
 
         db.update_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, id])
             .then(() => res.status(200).send())
-            .catch(() => res.status(500).send())
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send();
+            })
     },
     updateVehicle: (req, res) => {
         const db = req.app.get('db');
