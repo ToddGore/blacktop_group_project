@@ -36,7 +36,7 @@ app.use(passport.initialize());
 // use req.session to access the person's session we are interacting with
 app.use(passport.session());
 
-passport.use( new Auth0Strategy({
+passport.use(new Auth0Strategy({
     domain: DOMAIN,
     clientID: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
@@ -47,7 +47,7 @@ passport.use( new Auth0Strategy({
     // this is where auth0 sends info back from google
     const db = app.get('db')
     // here, we are asking passport to retrieve the value of db, which is set above
-    let {displayName, picture, id, emails} = profile;
+    let { displayName, picture, id, emails } = profile;
     // console.log("this is the profile:", profile)
     // the id used here is the auth_id from the database
     // the profile contains email as emails: [ { value: 'fairfaxkatrina@gmail.com' } ]
@@ -55,7 +55,7 @@ passport.use( new Auth0Strategy({
         // console.log("this is the user:", user)
         // here, we query our sql database to see if there is a user with the passed in id
         // the info we are getting back is an object that is nested in an array
-        if(user[0]){
+        if (user[0]) {
             done(null, user[0].id)
         } else {
             db.create_user([displayName, id, picture, emails[0].value]).then((createdUser) => {
@@ -65,7 +65,7 @@ passport.use( new Auth0Strategy({
     })
 }));
 
-passport.serializeUser((primaryKeyId, done)=> {
+passport.serializeUser((primaryKeyId, done) => {
     // the profile from above is an object that is added to the session store here
     done(null, primaryKeyId);
 });
@@ -82,13 +82,12 @@ passport.deserializeUser(((primaryKeyId, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
     // this redirects the user back to the front end where they started the login process
-    successRedirect:'http://localhost:3000/#/search'
+    successRedirect: 'http://localhost:3000/#/search'
     // user the hash symbol above because we are using Hashrouter
 }))
 
 app.get('/auth/user', (req, res) => {
-    if (req.user){
-        // console.log('hit')
+    if (req.user) {
         res.status(200).send(req.user);
         // console.log("this is req.user:", req.user)
     } else {
@@ -101,6 +100,9 @@ app.get('/auth/logout', (req, res) => {
     // this is a built in method in passport that kills the session and resets the user property
     res.redirect('http://localhost:3000');
 });
+
+// User
+app.get('/api/host/:id', ctrl.getHost)
 
 //Listing
 app.get('/api/listing', ctrl.getAllListings)
@@ -139,6 +141,8 @@ app.put('/api/availability/:id', ctrl.updateAvailability)
 app.post('/api/payment', ctrl.createPayment)
 app.put('/api/payment/:id', ctrl.updatePayment)
 
+// Nodemailer Send
+app.post('/api/sendmail', ctrl.createMail)
 
 const port = 4000;
 app.listen(port, () => {
