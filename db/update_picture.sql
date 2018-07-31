@@ -3,4 +3,4 @@ SET pic_one = $1,
     pic_two = $2,
     pic_three = $3,
     pic_four = $4
-WHERE id = $5
+WHERE listing_id = $5

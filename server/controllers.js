@@ -161,7 +161,7 @@ module.exports = {
     createPayment: (req, res) => {
         const db = req.app.get('db');
         const { cash, credit, venmo, pay_pal, apple_pay, listing_id } = req.body;
-        
+
 
         db.create_payments([cash, credit, venmo, pay_pal, apple_pay, listing_id])
             .then(() => res.status(200).send())
@@ -191,7 +191,10 @@ module.exports = {
             id
         ])
             .then(() => res.status(200).send())
-            .catch(() => res.status(500).send())
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send();
+            })
     },
     updateListing: (req, res) => {
         const db = req.app.get('db');
@@ -237,7 +240,10 @@ module.exports = {
 
         db.update_availability([monday, tuesday, wednesday, thursday, friday, saturday, sunday, id])
             .then(() => res.status(200).send())
-            .catch(() => res.status(500).send())
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send();
+            })
     },
     updateVehicle: (req, res) => {
         const db = req.app.get('db');

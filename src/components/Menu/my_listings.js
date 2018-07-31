@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom'
 import Nav from '../Nav/Nav'
 import './my_listings.css'
 import { connect } from 'react-redux';
-import { getUser } from '../../ducks/reducer';
+import { 
+    getUser,
+} from '../../ducks/reducer';
+
 
 class Mylistings extends Component {
     constructor() {
@@ -36,9 +39,9 @@ class Mylistings extends Component {
         });
     }
 
-    handleListingUpdate(id) {
+    handleListingUpdate(id) {        
         this.props.history.push('mylisting/edit/' + id);
-      }
+    }
 
     handleListingDelete(id) {
         let result = window.confirm('Are you sure you want to delete this listing?')
@@ -107,9 +110,9 @@ class Mylistings extends Component {
 }
 
 function mapStateToProps(state) {
+    const { user, address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applepay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = state;
     return {
-
-        user: state.user
+        user,
     }
 }
 
