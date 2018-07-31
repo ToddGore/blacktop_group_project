@@ -110,9 +110,9 @@ class Mylistings extends Component {
 }
 
 function mapStateToProps(state) {
-    const { user, address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applepay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = state;
+    const { user} = state;
     return {
-        user,
+        user:user
     }
 }
 
