@@ -7,10 +7,10 @@ import Messages from "./components/Messages/Messages";
 import Reservations from "./components/Reservations/Reservations";
 import MyVehicle from "./components/Menu/my_vehicle";
 import MyProfile from "./components/Menu/my_profile";
-import Mylistings from './components/Menu/my_listings'
-import Listing from './components/Listing/Listing'
-import Checkout from './components/Checkout/Checkout'
-import Chat from './components/Chat/Chat'
+import Mylistings from './components/Menu/my_listings';
+import Listing from './components/Listing/Listing';
+import Checkout from './components/Checkout/Checkout';
+import Chat from './components/Chat/Chat';
 
 import Wizard0 from './components/Menu/List_space_Wizards/Wizard0'
 import Wizard1 from './components/Menu/List_space_Wizards/Wizard1'
@@ -32,7 +32,6 @@ export default (
         <Route path='/myvehicle' component={MyVehicle} />
         <Route path='/myprofile' component={MyProfile} />
         <Route path='/mylistings' component={Mylistings} />
-        <Route path='/mylisting/edit/:id' component={EditListing}/>
         <Route path='/listing' component={Listing} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/chat' component={Chat} />

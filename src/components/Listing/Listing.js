@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
+import {connect} from 'react-redux';
 
 class Listing extends Component {
     constructor(props) {
@@ -21,7 +22,9 @@ class Listing extends Component {
 
     }
     getListingById = () => {
-        axios.get(`/api/listing/6`).then(res => {
+        const {currentListing}= this.props;
+
+        axios.get(`/api/listing/${currentListing.id}`).then(res => {
             this.setState({
                 listing: res.data[0],
                 isLoading: false
@@ -39,40 +42,41 @@ class Listing extends Component {
         })
     }
     getPicArray = () => {
-        const {pic_one, pic_two, pic_three, pic_four} = this.state.listing
+        const { pic_one, pic_two, pic_three, pic_four } = this.state.listing
         let picArr = []
-        if(pic_one){
+        if (pic_one) {
             picArr.push(pic_one)
         }
-        if(pic_two){
+        if (pic_two) {
             picArr.push(pic_two)
         }
-        if(pic_three){
+        if (pic_three) {
             picArr.push(pic_three)
         }
-        if(pic_four){
+        if (pic_four) {
             picArr.push(pic_four)
         }
-        this.setState({pictureArray: picArr})
+        this.setState({ pictureArray: picArr })
     }
 
     render() {
-        const { listing, pictureArray, host} = this.state
+        console.log(this.props);
+        const { listing, pictureArray, host } = this.state
         console.log(host)
         let mappedPictures = pictureArray.map((picture, i) => {
-            return(
+            return (
                 <div key={i}>
-                    <img src={picture} alt=''/>
-                </div> 
+                    <img src={picture} alt='' />
+                </div>
             )
         })
         return (
             <div>
                 {this.state.isLoading ?
-                 <div>
-                     <p>LOADING . . .</p>
-                 </div>  
-                 :
+                    <div>
+                        <p>LOADING . . .</p>
+                    </div>
+                    :
                     <div>
                         <Link to='/search'>
                             <h4>BACK</h4>
@@ -80,14 +84,14 @@ class Listing extends Component {
                         <h2>Details</h2>
                         <div>
                             <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
-                               {mappedPictures}
+                                {mappedPictures}
                             </Carousel>
                         </div>
-                        <hr/>
+                        <hr />
                         <div>
                             <p>{listing.address}</p>
                         </div>
-                        <hr/>
+                        <hr />
                         <div>
                             <p>{listing.num_spaces}</p>
                             <p>{listing.space_size}</p>
@@ -98,15 +102,17 @@ class Listing extends Component {
                             <p>fenced:{listing.fenced ? 'true' : 'false'}</p>
                             <p>guarded:{listing.guarded ? 'true' : 'false'}</p>
                         </div>
-                        <hr/>
+                        <hr />
                         <div>
                             <h3>About this Space</h3>
                             <p>Hosted by {host.username}</p>
-                            <img src={host.user_pic} style={{width: '50px'}}/>
-                            <br/>
+                            <img src={host.user_pic} style={{ width: '50px' }} />
+                            <br />
+                            <Link to ='/chat'>
                             <button>EMAIL</button>
+                            </Link>
                         </div>
-                        <hr/>
+                        <hr />
                         <div>
                             <h3>Listing Schedule:</h3>
                             <p>Monday:{listing.monday ? 'true' : 'false'}</p>
@@ -117,7 +123,7 @@ class Listing extends Component {
                             <p>Saturday:{listing.saturday ? 'true' : 'false'}</p>
                             <p>Sunday:{listing.sunday ? 'true' : 'false'}</p>
                         </div>
-                        <hr/>
+                        <hr />
                         <Link to='/checkout'>
                             <span>Checkout</span>
                         </Link>
@@ -129,4 +135,10 @@ class Listing extends Component {
     }
 }
 
-export default Listing
+function mapStateToProps(state) {
+    return {
+currentListing: state.currentListing
+    }
+}
+
+export default connect(mapStateToProps)(Listing);
