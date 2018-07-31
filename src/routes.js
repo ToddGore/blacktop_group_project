@@ -10,6 +10,7 @@ import MyProfile from "./components/Menu/my_profile";
 import Mylistings from './components/Menu/my_listings'
 import Listing from './components/Listing/Listing'
 import Checkout from './components/Checkout/Checkout'
+import Chat from './components/Chat/Chat'
 
 import Wizard0 from './components/Menu/List_space_Wizards/Wizard0'
 import Wizard1 from './components/Menu/List_space_Wizards/Wizard1'
@@ -33,19 +34,19 @@ export default (
         <Route path='/mylistings' component={Mylistings} />
         <Route path='/listing' component={Listing} />
         <Route path='/checkout' component={Checkout} />
+        <Route path='/chat' component={Chat} />
 
 
-        
 
 
-        <Route path='/wizard0' component={Wizard0}/>
-        <Route path='/wizard1' component={Wizard1}/>
-        <Route path='/wizard2' component={Wizard2}/>
-        <Route path='/wizard3' component={Wizard3}/>
-        <Route path='/wizard4' component={Wizard4}/>
-        <Route path='/wizard5' component={Wizard5}/>
-        <Route path='/wizard6' component={Wizard6}/>
-        <Route path='/wizard7' component={Wizard7}/>
-        <Route path='/wizard8' component={Wizard8}/>
+        <Route path='/wizard0' component={Wizard0} />
+        <Route path='/wizard1' component={Wizard1} />
+        <Route path='/wizard2' component={Wizard2} />
+        <Route path='/wizard3' component={Wizard3} />
+        <Route path='/wizard4' component={Wizard4} />
+        <Route path='/wizard5' component={Wizard5} />
+        <Route path='/wizard6' component={Wizard6} />
+        <Route path='/wizard7' component={Wizard7} />
+        <Route path='/wizard8' component={Wizard8} />
     </Switch>
 )
