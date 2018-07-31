@@ -173,6 +173,8 @@ module.exports = {
     },
     // Added for nodemailer
     createMail: (req, res) => {
+        console.log('creatMail ', req.body)
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -181,10 +183,15 @@ module.exports = {
             }
         });
         var mailOptions = {
-            from: process.env.EMAIL,
-            to: process.env.EMAIL,
+            // from: process.env.EMAIL,
+            from: process.env.EMAILFROM,
+            // to: process.env.EMAIL,
+            // to: process.env.EMAIL,
+            to: req.body.emailTo,
+            // to: process.env.EMAILTO,
             subject: req.body.subject,
-            html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.email}`
+            // html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.email}`
+            html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.emailFrom}`
         };
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {

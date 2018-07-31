@@ -34,8 +34,11 @@ class Chat extends Component {
     sendMail(e) {
         e.preventDefault()
         axios.post('/api/sendmail', {
-            name: this.state.name,
-            email: this.state.email,
+            // name: this.state.name,
+            name: this.props.user.username,
+            emailFrom: this.props.user.email,
+            emailTo: 'linacman@yahoo.com',
+            // email: 'linacman@yahoo.com',
             subject: this.state.subject,
             message: this.state.message
         }).then(res => {
@@ -55,16 +58,19 @@ class Chat extends Component {
             <div className="chat-main">
                 <form id="contact-form" onSubmit={this.sendMail} >
                     <div className="form-group">
-                        <label >User Name</label>
-                        <p className="">{this.props.user.username}</p>
-                        <br />
-
+                        <p className="">From: {this.props.user.username}</p>
                     </div>
                     <div className="form-group">
-                        <label >Email Address</label>
+                        {/* <label >From Email Address</label> */}
                         <p className="">{this.props.user.email}</p>
-                        <br />
                     </div>
+                    <br />
+                    <div>
+                        <p className="">To: Receiver Email</p>
+                    </div>
+                    <br />
+
+
                     <div className="form-group">
                         <label>Subject</label>
                         <input
