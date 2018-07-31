@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { getUser } from '../../ducks/reducer'
+import {Link} from 'react-router-dom';
 
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            host: {},
             user: {},
             name: '',
             email: '',
@@ -19,6 +21,7 @@ class Chat extends Component {
     }
 
     componentDidMount() {
+        const { host_id } = this.props.currentListing;
         this.props.getUser().then(
             this.setState({
                 logged_user_name: '',
@@ -26,19 +29,17 @@ class Chat extends Component {
 
             })
         )
-
+        axios.get(`/api/host/${host_id}`).then(res => {
+            this.setState({ host: res.data[0] })
+        })
     }
-
-
 
     sendMail(e) {
         e.preventDefault()
         axios.post('/api/sendmail', {
-            // name: this.state.name,
             name: this.props.user.username,
             emailFrom: this.props.user.email,
-            emailTo: 'linacman@yahoo.com',
-            // email: 'linacman@yahoo.com',
+            emailTo: this.state.host.email,
             subject: this.state.subject,
             message: this.state.message
         }).then(res => {
@@ -48,12 +49,13 @@ class Chat extends Component {
                 subject: '',
                 message: ''
             })
+            this.props.history.push('/listing')
         })
     }
 
     render() {
         console.log('Chat Props ', this.props.user);
-
+        console.log(this.state.host)
         return (
             <div className="chat-main">
                 <form id="contact-form" onSubmit={this.sendMail} >
@@ -66,7 +68,7 @@ class Chat extends Component {
                     </div>
                     <br />
                     <div>
-                        <p className="">To: Receiver Email</p>
+                        <p className="">To: {this.state.host.email}</p>
                     </div>
                     <br />
 
@@ -105,9 +107,10 @@ class Chat extends Component {
 
 
 function mapStateToProps(state) {
-    const { user } = state;
+    const { user, currentListing } = state;
     return {
-        user: user
+        user: user,
+        currentListing: currentListing
     }
 }
 

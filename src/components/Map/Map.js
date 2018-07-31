@@ -1,9 +1,9 @@
+import store from '../../ducks/store';
 import {Link} from 'react-router-dom';
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker,InfoWindow } from "react-google-maps";
 import map_pin_icon from './../newImages/map_pin_icon.svg'
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
-
 
 class Map extends Component {
     constructor() {
@@ -68,6 +68,14 @@ class Map extends Component {
         this.setState({currentListing: marker})
     }
 
+    handleDetails(){
+        console.log(this.state.currentListing)
+        store.dispatch({
+            type: "UPDATE_CURRENT_LISTING",
+            payload: this.state.currentListing
+        })
+    }
+
     render() {
         const markers = this.props.markers;
         // console.log(this.props.markers[0])
@@ -118,12 +126,14 @@ class Map extends Component {
                     Listing Info
                     <p>Address: {this.state.currentListing.address}</p>
                     <p>Rate: ${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
-                    <Link to = {`/listing_details/`+ this.state.currentListing.id}>
-                    <button>Details</button>
+                    <Link to = "/listing">
+                    <button onClick ={(e) => {this.handleDetails()}}>Details</button>
                     </Link>
                 </div>
             </div>
         );
     }
 };
+
+
 export default withScriptjs(withGoogleMap(Map));
