@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
-import {connect} from 'react-redux';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import {connect} from 'react-redux'
 
 class Listing extends Component {
     constructor(props) {
@@ -34,7 +34,6 @@ class Listing extends Component {
         })
     }
     getHost = (id) => {
-        console.log('hit')
         axios.get(`/api/host/${id}`).then(res => {
             this.setState({
                 host: res.data[0]
@@ -60,9 +59,7 @@ class Listing extends Component {
     }
 
     render() {
-        console.log(this.props);
-        const { listing, pictureArray, host } = this.state
-        console.log(host)
+        const { listing, pictureArray, host} = this.state
         let mappedPictures = pictureArray.map((picture, i) => {
             return (
                 <div key={i}>
@@ -106,11 +103,10 @@ class Listing extends Component {
                         <div>
                             <h3>About this Space</h3>
                             <p>Hosted by {host.username}</p>
-                            <img src={host.user_pic} style={{ width: '50px' }} />
-                            <br />
-                            <Link to ='/chat'>
+                            <img src={host.user_pic} style={{width: '50px'}} alt=''/>
+                            <br/>
                             <button>EMAIL</button>
-                            </Link>
+                            <p>{listing.about}</p>
                         </div>
                         <hr />
                         <div>
