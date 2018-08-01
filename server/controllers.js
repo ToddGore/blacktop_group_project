@@ -60,13 +60,13 @@ module.exports = {
             .then(vehicles => res.status(200).send(vehicles))
             .catch((err) => res.status(500).send(console.log(err)))
     },
-    getHost:(req, res) => {
+    getHost: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
+        const { id } = req.params
 
         db.get_host([id])
-        .then( user => res.status(200).send(user))
-        .catch( () => res.status(500).send())
+            .then(user => res.status(200).send(user))
+            .catch(() => res.status(500).send())
     },
 
 
@@ -144,11 +144,11 @@ module.exports = {
 
     createReservation: (req, res) => {
         const db = req.app.get('db');
-        const {user_id, vehicle_id, start_time, end_time, payment_type, total, listing_id} = req.body
+        const { user_id, vehicle_id, start_time, end_time, payment_type, total, listing_id } = req.body
 
         db.create_reservation([user_id, vehicle_id, start_time, end_time, payment_type, total, listing_id])
-        .then( reservation => res.status(200).send(reservation))
-        .catch( () => res.status(500).send())
+            .then(reservation => res.status(200).send(reservation))
+            .catch(() => res.status(500).send())
     },
 
     createAvailability: (req, res) => {
@@ -191,14 +191,10 @@ module.exports = {
             }
         });
         var mailOptions = {
-            // from: process.env.EMAIL,
-            from: process.env.EMAILFROM,
-            // to: process.env.EMAIL,
-            // to: process.env.EMAIL,
+            from: process.env.EMAIL,
+            from: req.body.emailFrom,
             to: req.body.emailTo,
-            // to: process.env.EMAILTO,
             subject: req.body.subject,
-            // html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.email}`
             html: `${req.body.message} <br /> <br /> - from ${req.body.name} <br /> ${req.body.emailFrom}`
         };
         transporter.sendMail(mailOptions, function (error, info) {
