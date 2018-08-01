@@ -1,4 +1,4 @@
-UPDATE availabilites
+UPDATE availabilities
 SET monday = $1,
     tuesday = $2,
     wednesday = $3,
@@ -6,4 +6,4 @@ SET monday = $1,
     friday = $5,
     saturday = $6,
     sunday = $7
-WHERE id = $8
+WHERE listing_id = $8

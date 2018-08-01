@@ -36,10 +36,7 @@ class Wizard5 extends Component {
 
 
   render() {
-    // console.log(this.props.picOne)
-    // console.log(this.props.picTwo)
-    // console.log(this.props.picThree)
-    // console.log(this.props.picFour)
+  
     return (
       <div className = "reset">
         <div className="wizard5">
