@@ -10,7 +10,6 @@ module.exports = {
     getUserListings: (req, res) => {
         const db = req.app.get('db');
         const { id } = req.params
-        console.log(req.body)
 
         db.get_user_listings([id])
             .then(listings => res.status(200).send(listings))
@@ -98,9 +97,7 @@ module.exports = {
             lng
         ])
             .then(listing => res.status(200).send(listing))
-            .catch((err) => res.status(500).send(
-                console.log(err)
-            ))
+            .catch((err) => res.status(500).send(console.log(err)))
     },
 
     createFeatures: (req, res) => {

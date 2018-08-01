@@ -119,10 +119,8 @@ class Checkout extends Component {
         return filterMon && filterTue && filterWed && filterThu && filterFri && filterSat && filterSun
       }
     render() {
-        const { address, instructions, about, apple_pay, cash, credit, pay_pal, venmo, price } = this.state.listing
+        const { address, apple_pay, cash, credit, pay_pal, venmo, price } = this.state.listing
         const { vehicles, total } = this.state
-        console.log(this.state.currentVehicle)
-        console.log(this.state.currentPayment)
         let mappedVehicles = vehicles.map(vehicle => {
             return (
                 <option key={vehicle.id} value={vehicle.id}>{`${vehicle.color} ${vehicle.make}`}</option>
@@ -144,11 +142,11 @@ class Checkout extends Component {
                             <p>Map w/ Pin?</p>
                         </div>
                         <div>
-                            <p>Address:{address}</p>
+                            <h3>Address:{address}</h3>
                         </div>
                         <hr />
                         <div>
-                            <p>Vehicles:</p>
+                            <h3>Vehicles:</h3>
                             <select value={this.state.currentVehicle} onChange={this.updateCurrentVehicle}>
                                 <option value='select'>Select a Vehicle</option>
                                 {mappedVehicles}
@@ -156,7 +154,7 @@ class Checkout extends Component {
                         </div>
                         <hr />
                         <div>
-                            <p>Schedule:</p>
+                            <h3>Schedule:</h3>
                             <DatePicker
                                 selected={this.state.startDate}
                                 selectsStart
@@ -178,7 +176,7 @@ class Checkout extends Component {
                         </div>
                         <hr />
                         <div>
-                            <p>Payments:</p>
+                            <h3>Payments:</h3>
                             <select onChange={this.updateCurrentPayment}>
                                 <option value='select'>Select a Payment</option>
                                 {!cash ? null :

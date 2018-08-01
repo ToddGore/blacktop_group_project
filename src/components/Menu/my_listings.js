@@ -18,23 +18,15 @@ class Mylistings extends Component {
     componentDidMount() {
         
         this.props.getUser().then(() => {
-            
             axios.get(`/api/userlisting/${this.props.user.id}`).then(res => {
-                console.log("this is this.props.user.id", this.props.user.id)
-                console.log("this is red.data", res.data)
                 this.setState({ mylistings: res.data })
-                console.log(res.data)
             })
         });
     }
 
     render() {
-       console.log("this is props", this.props)
        let mappedlistings = this.state.mylistings.map((listing, i) => {
-        console.log("this is this.state", this.state)
-
             return <div key={i}>
-
                 <h1>Welcome to your lisings page, {this.props.user.username}</h1>
                 <hr />
                 <p>Address: {listing.address}</p>
