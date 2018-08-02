@@ -49,10 +49,7 @@ class Map extends Component {
     }
 
     onPlacesChanged() {
-        console.log('OnPlacesChanged:' + this.state.searchBox.getPlaces());
-        console.log(this.state.searchBox.getPlaces());
         const places = this.state.searchBox.getPlaces();
-        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng());
 
         this.setState({
             center: {
@@ -63,13 +60,11 @@ class Map extends Component {
     }
 
     markerOnClickHandler(marker){
-        console.log(marker)
         this.setState({selectedMarker: marker.id})
         this.setState({currentListing: marker})
     }
 
     handleDetails(){
-        console.log(this.state.currentListing)
         store.dispatch({
             type: "UPDATE_CURRENT_LISTING",
             payload: this.state.currentListing
