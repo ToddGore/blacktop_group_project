@@ -36,10 +36,10 @@ class Wizard0 extends Component {
 
     return (
       <div className= "reset">
-        <div className="wizard0">
+        <div className="wizard">
           <h1>Where is your parking space(s) located?</h1>
 
-          <input type="" className="input" onChange={e => { updateWizAddress(e.target.value) }} />
+          <input type="" className="input" onChange={e => { updateWizAddress(e.target.value) }} placeholder='Address' />
           <br />
           <div className='nav'>
             <Link to="#" style={{opacity:'0', width: '30px'}}></Link>

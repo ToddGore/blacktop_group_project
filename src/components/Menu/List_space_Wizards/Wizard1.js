@@ -16,7 +16,7 @@ class Wizard1 extends Component {
 
     return (
       <div className = "reset">
-        <div className="wizard1">
+        <div className="wizard">
           <h1>Please select your building type.</h1>
           <br />
 

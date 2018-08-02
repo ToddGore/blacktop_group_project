@@ -15,7 +15,7 @@ const {updateWizMonday, updateWizTuesday, updateWizWednesday, updateWizThursday,
 
     return (
       <div className = "reset">
-        <div className="wizard6">
+        <div className="wizard">
 
           <h1>Please indicate all available days for your parking space(s).</h1>
           <br />

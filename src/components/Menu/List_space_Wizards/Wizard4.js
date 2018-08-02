@@ -9,8 +9,8 @@ export default class Wizard4 extends Component {
   render() {
     return (
       <div className = "reset">
-        <div className="wizard4">
-          Street View
+        <div className="wizard">
+          <h1>Street View</h1>
           <br />
           <div className='nav'>
             <Link to="/wizard3">

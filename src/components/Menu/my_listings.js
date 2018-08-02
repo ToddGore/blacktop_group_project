@@ -23,7 +23,7 @@ class Mylistings extends Component {
 
 
     render() {
-        console.log(this.props.user);
+        // console.log(this.props.user);
         let mappedlistings = this.state.mylistings.map((e,i) => (
             <div key = {i}>
                 <p>Display Username?</p>
