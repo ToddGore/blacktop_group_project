@@ -123,7 +123,7 @@ class Checkout extends Component {
         const { vehicles, total } = this.state
         let mappedVehicles = vehicles.map(vehicle => {
             return (
-                <option key={vehicle.id} value={vehicle.id}>{`${vehicle.color} ${vehicle.make}`}</option>
+                <option key={vehicle.id} value={`${vehicle.color} ${vehicle.make}`}>{`${vehicle.color} ${vehicle.make}`}</option>
             )
         })
         return (
