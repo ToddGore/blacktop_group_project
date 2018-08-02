@@ -63,7 +63,7 @@ table {
   --buttonbackgroundcolor: rgb(43, 43, 43);
   
   /* POPUP */
-  --popupbackgroundcolor:  rgba(0, 130, 252);
+  --popupbackgroundcolor:  #0082fc;
 }
 
 /* THIS IS THE RESET FOR THE FORMAT OF A PAGE */
@@ -79,6 +79,7 @@ table {
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
   color: var(--appfontcolor);
+  font-size: 20px;
 }
 h1{
   /* box-shadow: 0 1px 5px rgb(194, 194, 194); */
@@ -94,7 +95,7 @@ h1{
   border: 1px solid transparent;
   outline: none;
   margin: 10px;
-  box-shadow: 0px 0px 5px 1px rgb(211, 211, 211);
+  box-shadow: 0px 0px 5px 1px rgb(190, 190, 190);
   padding: 8px;
 }
 p .input{
@@ -171,6 +172,17 @@ p .input{
 }
 .roundbutton:active{
   box-shadow: var(--bordercolor);
+}
+.buttoncheckmark{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkmark{
+  height: 20px;
+  width:20px;
+  position: absolute;
+  right: 120px;
 }
 .card{
   box-shadow: 0px 1px 5px 1px rgb(182, 182, 182);
@@ -322,12 +334,13 @@ p .input{
   outline: none;
   border: 1px solid transparent;
   color: white;
-  position: fixed;
+  /* position: fixed; */
   top: 0px;
   left: 0;
   height: 40px;
-  width: 100%;
+  width: 94vw;
   padding: 0 10px 0 10px;
+  overflow: hidden;
 }
 .search::placeholder{
   color: rgb(221, 221, 221);
@@ -351,4 +364,29 @@ p .input{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+/* MY LISTINGS */
+.mylistingicon{
+  height: 60px;
+}
+.grid{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 10%;
+  grid-row-gap: 5px;
+}
+.featureicon{
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* EDIT LISTING */
+.divwithcheck{
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }

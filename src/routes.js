@@ -11,6 +11,7 @@ import Mylistings from './components/Menu/my_listings';
 import Listing from './components/Listing/Listing';
 import Checkout from './components/Checkout/Checkout';
 import Chat from './components/Chat/Chat';
+import EditListing from './components/Menu/edit_listing'
 
 import Wizard0 from './components/Menu/List_space_Wizards/Wizard0'
 import Wizard1 from './components/Menu/List_space_Wizards/Wizard1'
@@ -35,6 +36,7 @@ export default (
         <Route path='/listing' component={Listing} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/chat' component={Chat} />
+        <Route path='/mylisting/edit/:id' component={EditListing}/>
 
 
 
