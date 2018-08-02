@@ -38,7 +38,7 @@ class Search extends Component {
                     !this.state.isLoading ?
                         <div>
                             <Nav />
-                            <div className='reset' style={{paddingTop:'42px'}}>
+                            <div className='reset'>
                                 <Map
                                     zoom={14}
                                     markers={this.state.markers}
@@ -51,6 +51,7 @@ class Search extends Component {
                         </div>
                     :
                         <div>
+                            <Nav/>
                             <p>Loading</p>
                         </div>
                 }

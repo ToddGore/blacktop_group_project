@@ -76,7 +76,7 @@ class Wizard8 extends Component {
     // console.log(this.props)
     return (
       <div className="reset">
-
+        <div className='wizard'>
           <h1>Here is a preview of your listing:</h1>
           <br />
 
@@ -159,16 +159,10 @@ class Wizard8 extends Component {
               <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
             <Link to="/mylistings">
-              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} />
+              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} onClick={(e) => { this.handleWizPost() }}/>
             </Link>
           </div>
-          <Link to="/wizard7">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/mylistings">
-            <button className="button" onClick={(e) => { this.handleWizPost() }}>Submit Listing</button>
-          </Link>
+        </div> 
       </div>
     );
   }

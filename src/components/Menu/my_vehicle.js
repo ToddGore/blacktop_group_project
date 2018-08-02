@@ -273,8 +273,8 @@ export default class Myvehicle extends Component {
                 <p className='ptag'>Size: (click on a icon button)</p>
                 <br />
                 <div style={{padding: '10px'}}>
-                  <img style= {{height:'28px'}} src={cancel_icon} onClick = {()=> {this.cancel()}} alt=''/>
-                  <img style={{float:'right', height:'28px'}} src={upload_icon} onClick = {()=> {this.addCar()}} alt=''/>
+                  <img alt='' style= {{height:'28px'}} src={cancel_icon} onClick = {()=> {this.cancel()}}/>
+                  <img alt='' style={{float:'right', height:'28px'}} src={upload_icon} onClick = {()=> {this.addCar()}}/>
                 </div> 
               </div>
             </div>

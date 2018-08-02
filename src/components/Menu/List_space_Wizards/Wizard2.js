@@ -29,7 +29,7 @@ class Wizard2 extends Component {
 
     return (
       <div className ="reset">
-        <div className="wizard2">
+        <div className="wizard">
           <br />
           <br />
           <h1>Please select your parking space type.</h1>
