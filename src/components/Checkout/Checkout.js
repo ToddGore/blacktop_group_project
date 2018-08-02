@@ -29,8 +29,8 @@ class Checkout extends Component {
         
     }
     getListing = () => {
-        const {user} = this.props
-        axios.get(`/api/listing/5`).then(res => {
+        const {user, currentListing} = this.props
+        axios.get(`/api/listing/${currentListing.id}`).then(res => {
             this.setState({
                 listing: res.data[0],
             })
@@ -215,7 +215,8 @@ class Checkout extends Component {
 }
 function mapStateToProps(state){
     return{
-        user: state.user
+        user: state.user,
+        currentListing: state.currentListing
     }
 }
 
