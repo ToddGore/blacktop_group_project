@@ -14,7 +14,7 @@ class Wizard7 extends Component {
     // console.log(this.props.rate)
     return (
       <div className = "reset">
-        <div className="wizard7">
+        <div className="wizard">
           <h1>Please specify your hourly rate below.</h1>
           <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(Number(e.target.value)) }} />
           <br />

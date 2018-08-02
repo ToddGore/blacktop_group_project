@@ -11,21 +11,23 @@ export default function Popup(props) {
     return (
         <div>
             <div>
-                <Link to='/myvehicle'>
-                    <div className={props.handlePopup ? 'iconholder icon1 animated bounceIn' : 'animated bounceOut hidden'}>
-                        <img alt='' src={myvehicle_icon} className='popupicon' />
-                    </div>
-                </Link>
-                <Link to='/myprofile'>
-                    <div className={props.handlePopup ? 'iconholder icon2 animated bounceIn' : 'animated bounceOut hidden'}>
-                        <img alt='' src={myprofile_icon} className='popupicon' />
-                    </div>
-                </Link>
-                    <a href={process.env.REACT_APP_LOGOUT}>
-                        <div className={props.handlePopup ? 'iconholder icon3 animated bounceIn' : 'animated bounceOut hidden'}>
-                            <img alt='' src={exit_icon} className='popupicon' style={{ margin: '3px 0 0 8px' }} />
+                    <Link to='/myvehicle'>
+                        <div className={props.handlePopup ? 'iconholder icon1 animated bounceIn' : 'hidden'}>
+                            <img alt='' src={myvehicle_icon} className='popupicon'/>
+                        </div> 
+                    </Link>
+                    <Link to='/myprofile'>
+                        <div className={props.handlePopup ? 'iconholder icon2 animated bounceIn' : 'hidden'}>
+                            <img alt='' src={myprofile_icon} className='popupicon'/>
+                        </div> 
+                    </Link>
+                    <Link to=''>
+                        <div href={process.env.REACT_APP_LOGOUT}>
+                            <div className={props.handlePopup ? 'iconholder icon3 animated bounceIn' : 'hidden'}>
+                                <img alt='' src={exit_icon} className='popupicon' style={{margin: '3px 0 0 8px'}}/>
+                            </div> 
                         </div>
-                    </a>
+                    </Link>
             </div>
         </div>
     )

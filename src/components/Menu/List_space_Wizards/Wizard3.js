@@ -15,19 +15,18 @@ class Wizard3 extends Component {
 
     return (
       <div className = "reset">
-        <div className="wizard3">
+        <div className="wizard">
 
           <h1>Please provide parking instructions and a description of your lot(s).</h1>
           <br />
-          <hr />
 
           <input className="input" placeholder="Parking Instructions" onChange={(e) => { updateWizInstructions(e.target.value) }} />
-          <hr />
+
           <input className="input" placeholder="Lot Description" onChange={(e) => { updateWizDescription(e.target.value) }} />
 
           <br />
           <br />
-          <h3>Plase select a parking space size.</h3>
+          <h1>Plase select a parking space size.</h1>
           <br />
 
           <button className='smallbutton' onClick={() => { updateWizSpaceSize('Compact') }}>Compact</button>
@@ -37,7 +36,7 @@ class Wizard3 extends Component {
 
           <br />
           <br />
-          <h3>Please select all features that apply:</h3>
+          <h1>Please select all features that apply:</h1>
           <br />
 
           <button className='smallbutton' onClick={(e) => { updateWizCovered(true) }}>Covered</button>
