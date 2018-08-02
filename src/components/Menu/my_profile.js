@@ -43,27 +43,27 @@ class Myprofile extends Component {
         <Nav />
         <div className="myprofile">
           {this.state.edit ?
-              <div className='card'>
-                <div>
-                  <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
-                </div>
-                <p>Name: {this.props.user.username}</p>
-                <hr/>
-                Username: <input type="username" className="input" name="username" value={this.state.username} onChange={e => {this.handleChange(e)}}/>
-                <hr/>
-                Email: <input type="email" className="input" name="email" value={this.state.email} onChange={e => {this.handleChange(e)}}/>
-                <hr/>
-                Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => {this.handleChange(e);}}/>
-                <hr/>
-                <div>
-                  <img src={cancel_icon} alt='' onClick = {() => {this.handleEdit()}} style={{height:'27px'}}/>
-                  <img alt='' src={upload_icon} style={{float: 'right', height: '25px'}}/>
-                </div>
-              </div>
-            : 
             <div className='card'>
               <div>
-                <img alt='' src={this.props.user.user_pic} style={{height: "150px", borderRadius: "50%", margin: '20px auto 50px auto',display: 'block'}}/>
+                <img alt='' src={this.props.user.user_pic} style={{ height: "150px", borderRadius: "50%", margin: '20px auto 50px auto', display: 'block' }} />
+              </div>
+              <p>Name: {this.props.user.username}</p>
+              <hr />
+              Username: <input type="username" className="input" name="username" value={this.state.username} onChange={e => { this.handleChange(e) }} />
+              <hr />
+              Email: <input type="email" className="input" name="email" value={this.state.email} onChange={e => { this.handleChange(e) }} />
+              <hr />
+              Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => { this.handleChange(e); }} />
+              <hr />
+              <div>
+                <img src={cancel_icon} alt='' onClick = {() => {this.handleEdit()}} style={{height:'27px'}}/>
+                <img alt='' src={upload_icon} style={{float: 'right', height: '25px'}}/>
+              </div>
+            </div>
+            :
+            <div className='card'>
+              <div>
+                <img alt='' src={this.props.user.user_pic} style={{ height: "150px", borderRadius: "50%", margin: '20px auto 50px auto', display: 'block' }} />
               </div>
                 <div>Name: {this.props.user.username}</div>
                 <hr/>
@@ -85,7 +85,7 @@ class Myprofile extends Component {
 function mapStateToProps(state) {
   const { user } = state;
   return {
-   user: user
+    user: user
   }
 }
 

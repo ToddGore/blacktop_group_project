@@ -38,7 +38,7 @@ const initialState = {
     picThree: null,
     picFour: null,
     rate: 0,
-    currentListing: 0
+    currentListing: {}
 }
 
 // Actions are payloads of information that send data from the app to the store. 
@@ -440,7 +440,7 @@ export function updateWizRate(rate) {
     }
 }
 
-export function UpdateCurrentListing(currentListing) {
+export function updateCurrentListing(currentListing) {
     return {
         type: UPDATE_CURRENT_LISTING,
         payload: currentListing

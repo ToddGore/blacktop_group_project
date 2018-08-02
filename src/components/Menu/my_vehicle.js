@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import { storage } from './../Firebase/index'
+import { storage } from '../Firebase'
 
-import Nav from "./../Nav/Nav";
+import Nav from "../Nav/Nav";
 import "./my_vehicle.css";
 import delete_icon from './../newImages/delete_icon.svg'
 import edit_icon from './../newImages/edit_icon.svg'
@@ -279,13 +279,14 @@ export default class Myvehicle extends Component {
               </div>
             </div>
           :
-            <div> 
-              <Nav/>
-              <div className = 'reset'>
-                  <button className='bigbutton' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
-                  {mappedVehicles}
-              </div>
+
+          <div> 
+            <Nav/>
+            <div className = 'myvehicle'>
+                <button className='button' onClick = {() => {this.changeViews()}}>Add a Vehicle</button>
+                {mappedVehicles}
             </div>
+          </div>
         }
       </div>
     );

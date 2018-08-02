@@ -7,4 +7,5 @@ SET address = $1,
     about = $6,
     instructions = $7,
     price = $8
-WHERE id = $9
+WHERE id = $9;
+
