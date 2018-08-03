@@ -74,7 +74,7 @@ class Wizard8 extends Component {
       lng: lng
     })
       .then((res => {
-        console.log(res)
+        // console.log(res)
         axios.post('/api/feature', {
           covered: covered,
           lit: lit,
@@ -114,7 +114,9 @@ class Wizard8 extends Component {
           listing_id: res.data[0].id
         })
 
-      }))
+      })).then( () => {
+        this.props.history.push('/mylistings')
+      })
   }
 
 
@@ -263,9 +265,11 @@ class Wizard8 extends Component {
             <Link to="/search">
               <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
-            <Link to="/mylistings">
+            {/* <Link to="/mylistings"> */}
+            <div>
               <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} onClick={(e) => { this.handleWizPost() }} />
-            </Link>
+            </div> 
+            {/* </Link> */}
           </div>
         </div>
       </div>
