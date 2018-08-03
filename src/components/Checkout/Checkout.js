@@ -30,8 +30,8 @@ class Checkout extends Component {
         
     }
     getListing = () => {
-        const {user} = this.props
-        axios.get(`/api/listing/5`).then(res => {
+        const {user, currentListing} = this.props
+        axios.get(`/api/listing/${currentListing.id}`).then(res => {
             this.setState({
                 listing: res.data[0],
             })
@@ -124,7 +124,7 @@ class Checkout extends Component {
         const { vehicles, total } = this.state
         let mappedVehicles = vehicles.map(vehicle => {
             return (
-                <option key={vehicle.id} value={vehicle.id}>{`${vehicle.color} ${vehicle.make}`}</option>
+                <option key={vehicle.id} value={`${vehicle.color} ${vehicle.make}`}>{`${vehicle.color} ${vehicle.make}`}</option>
             )
         })
         return (
@@ -224,7 +224,8 @@ class Checkout extends Component {
 }
 function mapStateToProps(state){
     return{
-        user: state.user
+        user: state.user,
+        currentListing: state.currentListing
     }
 }
 
