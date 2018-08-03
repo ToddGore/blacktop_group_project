@@ -39,7 +39,6 @@ export default (
         <Route path='/chat' component={Chat} />
         <Route path='/mylisting/edit/:id' component={EditListing} />
 
-
         <Route path='/wizard0' component={Wizard0} />
         <Route path='/wizard1' component={Wizard1} />
         <Route path='/wizard2' component={Wizard2} />

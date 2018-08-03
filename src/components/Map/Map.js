@@ -14,8 +14,8 @@ class Map extends Component {
             map: null,
             searchBox: null,
             center: {
-                lat: 40.226294,
-                lng:    -111.660776
+                lat: 40.7698,
+                lng:-111.868
             }
         }
     }
@@ -26,7 +26,6 @@ class Map extends Component {
     }
 
     mapLoaded(map) {
-        // console.log('mapLoaded: ' + JSON.stringify(map.getCenter()))
         if (this.state.map != null) {
             return
         }
@@ -73,7 +72,6 @@ class Map extends Component {
 
     render() {
         const markers = this.props.markers;
-        // console.log(this.props.markers[0])
         return (
         <div>
             <div>

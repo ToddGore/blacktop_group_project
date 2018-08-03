@@ -7,8 +7,39 @@ import post_icon from './../../newImages/post_icon.svg'
 import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import backarrow from "./../../Images/backarrow.svg";
 import axios from 'axios';
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 class Wizard8 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pictureArray: []
+    }
+    this.getPicArray = this.getPicArray.bind(this);
+  }
+
+  componentDidMount() {
+    this.getPicArray();
+  }
+
+  getPicArray() {
+    const { picOne, picTwo, picThree, picFour } = this.props.state;
+    let picArr = []
+    if (picOne) {
+      picArr.push(picOne)
+    }
+    if (picTwo) {
+      picArr.push(picTwo)
+    }
+    if (picThree) {
+      picArr.push(picThree)
+    }
+    if (picFour) {
+      picArr.push(picFour)
+    }
+    this.setState({ pictureArray: picArr })
+  }
 
   handleWizPost() {
 
@@ -71,9 +102,18 @@ class Wizard8 extends Component {
       }))
   }
 
+
   render() {
     const { address, lat, lng, buildingType, spaceQuantity, spaceType, spaceSize, description, instructions, covered, lit, charging, camera, fenced, guarded, cash, credit, venmo, paypal, applePay, monday, tuesday, wednesday, thursday, friday, saturday, sunday, picOne, picTwo, picThree, picFour, rate } = this.props.state;
-    // console.log(this.props)
+
+    let mappedPictures = this.state.pictureArray.map((picture, i) => {
+      return (
+        <div key={i}>
+          <img src={picture} alt='' />
+        </div>
+      )
+    })
+
     return (
       <div className="reset">
         <div className='wizard'>
@@ -85,8 +125,8 @@ class Wizard8 extends Component {
             <h3>ADDRESS</h3>
             <br />
             <p>{address}</p>
-            <p>Lat:{lat}</p>
-            <p>Lng:{lng}</p>
+            {/* <p>Lat:{lat}</p>
+            <p>Lng:{lng}</p> */}
             <hr />
 
             <h3>BUILDING TYPE</h3>
@@ -146,14 +186,6 @@ class Wizard8 extends Component {
               <p className={sunday ? "visible" : "invisible"}>Sunday</p>
             </div>
 
-            {/* <p>Monday: {`${monday}`}</p>
-            <p>Tuesday: {`${tuesday}`}</p>
-            <p>Wednesday: {`${wednesday}`}</p>
-            <p>Thursday: {`${thursday}`}</p>
-            <p>Friday: {`${friday}`}</p>
-            <p>Saturday: {`${saturday}`}</p>
-            <p>Sunday: {`${sunday}`}</p> */}
-            {/* <hr /> */}
             <br />
             <h3>PAYMENT PREFERENCE</h3>
             <div className="simple-border">
@@ -163,12 +195,6 @@ class Wizard8 extends Component {
               <p className={paypal ? "visible" : "invisible"}>Paypal</p>
               <p className={applePay ? "visible" : "invisible"}>ApplePay</p>
 
-
-              {/* <p>cash:{`${cash}`}</p>
-              <p>credit: {`${credit}`}</p>
-              <p>venmo: {`${venmo}`}</p>
-              <p>paypal: {`${paypal}`}</p>
-              <p>apple pay: {`${applePay}`}</p> */}
             </div>
             <hr />
 
@@ -177,12 +203,10 @@ class Wizard8 extends Component {
             <p>${rate}</p>
             <hr />
             <h3>Submitted Photos</h3>
-            <img src={picOne} alt='' style={{ width: "300px" }} />
-            <img src={picTwo} alt='' style={{ width: "300px" }} />
-            <img src={picThree} alt='' style={{ width: "300px" }} />
-            <img src={picFour} alt='' style={{ width: "300px" }} />
+          <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
+            {mappedPictures}
+          </Carousel>
           </div>
-          {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 
 
           <br />

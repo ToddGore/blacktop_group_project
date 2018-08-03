@@ -22,7 +22,6 @@ class Search extends Component {
 
     getListings() {
         axios.get('api/listing').then(res => {
-            // console.log(res.data)
             this.setState({
                 markers: res.data,
                 isLoading: false
