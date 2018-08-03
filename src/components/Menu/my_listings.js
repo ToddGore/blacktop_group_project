@@ -16,6 +16,12 @@ import fence_icon from './../newImages/fence_icon.svg'
 import police_icon from './../newImages/police_icon.svg'
 import delete_icon from './../newImages/delete_icon.svg'
 import edit_icon from './../newImages/edit_icon.svg'
+import coverd_parking_icon_off from '../newImages/covered_parking_iconoff.svg'
+import lit_icon_off from '../newImages/lit_iconoff.svg'
+import charging_icon_off from '../newImages/charging_iconoff.svg'
+import camera_icon_off from '../newImages/camera_iconoff.svg'
+import fence_icon_off from '../newImages/fence_iconoff.svg'
+import police_icon_off from '../newImages/police_iconoff.svg'
 
 class Mylistings extends Component {
     constructor() {
@@ -116,13 +122,35 @@ class Mylistings extends Component {
                         <hr />
                         <div className='grid'>
                             <div>
-                                {`${listing.covered}` ? <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon' />Covered</div> : <div></div>}
+                            {listing.covered ? 
+                            <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon'/>Covered</div> 
+                            : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon'/>Covered</div>}
                             </div>
-                            <div>{`${listing.lit}` ? <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon' />Lit</div> : <div></div>}</div>
-                            <div>{`${listing.charging}` ? <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon' />Charging</div> : <div></div>}</div>
-                            <div>{`${listing.camera}` ? <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon' />Surveillance</div> : <div></div>}</div>
-                            <div>{`${listing.fenced}` ? <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon' />Fenced</div> : <div></div>}</div>
-                            <div>{`${listing.guarded}` ? <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon' />Security</div> : <div></div>}</div>
+                            <div>
+                            {listing.lit ? 
+                            <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon'/>Lit</div>
+                            : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon'/>Lit</div>}
+                            </div>
+                            <div>
+                            {listing.charging ? 
+                            <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon'/>Charging</div>
+                            : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon'/>Charging</div>}
+                            </div>
+                            <div>
+                            {listing.camera ? 
+                            <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon'/>Surveillance</div> 
+                            : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon'/>Surveillance</div>}
+                            </div>
+                            <div>
+                            {listing.fenced ? 
+                            <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon'/>Fenced</div> 
+                            : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon'/>Fenced</div>}
+                            </div>
+                            <div>
+                            {listing.guarded ? 
+                            <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon'/>Security</div>
+                            : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon'/>Security</div>}
+                            </div>
                         </div>
                     </div>
                     <br />
