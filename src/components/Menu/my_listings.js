@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 import Nav from '../Nav/Nav'
 import './my_listings.css'
 import { connect } from 'react-redux';
-import { 
-    getUser,
-} from '../../ducks/reducer';
+import { getUser} from '../../ducks/reducer';
 
 
 class Mylistings extends Component {
@@ -27,20 +25,20 @@ class Mylistings extends Component {
     }
 
     componentDidMount() {
-
         this.props.getUser().then(() => {
-
+            
             axios.get(`/api/userlisting/${this.props.user.id}`).then(res => {
-                // console.log("this is this.props.user.id", this.props.user.id)
-                // console.log("this is red.data", res.data)
+                console.log("this is this.props.user.id", this.props.user.id)
+                console.log("this is red.data", res.data)
                 this.setState({ mylistings: res.data })
-                // console.log(res.data)
+                console.log(res.data)
             })
         });
     }
 
-    handleListingUpdate(id) {        
-        this.props.history.push('mylisting/edit/' + id);
+    handleListingUpdate(id) {  
+        console.log(id)      
+        this.props.history.push('/mylisting/edit/' + id);
     }
 
     handleListingDelete(id) {
@@ -55,7 +53,7 @@ class Mylistings extends Component {
 
 
     render() {
-        // console.log("this is props", this.props)
+   
         let mappedlistings = this.state.mylistings.map((listing, i) => {
             // console.log("this is this.state", this.state)
 
