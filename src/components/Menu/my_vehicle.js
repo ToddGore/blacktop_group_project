@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
 import { storage } from '../Firebase'
+import {connect} from 'react-redux'
 
 import Nav from "../Nav/Nav";
 import "./my_vehicle.css";
@@ -14,12 +15,11 @@ import upload_icon from './../newImages/upload_icon.svg'
 
 
 
-export default class Myvehicle extends Component {
+class Myvehicle extends Component {
   constructor() {
     super();
 
     this.state = {
-      user: { id: 9 },
       Year: "",
       Make: "",
       Model: "",
@@ -35,8 +35,8 @@ export default class Myvehicle extends Component {
     this.cancel = this.cancel.bind(this);
   }
   componentDidMount(){
-    let id = this.state.user.id
-    axios.get(`/api/vehicle/${id}`).then((res) => {
+    const {user} = this.props
+    axios.get(`/api/vehicle/${user.id}`).then((res) => {
       this.setState({vehicles: res.data})
     })
   }
@@ -109,8 +109,9 @@ export default class Myvehicle extends Component {
     this.setState({ toggle: !this.state.toggle })
   }
   addCar() {
+    const {user} = this.props
     let body = {
-      user_id: this.state.user.id,
+      user_id: user.id,
       car_pic: this.state.car_pic,
       year: this.state.Year,
       make: this.state.Make,
@@ -292,3 +293,12 @@ export default class Myvehicle extends Component {
     );
   }
 }
+
+function mapStateToProps(state){
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Myvehicle)
+
