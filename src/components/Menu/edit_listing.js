@@ -187,7 +187,7 @@ export default class EditListing extends Component {
                     <div className='card' style={{ textAlign: 'center' }}>
                         <h1>Pictures</h1>
                         <hr />
-                        <div class="pictureContainer">
+                        <div>
 
                             <div>
                                 <label htmlFor='picture_input1'>
