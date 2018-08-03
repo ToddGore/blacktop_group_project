@@ -140,14 +140,8 @@ class Wizard8 extends Component {
             <h3>ADDRESS</h3>
             <br />
             <p>{address}</p>
-<<<<<<< HEAD
-            <hr />
-            <p>Lat:{lat}</p>
-            <p>Lng:{lng}</p>
-=======
             {/* <p>Lat:{lat}</p>
             <p>Lng:{lng}</p> */}
->>>>>>> master
             <hr />
 
             <h3>BUILDING TYPE</h3>
@@ -179,16 +173,6 @@ class Wizard8 extends Component {
             <br />
             <p>{spaceSize}</p>
             <hr />
-
-            {/* <h3>FEATURES</h3>
-            <br />
-            <p>covered: {`${covered}`}</p>
-            <p>lit: {`${lit}`}</p>
-            <p>charging: {`${charging}`}</p>
-            <p>camera: {`${camera}`}</p>
-            <p>fenced: {`${fenced}`}</p>
-            <p>guarded: {`${guarded}`}</p>
-            <hr /> */}
 
 
             <div className='card'>
@@ -230,34 +214,6 @@ class Wizard8 extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <h3>SPACE AVAILABILITY</h3>
             <div className="simple-border">
               <p className={monday ? "visible" : "invisible"}>Monday</p>
@@ -292,9 +248,9 @@ class Wizard8 extends Component {
             <p>${rate}</p>
             <hr />
             <h3>Submitted Photos</h3>
-          <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
-            {mappedPictures}
-          </Carousel>
+            <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
+              {mappedPictures}
+            </Carousel>
           </div>
 
 
