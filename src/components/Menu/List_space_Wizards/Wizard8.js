@@ -8,6 +8,21 @@ import leftarrow_icon from './../../newImages/leftarrow_icon.svg'
 import backarrow from "./../../Images/backarrow.svg";
 import axios from 'axios';
 
+import coverd_parking_icon from './../../newImages/covered_parking_icon.svg'
+import lit_icon from './../../newImages/lit_icon.svg'
+import charging_icon from './../../newImages/charging_icon.svg'
+import camera_icon from './../../newImages/camera_icon.svg'
+import fence_icon from './../../newImages/fence_icon.svg'
+import police_icon from './../../newImages/police_icon.svg'
+import delete_icon from './../../newImages/delete_icon.svg'
+import edit_icon from './../../newImages/edit_icon.svg'
+import coverd_parking_icon_off from './../../newImages/covered_parking_iconoff.svg'
+import lit_icon_off from './../../newImages/lit_iconoff.svg'
+import charging_icon_off from './../../newImages/charging_iconoff.svg'
+import camera_icon_off from './../../newImages/camera_iconoff.svg'
+import fence_icon_off from './../../newImages/fence_iconoff.svg'
+import police_icon_off from './../../newImages/police_iconoff.svg'
+
 class Wizard8 extends Component {
 
   handleWizPost() {
@@ -85,6 +100,7 @@ class Wizard8 extends Component {
             <h3>ADDRESS</h3>
             <br />
             <p>{address}</p>
+            <hr />
             <p>Lat:{lat}</p>
             <p>Lng:{lng}</p>
             <hr />
@@ -119,7 +135,7 @@ class Wizard8 extends Component {
             <p>{spaceSize}</p>
             <hr />
 
-            <h3>FEATURES</h3>
+            {/* <h3>FEATURES</h3>
             <br />
             <p>covered: {`${covered}`}</p>
             <p>lit: {`${lit}`}</p>
@@ -127,7 +143,75 @@ class Wizard8 extends Component {
             <p>camera: {`${camera}`}</p>
             <p>fenced: {`${fenced}`}</p>
             <p>guarded: {`${guarded}`}</p>
-            <hr />
+            <hr /> */}
+
+
+            <div className='card'>
+              <h1 style={{ textAlign: 'center' }}>Features</h1>
+              <hr />
+              <div className='grid'>
+                <div>
+                  {covered ?
+                    <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon' />Covered</div>
+                    : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon' />Covered</div>}
+                </div>
+                <div>
+                  {lit ?
+                    <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon' />Lit</div>
+                    : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon' />Lit</div>}
+                </div>
+                <div>
+                  {charging ?
+                    <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon' />Charging</div>
+                    : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon' />Charging</div>}
+                </div>
+                <div>
+                  {camera ?
+                    <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon' />Surveillance</div>
+                    : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon' />Surveillance</div>}
+                </div>
+                <div>
+                  {fenced ?
+                    <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon' />Fenced</div>
+                    : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon' />Fenced</div>}
+                </div>
+                <div>
+                  {guarded ?
+                    <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon' />Security</div>
+                    : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon' />Security</div>}
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <h3>SPACE AVAILABILITY</h3>
             <div className="simple-border">
