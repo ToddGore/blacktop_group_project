@@ -81,8 +81,7 @@ class Listing extends Component {
                         <Link to='/search'>
                             <img style={{ float: 'left', height: '25px' }} alt='' src={back_arrow} />
                         </Link>
-                        <h2>Details</h2>
-                        <br />
+                        <h1>Details</h1>
                         <div>
                             <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
                                 {mappedPictures}
