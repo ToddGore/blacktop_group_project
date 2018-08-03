@@ -251,7 +251,10 @@ export default class EditListing extends Component {
                         </div>
                     </div> 
                     <div className='card' style={{textAlign:'center'}}>
-                        <div>About: <input type='' className='input' name='about' onChange={(e) => { this.handleInput(e) }} value={this.state.about} /></div>
+                        <div>
+                            <h1>About</h1>
+                            <hr/>
+                            <input type='' className='input' name='about' onChange={(e) => { this.handleInput(e) }} value={this.state.about} /></div>
                         <div>Instructions: <input type='' className='input' name='instructions' onChange={(e) => { this.handleInput(e) }} value={this.state.instructions} /></div>
                         <div>Hourly Rate: <br/>$<input type='' className='input' name='price' onChange={(e) => { this.handleInput(e) }} value={this.state.price} /></div>
                     </div> 

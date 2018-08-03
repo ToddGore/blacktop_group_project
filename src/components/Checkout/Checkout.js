@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
+import left_arrow_icon from './../newImages/leftarrow_icon.svg'
 
 class Checkout extends Component {
     constructor(props) {
@@ -135,27 +136,26 @@ class Checkout extends Component {
                     :
                     <div>
                         <Link to='/listing'>
-                            <h4>BACK</h4>
+                            <img alt='' src={left_arrow_icon}/>
                         </Link>
-                        <h2>Checkout</h2>
-                        <div>
-                            <p>Map w/ Pin?</p>
+                        <div className='card'>
+                        <h1>Checkout</h1>
+                        <hr/>
+                            <p style={{fontSize:'15px'}}>Address:{address}</p>
                         </div>
-                        <div>
-                            <h3>Address:{address}</h3>
-                        </div>
-                        <hr />
-                        <div>
-                            <h3>Vehicles:</h3>
-                            <select value={this.state.currentVehicle} onChange={this.updateCurrentVehicle}>
+                        <div className='card'>
+                            <h1>Vehicles</h1>
+                            <hr/>
+                            <select value={this.state.currentVehicle} onChange={this.updateCurrentVehicle} className='dropdownselect'>
                                 <option value='select'>Select a Vehicle</option>
                                 {mappedVehicles}
                             </select>
                         </div>
-                        <hr />
-                        <div>
-                            <h3>Schedule:</h3>
+                        <div className='card'>
+                            <h1>Schedule</h1>
+                            <hr/>
                             <DatePicker
+                                className='dropdownselect'
                                 selected={this.state.startDate}
                                 selectsStart
                                 startDate={this.state.startDate}
@@ -165,6 +165,7 @@ class Checkout extends Component {
                                 minDate={moment()}
                             />
                             <DatePicker
+                                className='dropdownselect'
                                 selected={this.state.endDate}
                                 selectsEnd
                                 startDate={this.state.startDate}
@@ -174,10 +175,10 @@ class Checkout extends Component {
                                 minDate={moment()}
                             />
                         </div>
-                        <hr />
-                        <div>
-                            <h3>Payments:</h3>
-                            <select onChange={this.updateCurrentPayment}>
+                        <div className='card'>
+                            <h1 style={{textAlign:'center'}}>Payments</h1>
+                            <hr/>
+                            <select onChange={this.updateCurrentPayment} className='dropdownselect'>
                                 <option value='select'>Select a Payment</option>
                                 {!cash ? null :
                                     <option value='cash'>Cash</option>
@@ -196,16 +197,24 @@ class Checkout extends Component {
                                 }
                             </select>
                         </div>
-                        <hr />
-                        <div>
-                            <h3>Cost breakdown</h3>
-                            <p>PARKING FARE: {price}.00</p>
-                            <p>SERVICE FEE: {price * .13}</p>
-                            <p>TOTAL: {total}</p>
+                        <div className='card' style={{height:'180px'}}>
+                            <h1>Cost breakdown</h1>
+                            <hr/>
+                            <div style={{width:'100%' ,height:'40px'}}>
+                                <p style={{float:'left', padding:'10px'}}>Parking Fare:</p>
+                                <p style={{float:'right', padding:'10px'}}>${price}.00</p>
+                            </div> 
+                            <div style={{width:'100%' ,height:'40px'}}>
+                                <p style={{float:'left', padding:'10px'}}>Service Fee:</p>
+                                <p style={{float:'right', padding:'10px'}}> ${price * .13}</p>
+                            </div> 
+                            <div style={{width:'100%' ,height:'40px'}}>
+                                <p style={{float:'left', padding:'10px'}}>Total:</p>
+                                <p style={{float:'right', padding:'10px'}}>${total}</p>
+                            </div> 
                         </div>
-                        <hr />
                         <Link to='/reservations'>
-                            <span onClick={this.handleReserve}>Reserve Now</span>
+                            <button className='bigbutton'onClick={this.handleReserve}>Reserve Now</button>
                         </Link>
                     </div>
                 }
@@ -220,3 +229,5 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(Checkout)
+
+
