@@ -2,7 +2,6 @@ import React from 'react';
 import './../../animate.css'
 import blacktop from './../newImages/BlackTop.png'
 
-require('dotenv').config();
 
 
 
