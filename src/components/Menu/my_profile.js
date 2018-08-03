@@ -38,6 +38,7 @@ class Myprofile extends Component {
   }
 
   render() {
+    console.log('my profile ', this.props)
     return (
       <div>
         <Nav />
@@ -45,7 +46,7 @@ class Myprofile extends Component {
           {this.state.edit ?
             <div className='card'>
               <div>
-                <img alt='' src={this.props.user.user_pic} style={{ height: "150px", borderRadius: "50%", margin: '20px auto 50px auto', display: 'block' }} />
+                <img alt='' src={this.props.user.user_pic} style={{ height: "130px", borderRadius: "50%", margin: '20px auto 50px auto', display: 'block' }} />
               </div>
               <p>Name: {this.props.user.username}</p>
               <hr />

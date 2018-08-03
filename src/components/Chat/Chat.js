@@ -98,6 +98,9 @@ class Chat extends Component {
                         // className="btn-primary"
                         className="smallbutton"
                     >Submit</button>
+                    <br />
+
+                        <a className="smallbutton" href="javascript:history.back()">Go Back</a>
                 </form>
             </div>
         )

@@ -105,12 +105,9 @@ class Listing extends Component {
                                 {mappedPictures}
                             </Carousel>
                         </div>
-                        <br />
-                        <div>
-                            <p>Address: {listing.address}</p>
-                        </div>
                         <div>
                             <div className='card'>
+                                <p>Address: {listing.address}</p>
                                 <p>Number of Spaces: {listing.num_spaces}</p>
                                 <p>Space Size: {listing.space_size}</p>
                             </div>
@@ -161,31 +158,6 @@ class Listing extends Component {
                             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
 
                         <div className='card'>
@@ -195,7 +167,10 @@ class Listing extends Component {
                             <br />
                             <img src={host.user_pic} style={{ width: '50px' }} alt='' />
                             <br />
-                            <button>SEND EMAIL</button>
+                            <Link to='/chat'>
+                                <button>SEND EMAIL</button>
+                            </Link>
+                            
                             <br />
                             <p>About: {listing.about}</p>
                         </div>
@@ -222,7 +197,7 @@ class Listing extends Component {
                         </div>
 
                         <Link to='/checkout'>
-                            <span className="smallbutton">Checkout</span>
+                            <button className="bigbutton">Checkout</button>
                         </Link>
                     </div>
                 }
