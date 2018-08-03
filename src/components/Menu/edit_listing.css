@@ -2,11 +2,3 @@
     border: 1px solid blue;
 }
 
-.pictureContainer {
-    display: flex;
-    flex-direction: row;
-}
-
-.pictureContainer>div {
-    flex: 1;
-}

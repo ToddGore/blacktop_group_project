@@ -35,7 +35,8 @@ class Mylistings extends Component {
             spaceSize: '',
             about: '',
             instructions: '',
-            price: 0
+            price: 0,
+            isLoading: true
         }
     }
 
@@ -43,10 +44,10 @@ class Mylistings extends Component {
         this.props.getUser().then(() => {
 
             axios.get(`/api/userlisting/${this.props.user.id}`).then(res => {
-                console.log("this is this.props.user.id", this.props.user.id)
-                console.log("this is red.data", res.data)
-                this.setState({ mylistings: res.data })
-                console.log(res.data)
+                this.setState({ 
+                    mylistings: res.data, 
+                    isLoading: false
+                })
             })
         });
     }
@@ -122,34 +123,34 @@ class Mylistings extends Component {
                         <hr />
                         <div className='grid'>
                             <div>
-                            {listing.covered ? 
-                            <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon'/>Covered</div> 
-                            : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon'/>Covered</div>}
+                                {listing.covered ?
+                                    <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon' />Covered</div>
+                                    : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon' />Covered</div>}
                             </div>
                             <div>
-                            {listing.lit ? 
-                            <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon'/>Lit</div>
-                            : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon'/>Lit</div>}
+                                {listing.lit ?
+                                    <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon' />Lit</div>
+                                    : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon' />Lit</div>}
                             </div>
                             <div>
-                            {listing.charging ? 
-                            <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon'/>Charging</div>
-                            : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon'/>Charging</div>}
+                                {listing.charging ?
+                                    <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon' />Charging</div>
+                                    : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon' />Charging</div>}
                             </div>
                             <div>
-                            {listing.camera ? 
-                            <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon'/>Surveillance</div> 
-                            : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon'/>Surveillance</div>}
+                                {listing.camera ?
+                                    <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon' />Surveillance</div>
+                                    : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon' />Surveillance</div>}
                             </div>
                             <div>
-                            {listing.fenced ? 
-                            <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon'/>Fenced</div> 
-                            : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon'/>Fenced</div>}
+                                {listing.fenced ?
+                                    <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon' />Fenced</div>
+                                    : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon' />Fenced</div>}
                             </div>
                             <div>
-                            {listing.guarded ? 
-                            <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon'/>Security</div>
-                            : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon'/>Security</div>}
+                                {listing.guarded ?
+                                    <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon' />Security</div>
+                                    : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon' />Security</div>}
                             </div>
                         </div>
                     </div>
@@ -164,12 +165,20 @@ class Mylistings extends Component {
 
         return (
             <div>
-                <Nav />
-                <div className='reset'>
-                    <Link to='/wizard0'><button className='bigbutton'>Add a Listing</button></Link>
-                    <br />
-                    {mappedlistings}
-                </div>
+                {!this.state.isLoading ?
+                    <div>
+                        <Nav />
+                        <div className='reset'>
+                            <Link to='/wizard0'><button className='bigbutton'>Add a Listing</button></Link>
+                            <br />
+                            {mappedlistings}
+                        </div>
+                    </div>
+                    :
+                    <div>
+                        <p>LOADING . . .</p>
+                    </div>
+                }
             </div>
         )
     }
