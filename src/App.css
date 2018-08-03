@@ -401,9 +401,18 @@ p .input{
   justify-content: center;
 }
 
+h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
 h3 {
   font-size: 22px;
   font-weight: bold;
+}
+.small-font {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
 }
 
 .invisible {

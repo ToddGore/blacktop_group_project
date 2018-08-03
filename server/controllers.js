@@ -238,6 +238,8 @@ module.exports = {
         const { id } = req.params
         const {
             address,
+            lat,
+            lng,
             building_type,
             space_type,
             num_spaces,
@@ -249,6 +251,8 @@ module.exports = {
 
         db.update_listing([
             address,
+            lat,
+            lng,
             building_type,
             space_type,
             num_spaces,

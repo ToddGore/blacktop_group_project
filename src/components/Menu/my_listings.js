@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
 import Nav from '../Nav/Nav'
 import './my_listings.css'
 import { connect } from 'react-redux';
-import {
-    getUser,
-} from '../../ducks/reducer';
+import { getUser } from '../../ducks/reducer';
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 import coverd_parking_icon from './../newImages/covered_parking_icon.svg'
 import lit_icon from './../newImages/lit_icon.svg'
@@ -42,8 +41,8 @@ class Mylistings extends Component {
     }
 
     componentDidMount() {
-
         this.props.getUser().then(() => {
+
             axios.get(`/api/userlisting/${this.props.user.id}`).then(res => {
                 this.setState({ 
                     mylistings: res.data, 
@@ -51,6 +50,23 @@ class Mylistings extends Component {
                 })
             })
         });
+    }
+
+    getPicArray(listing) {
+        let picArr = []
+        if (listing.pic_one) {
+            picArr.push(listing.pic_one)
+        }
+        if (listing.pic_two) {
+            picArr.push(listing.pic_two)
+        }
+        if (listing.pic_three) {
+            picArr.push(listing.pic_three)
+        }
+        if (listing.pic_four) {
+            picArr.push(listing.pic_four)
+        }
+       return picArr;
     }
 
     handleListingUpdate(id) {
@@ -67,15 +83,25 @@ class Mylistings extends Component {
     }
 
 
-
     render() {
+
         let mappedlistings = this.state.mylistings.map((listing, i) => {
+            let pictures = this.getPicArray(listing)
+            let mappedPictures = pictures.map((picture, i) => {
+                return (
+                    <div key={i}>
+                        <img src={picture} alt='' />
+                    </div>
+                )
+            })
+
             return <div key={i}>
                 <div className='card'>
-                    <img alt='' src={listing.pic_one} style={{ height: '150px', width: '150px' }} />
-                    <img alt='' src={listing.pic_two} style={{ height: '150px', width: '150px' }} />
-                    <img alt='' src={listing.pic_three} style={{ height: '150px', width: '150px' }} />
-                    <img alt='' src={listing.pic_four} style={{ height: '150px', width: '150px' }} />
+
+                    <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
+                        {mappedPictures}
+                    </Carousel>
+
                     <p style={{ marginTop: '30px' }}>Address: {listing.address}</p>
                     <hr />
                     <p>Building Type: {listing.building_type}</p>
