@@ -75,8 +75,8 @@ class Map extends Component {
         const markers = this.props.markers;
         // console.log(this.props.markers[0])
         return (
+        <div>
             <div>
-
                 <StandaloneSearchBox
                     ref={this.onSearchBoxMounted.bind(this)}
                     bounds={this.props.bounds}
@@ -117,15 +117,23 @@ class Map extends Component {
                         )
                     )}
                 </GoogleMap>
-                <div>
-                    Listing Info
-                    <p>Address: {this.state.currentListing.address}</p>
-                    <p>Rate: ${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
-                    <Link to = "/listing">
-                    <button onClick ={(e) => {this.handleDetails()}}>Details</button>
-                    </Link>
-                </div>
             </div>
+            <div className='searchcard'>
+                <h1 style={{textAlign:'center', padding:'8px 0 0 0'}}>Listing Info</h1>
+                <hr/>
+                <div style={{width:'100%' ,height:'40px'}}>
+                    <p style={{float:'left'}}>Address:</p>
+                    <p style={{float:'right'}}>{this.state.currentListing.address}</p>
+                </div> 
+                <div style={{width:'100%' ,height:'40px'}}>
+                    <p style={{float:'left'}}>Price: </p>
+                    <p style={{float:'right'}}>${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
+                </div> 
+                <Link to = "/listing">
+                <button className='smallbutton'style={{margin:'0 0 10px 0'}} onClick ={(e) => {this.handleDetails()}}>Details</button>
+                </Link>
+            </div>
+        </div>
         );
     }
 };
