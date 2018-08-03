@@ -400,6 +400,24 @@ p .input{
   align-items: center;
   justify-content: center;
 }
+
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.invisible {
+  /* visibility: hidden; */
+  color: lightgray
+}
+.visible {
+  visibility: visible;
+}
+.simple-border {
+  border: 1px solid gray;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 /* CHECKOUT */
 
 .dropdownselect{
@@ -408,4 +426,5 @@ p .input{
     width: 100%;
     height: 40px;
     outline: none;
+
 }
