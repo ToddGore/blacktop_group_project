@@ -11,16 +11,16 @@ import { connect } from 'react-redux';
 
 class Wizard5 extends Component {
 
-  handleCarPic(e, picNum) {
+  handleListingPic(e, picNum) {
+
     if (e.target.files[0]) {
-      const car_pic = e.target.files[0];
-      const uploadTask = storage.ref(`main_images/${car_pic.name}`).put(car_pic);
+      const listing_pic = e.target.files[0];
+      const uploadTask = storage.ref(`main_images/${listing_pic.name}`).put(listing_pic);
       uploadTask.on('state_changed',
         () => {
-          storage.ref('main_images').child(car_pic.name).getDownloadURL().then(url => {
+          storage.ref('main_images').child(listing_pic.name).getDownloadURL().then(url => {
             if (picNum === 1) {
               this.props.updateWizPicOne(url)
-
             } else if (picNum === 2) {
               this.props.updateWizPicTwo(url)
             } else if (picNum === 3) {
@@ -36,10 +36,10 @@ class Wizard5 extends Component {
 
 
   render() {
-  
+
     return (
-      <div className = "reset">
-        <div style={{display:'flex', flexDirection:'column'}}>
+      <div className="reset">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
 
           <h1>Add Pictures</h1>
           <br />
@@ -54,28 +54,28 @@ class Wizard5 extends Component {
             <label htmlFor='picture_input1'>
               <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
-            <input type='file' id='picture_input1' onChange={(e) => { this.handleCarPic(e, 1) }} style={{ display: 'none' }} />
+            <input type='file' id='picture_input1' onChange={(e) => { this.handleListingPic(e, 1) }} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input2'>
               <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
-            <input type='file' id='picture_input2' onChange={(e) => { this.handleCarPic(e, 2 )}} style={{ display: 'none' }} />
+            <input type='file' id='picture_input2' onChange={(e) => { this.handleListingPic(e, 2) }} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input3'>
               <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
-            <input type='file' id='picture_input3' onChange={(e) => { this.handleCarPic(e, 3) }} style={{ display: 'none' }} />
+            <input type='file' id='picture_input3' onChange={(e) => { this.handleListingPic(e, 3) }} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input4'>
               <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
-            <input type='file' id='picture_input4' onChange={(e) => { this.handleCarPic(e, 4) }} style={{ display: 'none' }} />
+            <input type='file' id='picture_input4' onChange={(e) => { this.handleListingPic(e, 4) }} style={{ display: 'none' }} />
           </div>
 
 

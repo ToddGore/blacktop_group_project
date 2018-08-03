@@ -11,7 +11,7 @@ import Mylistings from './components/Menu/my_listings';
 import Listing from './components/Listing/Listing';
 import Checkout from './components/Checkout/Checkout';
 import Chat from './components/Chat/Chat';
-import EditListing from './components/Menu/edit_listing'
+import EditListing from './components/Menu/edit_listing';
 
 import Wizard0 from './components/Menu/List_space_Wizards/Wizard0'
 import Wizard1 from './components/Menu/List_space_Wizards/Wizard1'
@@ -26,6 +26,7 @@ import Wizard8 from './components/Menu/List_space_Wizards/Wizard8'
 
 export default (
     <Switch>
+        <Route path='/mylisting/edit/:id' component={EditListing}/>
         <Route path='/' component={Login} exact />
         <Route path='/search' component={Search} exact />
         <Route path='/messages' component={Messages} />
@@ -37,7 +38,6 @@ export default (
         <Route path='/checkout' component={Checkout} />
         <Route path='/chat' component={Chat} />
         <Route path='/mylisting/edit/:id' component={EditListing} />
-
 
         <Route path='/wizard0' component={Wizard0} />
         <Route path='/wizard1' component={Wizard1} />
