@@ -81,7 +81,7 @@ class Wizard5 extends Component {
 
 
           <div className='nav'>
-            <Link to="/wizard4">
+            <Link to="/wizard3">
               <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
 

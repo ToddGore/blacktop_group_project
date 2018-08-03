@@ -14,33 +14,6 @@ class Wizard7 extends Component {
     // console.log(this.props.rate)
     return (
       <div className = "reset">
-        <div className="wizard">
-          <h1>Please specify your hourly rate below.</h1>
-          <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(Number(e.target.value)) }} />
-          <br />
-
-          <h1>Please specify below how you would like to be paid.</h1>
-          <br />
-
-          <input type="checkbox" id="Cash" name="cash" value="cash" className="" onChange={(e) => { updateWizCash(true) }} />
-          <label htmlFor="Cash">Cash</label>
-          <br />
-
-          <input type="checkbox" id="Credit" className="" value="credit" name="credit" onChange={(e) => { updateWizCredit(true) }} />
-          <label htmlFor="Credit">Credit</label>
-          <br />
-
-          <input type="checkbox" id="Venmo" className="" value="venmo" name="venmo" onChange={(e) => { updateWizVenmo(true) }} />
-          <label htmlFor="Venmo">Venmo</label>
-          <br />
-
-          <input type="checkbox" id="Paypal" className="" value="paypal" name="paypal" onChange={(e) => { updateWizPaypal(true) }} />
-          <label htmlFor="Paypal">Paypal</label>
-          <br />
-
-          <input type="checkbox" id="Apple Pay" className="" value="applepay" name="applepay" onChange={(e) => { updateWizApplePay(true) }} />
-          <label htmlFor="Apple Pay">Apple Pay</label>
-          <br />
           <div className='nav'>
             <Link to="/wizard6">
               <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
@@ -54,6 +27,34 @@ class Wizard7 extends Component {
               <img className='wizardnav' alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
           </div>
+        <div className="wizard">
+        <div className='card'>
+          <h1>Please specify your hourly rate below.</h1>
+          <input className="input" placeholder="Hourly Rate" type="number" onChange={(e) => { updateWizRate(Number(e.target.value)) }} />
+        </div>
+        <div className='card' style={{display: 'flex', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
+          <h1>Please specify below how you would like to be paid.</h1>
+          <div>
+            <label htmlFor="Cash">Cash</label>
+            <input type="checkbox" id="Cash" name="cash" value="cash" className="" onChange={(e) => { updateWizCash(true) }} />
+          </div>
+          <div>
+            <label htmlFor="Credit">Credit</label>
+            <input type="checkbox" id="Credit" className="" value="credit" name="credit" onChange={(e) => { updateWizCredit(true) }} />
+          </div>
+          <div>
+            <label htmlFor="Venmo">Venmo</label>
+            <input type="checkbox" id="Venmo" className="" value="venmo" name="venmo" onChange={(e) => { updateWizVenmo(true) }} />
+          </div>
+          <div>
+            <label htmlFor="Paypal">Paypal</label>
+            <input type="checkbox" id="Paypal" className="" value="paypal" name="paypal" onChange={(e) => { updateWizPaypal(true) }} />
+          </div>
+          <div>
+            <label htmlFor="Apple Pay">Apple Pay</label>
+            <input type="checkbox" id="Apple Pay" className="" value="applepay" name="applepay" onChange={(e) => { updateWizApplePay(true) }} />
+          </div>  
+        </div> 
         </div>
       </div>
     );
