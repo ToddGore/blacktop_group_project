@@ -187,32 +187,32 @@ export default class EditListing extends Component {
                     <div className='card' style={{ textAlign: 'center' }}>
                         <h1>Pictures</h1>
                         <hr />
-                        <div>
+                        <div class="pictureContainer" style={{display: 'grid',gridTemplateColumns:'100px 100px', width:'300px', justifyContent:'center'}}>
 
-                            <div>
+                            <div style={{height:'100px', width:'100px'}}>
                                 <label htmlFor='picture_input1'>
-                                    <img src={this.state.picOne ? this.state.picOne : add_image_icon} alt='' style={{ height: '125px' }} />
+                                    <img src={this.state.picOne ? this.state.picOne : add_image_icon} alt='' style={{ height: '100px'}} />
                                 </label>
                                 <input type='file' id='picture_input1' onChange={(e) => { this.handleListingPic(e, 1) }} style={{ display: 'none' }} />
                             </div>
 
-                            <div>
+                            <div style={{height:'100px', width:'100px'}}>
                                 <label htmlFor='picture_input2'>
-                                    <img src={this.state.picTwo ? this.state.picTwo : add_image_icon} alt='' style={{ height: '125px' }} />
+                                    <img src={this.state.picTwo ? this.state.picTwo : add_image_icon} alt='' style={{ height: '100px' }} />
                                 </label>
                                 <input type='file' id='picture_input2' onChange={(e) => { this.handleListingPic(e, 1) }} style={{ display: 'none' }} />
                             </div>
 
-                            <div>
+                            <div style={{height:'100px', width:'100px'}}>
                                 <label htmlFor='picture_input3'>
-                                    <img src={this.state.picThree ? this.state.picThree : add_image_icon} alt='' style={{ height: '125px' }} />
+                                    <img src={this.state.picThree ? this.state.picThree : add_image_icon} alt='' style={{ height: '100px' }} />
                                 </label>
                                 <input type='file' id='picture_input3' onChange={(e) => { this.handleListingPic(e, 1) }} style={{ display: 'none' }} />
                             </div>
 
-                            <div>
+                            <div style={{height:'100px', width:'100px'}}>
                                 <label htmlFor='picture_input4'>
-                                    <img src={this.state.picFour ? this.state.picFour : add_image_icon} alt='' style={{ height: '125px' }} />
+                                    <img src={this.state.picFour ? this.state.picFour : add_image_icon} alt='' style={{ height: '100px' }} />
                                 </label>
                                 <input type='file' id='picture_input4' onChange={(e) => { this.handleListingPic(e, 1) }} style={{ display: 'none' }} />
                             </div>

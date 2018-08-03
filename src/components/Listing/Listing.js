@@ -105,12 +105,9 @@ class Listing extends Component {
                                 {mappedPictures}
                             </Carousel>
                         </div>
-                        <br />
-                        <div>
-                            <p>Address: {listing.address}</p>
-                        </div>
                         <div>
                             <div className='card'>
+                                <p>Address: {listing.address}</p>
                                 <p>Number of Spaces: {listing.num_spaces}</p>
                                 <p>Space Size: {listing.space_size}</p>
                             </div>
@@ -222,7 +219,7 @@ class Listing extends Component {
                         </div>
 
                         <Link to='/checkout'>
-                            <span className="smallbutton">Checkout</span>
+                            <button className="bigbutton">Checkout</button>
                         </Link>
                     </div>
                 }
