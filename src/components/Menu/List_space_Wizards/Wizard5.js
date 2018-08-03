@@ -39,7 +39,7 @@ class Wizard5 extends Component {
   
     return (
       <div className = "reset">
-        <div className="wizard5">
+        <div style={{display:'flex', flexDirection:'column'}}>
 
           <h1>Add Pictures</h1>
           <br />
@@ -52,28 +52,28 @@ class Wizard5 extends Component {
 
           <div>
             <label htmlFor='picture_input1'>
-              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+              <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
             <input type='file' id='picture_input1' onChange={(e) => { this.handleCarPic(e, 1) }} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input2'>
-              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+              <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
             <input type='file' id='picture_input2' onChange={(e) => { this.handleCarPic(e, 2 )}} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input3'>
-              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+              <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
             <input type='file' id='picture_input3' onChange={(e) => { this.handleCarPic(e, 3) }} style={{ display: 'none' }} />
           </div>
 
           <div>
             <label htmlFor='picture_input4'>
-              <img src={add_image_icon} alt='' style={{ height: '150px' }} />
+              <img src={add_image_icon} alt='' style={{ height: '125px' }} />
             </label>
             <input type='file' id='picture_input4' onChange={(e) => { this.handleCarPic(e, 4) }} style={{ display: 'none' }} />
           </div>
@@ -81,7 +81,7 @@ class Wizard5 extends Component {
 
 
           <div className='nav'>
-            <Link to="/wizard4">
+            <Link to="/wizard3">
               <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
 

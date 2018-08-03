@@ -4,6 +4,9 @@ import { getUser } from './../../ducks/reducer'
 import Nav from "../Nav/Nav";
 import axios from 'axios'
 
+import edit_icon from './../newImages/edit_icon.svg'
+import cancel_icon from './../newImages/cancel_icon.svg'
+import upload_icon from './../newImages/upload_icon.svg'
 
 
 class Myprofile extends Component {
@@ -52,24 +55,26 @@ class Myprofile extends Component {
               <hr />
               Phonenumber: <input type="phonenumber" className="input" name="phonenumber" value={this.state.phonenumber} onChange={e => { this.handleChange(e); }} />
               <hr />
-              <button className='smallbutton' onClick={() => { this.handleEdit() }}>Cancel</button>
-              <button className='smallbutton'>Submit</button>
+              <div>
+                <img src={cancel_icon} alt='' onClick = {() => {this.handleEdit()}} style={{height:'27px'}}/>
+                <img alt='' src={upload_icon} style={{float: 'right', height: '25px'}}/>
+              </div>
             </div>
             :
             <div className='card'>
               <div>
                 <img alt='' src={this.props.user.user_pic} style={{ height: "150px", borderRadius: "50%", margin: '20px auto 50px auto', display: 'block' }} />
               </div>
-              <text>Name: {this.props.user.username}</text>
-              <hr />
-              <text>Username: </text>
-              <hr />
-              <text>Email:</text>
-              <hr />
-              <text>Phonenumber:</text>
-              <hr />
-              <button className='smallbutton' onClick={() => { this.handleEdit() }}>Edit</button>
-            </div>
+                <div>Name: {this.props.user.username}</div>
+                <hr/>
+                <div>Username: </div>
+                <hr/>
+                <div>Email:</div>
+                <hr/>
+                <div>Phonenumber:</div>
+                <hr/>
+                <img style={{height: '22px'}} onClick = {() => {this.handleEdit()}} src={edit_icon} alt=''/>
+              </div> 
           }
         </div>
       </div>
@@ -85,5 +90,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getUser })(Myprofile);
-
 

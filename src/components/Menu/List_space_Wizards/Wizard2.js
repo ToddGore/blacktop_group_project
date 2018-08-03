@@ -8,6 +8,8 @@ import add_icon from './../../newImages/add_icon.svg'
 import minus_icon from './../../newImages/minus_icon.svg'
 import { updateWizSpaceType, updateWizSpaceQuantity } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
+import checkmark_icon from './../../newImages/checkmark_icon.svg'
+
 
 class Wizard2 extends Component {
 
@@ -23,49 +25,57 @@ class Wizard2 extends Component {
       this.props.updateWizSpaceQuantity(this.props.spaceQuantity - 1);
     }
   }
-
+  
   render() {
     const { updateWizSpaceType } = this.props;
 
     return (
       <div className ="reset">
-        <div className="wizard2">
-          <br />
-          <br />
+    <div className='nav'>
+      <Link to="/wizard1">
+        <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
+      </Link>
+  
+      <Link to="/search">
+        <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
+      </Link>
+  
+      <Link to="/wizard3">
+        <img className='wizardnav' alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
+      </Link>
+    </div> 
+        <div className="wizard">
+        <div className='card' style={{display: 'flex', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
           <h1>Please select your parking space type.</h1>
-          <br />
-
-          <button className='smallbutton'onClick={() => { updateWizSpaceType('Driveway') }}>Driveway</button>
-          <br />
-          <button className='smallbutton'onClick={() => { updateWizSpaceType('Home Garage') }}>Home Garage</button>
-          <br />
-          <button className='smallbutton'onClick={() => { updateWizSpaceType('Parking Garage') }}>Parking Garage</button>
-          <br />
-          <button className='smallbutton'onClick={() => { updateWizSpaceType('Parking Lot') }}>Parking Lot</button>
-          <br />
-          <button className='smallbutton'onClick={() => { updateWizSpaceType('Unpaved Lot') }}>Unpaved Lot</button>
-          <br />
+          <button className='smallbutton buttoncheckmark' onClick={() => updateWizSpaceType('Driveway')}>
+            Driveway
+            {this.props.spaceType === 'Driveway'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+          </button>
+          <button className='smallbutton buttoncheckmark' onClick={() => updateWizSpaceType('Home Garage')}>
+            Home Garage
+            {this.props.spaceType === 'Home Garage'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+          </button>
+          <button className='smallbutton buttoncheckmark' onClick={() => updateWizSpaceType('Parking Garage')}>
+            Parking Garage
+            {this.props.spaceType === 'Parking Garage'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+          </button>
+          <button className='smallbutton buttoncheckmark' onClick={() => updateWizSpaceType('Parking Lot')}>
+            Parking Lot
+            {this.props.spaceType === 'Parking Lot'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+          </button>
+          <button className='smallbutton buttoncheckmark' onClick={() => updateWizSpaceType('Unpaved Lot')}>
+            Unpaved Lot
+            {this.props.spaceType === 'Unpaved Lot'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+          </button>
+        </div>
+        <div className='card' style={{display: 'flex', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
           <h1>Please select your parking space quantity.</h1>
-          <br />
           <span style={{fontSize: '50px', color:'rgb(0, 130, 252)'}}>{this.props.spaceQuantity}</span>
-          <br/>
-          <button className='roundbutton' onClick={() => { this.decreaseSpaceQuantity() }}><img alt='' src={minus_icon} style={{height:'25px'}}/></button>
-          <button className="roundbutton" onClick={() => { this.increaseSpaceQuanity() }}><img alt='' src={add_icon} style={{height:'25px'}}/></button>
-          <br />
-          <div className='nav'>
-            <Link to="/wizard1">
-              <img className='wizardnav' alt="" src={leftarrow_icon} style={{ height: "30px", width: "30px" }} />
-            </Link>
-
-            <Link to="/search">
-              <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
-            </Link>
-
-            <Link to="/wizard3">
-              <img className='wizardnav' alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
-            </Link>
+          <div>
+            <button className='roundbutton' onClick={() => { this.decreaseSpaceQuantity() }}><img alt='' src={minus_icon} style={{height:'25px'}}/></button>
+            <button className="roundbutton" onClick={() => { this.increaseSpaceQuanity() }}><img alt='' src={add_icon} style={{height:'25px'}}/></button>
           </div> 
-
+        </div> 
         </div>
       </div>
     );

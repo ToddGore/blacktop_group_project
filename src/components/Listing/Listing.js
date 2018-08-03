@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
-import {connect} from 'react-redux';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { connect } from 'react-redux'
+import back_arrow from './../newImages/leftarrow_icon_blk.svg'
+
 
 class Listing extends Component {
     constructor(props) {
@@ -22,7 +24,7 @@ class Listing extends Component {
 
     }
     getListingById = () => {
-        const {currentListing}= this.props;
+        const { currentListing } = this.props;
 
         axios.get(`/api/listing/${currentListing.id}`).then(res => {
             this.setState({
@@ -34,7 +36,6 @@ class Listing extends Component {
         })
     }
     getHost = (id) => {
-        console.log('hit')
         axios.get(`/api/host/${id}`).then(res => {
             this.setState({
                 host: res.data[0]
@@ -60,9 +61,7 @@ class Listing extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { listing, pictureArray, host } = this.state
-        console.log(host)
         let mappedPictures = pictureArray.map((picture, i) => {
             return (
                 <div key={i}>
@@ -78,54 +77,71 @@ class Listing extends Component {
                     </div>
                     :
                     <div>
+                        <br />
                         <Link to='/search'>
-                            <h4>BACK</h4>
+                            <img style={{ float: 'left', height: '25px' }} alt='' src={back_arrow} />
                         </Link>
                         <h2>Details</h2>
+                        <br />
                         <div>
                             <Carousel showThumbs={false} showStatus={false} swipeScrollTolerance={10}>
                                 {mappedPictures}
                             </Carousel>
                         </div>
-                        <hr />
+                        <br />
                         <div>
-                            <p>{listing.address}</p>
+                            <p>Address: {listing.address}</p>
                         </div>
-                        <hr />
                         <div>
-                            <p>{listing.num_spaces}</p>
-                            <p>{listing.space_size}</p>
-                            <p>covered:{listing.covered ? 'true' : 'false'}</p>
-                            <p>lit:{listing.lit ? 'true' : 'false'}</p>
-                            <p>charging:{listing.charging ? 'true' : 'false'}</p>
-                            <p>camera:{listing.camera ? 'true' : 'false'}</p>
-                            <p>fenced:{listing.fenced ? 'true' : 'false'}</p>
-                            <p>guarded:{listing.guarded ? 'true' : 'false'}</p>
+                            <div className='card'>
+                                <p>Number of Spaces: {listing.num_spaces}</p>
+                                <p>Space Size: {listing.space_size}</p>
+                            </div>
+                            <div className='card'>
+                                <p>covered:{listing.covered ? 'true' : 'false'}</p>
+                                <p>lit:{listing.lit ? 'true' : 'false'}</p>
+                                <p>charging:{listing.charging ? 'true' : 'false'}</p>
+                                <p>camera:{listing.camera ? 'true' : 'false'}</p>
+                                <p>fenced:{listing.fenced ? 'true' : 'false'}</p>
+                                <p>guarded:{listing.guarded ? 'true' : 'false'}</p>
+                            </div>
                         </div>
-                        <hr />
-                        <div>
+
+                        <div className='card'>
                             <h3>About this Space</h3>
-                            <p>Hosted by {host.username}</p>
-                            <img src={host.user_pic} style={{ width: '50px' }} />
                             <br />
-                            <Link to ='/chat'>
-                            <button>EMAIL</button>
-                            </Link>
+                            <p>Hosted by {host.username}</p>
+                            <br />
+                            <img src={host.user_pic} style={{ width: '50px' }} alt='' />
+                            <br />
+                            <button>SEND EMAIL</button>
+                            <br />
+                            <p>About: {listing.about}</p>
                         </div>
-                        <hr />
-                        <div>
+
+                        <div className='card'>
                             <h3>Listing Schedule:</h3>
-                            <p>Monday:{listing.monday ? 'true' : 'false'}</p>
-                            <p>Tuesday:{listing.tuesday ? 'true' : 'false'}</p>
-                            <p>Wednesday:{listing.wednesday ? 'true' : 'false'}</p>
-                            <p>Thursday:{listing.thursday ? 'true' : 'false'}</p>
-                            <p>Friday:{listing.friday ? 'true' : 'false'}</p>
-                            <p>Saturday:{listing.saturday ? 'true' : 'false'}</p>
-                            <p>Sunday:{listing.sunday ? 'true' : 'false'}</p>
+                            <br />
+                            <div >
+                                <p className={listing.monday ? "visible" : "invisible"}>Monday</p>
+                                <hr />
+                                <p className={listing.tuesday ? "visible" : "invisible"}>Tuesday</p>
+                                <hr />
+                                <p className={listing.wednesday ? "visible" : "invisible"}>Wednesday</p>
+                                <hr />
+                                <p className={listing.thursday ? "visible" : "invisible"}>Thursday</p>
+                                <hr />
+                                <p className={listing.friday ? "visible" : "invisible"}>Friday</p>
+                                <hr />
+                                <p className={listing.saturday ? "visible" : "invisible"}>Saturday</p>
+                                <hr />
+                                <p className={listing.sunday ? "visible" : "invisible"}>Sunday</p>
+                            </div>
+
                         </div>
-                        <hr />
+
                         <Link to='/checkout'>
-                            <span>Checkout</span>
+                            <span className="smallbutton">Checkout</span>
                         </Link>
                     </div>
                 }
@@ -137,7 +153,7 @@ class Listing extends Component {
 
 function mapStateToProps(state) {
     return {
-currentListing: state.currentListing
+        currentListing: state.currentListing
     }
 }
 

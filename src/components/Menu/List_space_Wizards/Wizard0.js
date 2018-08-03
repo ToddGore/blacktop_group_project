@@ -36,11 +36,6 @@ class Wizard0 extends Component {
 
     return (
       <div className= "reset">
-        <div className="wizard0">
-          <h1>Where is your parking space(s) located?</h1>
-
-          <input type="" className="input" onChange={e => { updateWizAddress(e.target.value) }} />
-          <br />
           <div className='nav'>
             <Link to="#" style={{opacity:'0', width: '30px'}}></Link>
             <Link to="/search">
@@ -50,6 +45,12 @@ class Wizard0 extends Component {
               <img className='wizardnav'alt="" src={rightarrow_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
           </div> 
+        <div className="wizard">
+        <div className='card'>
+          <h1>Where is your parking space(s) located?</h1>
+          <input type="" className="input" onChange={e => { updateWizAddress(e.target.value) }} placeholder='Address' />
+          <br />
+        </div> 
 
         </div>
       </div>

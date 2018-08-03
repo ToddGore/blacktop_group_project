@@ -49,10 +49,7 @@ class Map extends Component {
     }
 
     onPlacesChanged() {
-        console.log('OnPlacesChanged:' + this.state.searchBox.getPlaces());
-        console.log(this.state.searchBox.getPlaces());
         const places = this.state.searchBox.getPlaces();
-        console.log(places[0].geometry.location.lat(), places[0].geometry.location.lng());
 
         this.setState({
             center: {
@@ -63,13 +60,11 @@ class Map extends Component {
     }
 
     markerOnClickHandler(marker){
-        console.log(marker)
         this.setState({selectedMarker: marker.id})
         this.setState({currentListing: marker})
     }
 
     handleDetails(){
-        console.log(this.state.currentListing)
         store.dispatch({
             type: "UPDATE_CURRENT_LISTING",
             payload: this.state.currentListing
@@ -80,8 +75,8 @@ class Map extends Component {
         const markers = this.props.markers;
         // console.log(this.props.markers[0])
         return (
+        <div>
             <div>
-
                 <StandaloneSearchBox
                     ref={this.onSearchBoxMounted.bind(this)}
                     bounds={this.props.bounds}
@@ -122,15 +117,23 @@ class Map extends Component {
                         )
                     )}
                 </GoogleMap>
-                <div>
-                    Listing Info
-                    <p>Address: {this.state.currentListing.address}</p>
-                    <p>Rate: ${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
-                    <Link to = "/listing">
-                    <button onClick ={(e) => {this.handleDetails()}}>Details</button>
-                    </Link>
-                </div>
             </div>
+            <div className='searchcard'>
+                <h1 style={{textAlign:'center', padding:'8px 0 0 0'}}>Listing Info</h1>
+                <hr/>
+                <div style={{width:'100%' ,height:'40px'}}>
+                    <p style={{float:'left'}}>Address:</p>
+                    <p style={{float:'right'}}>{this.state.currentListing.address}</p>
+                </div> 
+                <div style={{width:'100%' ,height:'40px'}}>
+                    <p style={{float:'left'}}>Price: </p>
+                    <p style={{float:'right'}}>${this.state.currentListing.price && this.state.currentListing.price.toFixed(2)}</p>
+                </div> 
+                <Link to = "/listing">
+                <button className='smallbutton'style={{margin:'0 0 10px 0'}} onClick ={(e) => {this.handleDetails()}}>Details</button>
+                </Link>
+            </div>
+        </div>
         );
     }
 };

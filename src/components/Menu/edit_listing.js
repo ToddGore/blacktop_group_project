@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './edit_listing.css'
 // import { Link } from 'react-router-dom'
-// import Nav from '../Nav/Nav'
+import Nav from '../Nav/Nav'
+import checkmark_icon from './../newImages/checkmark_icon.svg'
+import './../../animate.css'
 
 
 export default class EditListing extends Component {
@@ -44,6 +46,7 @@ export default class EditListing extends Component {
 
 
     componentDidMount() {
+        console.log(this.props.match)
         axios.get(`/api/listing/${this.props.match.params.id}`).then(res => {
             console.log(res.data)
             // this console log shows that res is an object, data is an array of objects, and data is coming from postgress
@@ -135,81 +138,246 @@ export default class EditListing extends Component {
     };
 
     handleClick(e) {
-        this.setState({ [e.target.name]: true });
+        this.setState({ [e.target.name]: !this.state[e.target.name]});
     }
-
-    handleChange(e) {
-        console.log(e.target.value)
+    handleInput(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    
     render() {
-
         return (
-            <div>
-
-                <p className='ptag'>address: <input type='' className='input' name='address' onChange={(e) => { this.handleChange(e) }} value={this.state.address} /></p>
-                <br/>
-                <p className='ptag'>Building Type:
-                    <button className='button' name='buildingType' onClick={(e) => { this.handleChange(e) }} value="Residential">Residential</button>
-                    <button className='button' name='buildingType' onClick={(e) => { this.handleChange(e) }} value="Business">Business</button>
-                    <button className='button' name='buildingType' onClick={(e) => { this.handleChange(e) }} value="Other">Other</button>
-                </p>
-                <br />
-                <p className='ptag'>Space Type:
-                    <button className='button' name='spaceType' onClick={(e) => { this.handleChange(e) }} value="Diveway">Driveway</button>
-                    <button className='button' name='spaceType' onClick={(e) => { this.handleChange(e) }} value="Home Garage">Home Garage</button>
-                    <button className='button' name='spaceType' onClick={(e) => { this.handleChange(e) }} value="Parking Garage">Parking Garage</button>
-                    <button className='button' name='spaceType' onClick={(e) => { this.handleChange(e) }} value="Parking Lot">Parking Lot</button>
-                    <button className='button' name='spaceType' onClick={(e) => { this.handleChange(e) }} value="Unpaved Lot">Unpaved Lot</button>
-                </p>
-                <br/>
-                <p className='ptag'>Number of Available Spaces: <input type='' className='input' name='numSpaces' onChange={(e) => { this.handleChange(e) }} value={this.state.numSpaces} /></p>
-                <br/>
-                <p className='ptag'>Space Size:
-                    <button className='button' name='spaceSize' onClick={(e) => { this.handleChange(e) }} value="Compact">Compact</button>
-                    <button className='button' name='spaceSize' onClick={(e) => { this.handleChange(e) }} value="Midsized">Midsized</button>
-                    <button className='button' name='spaceSize' onClick={(e) => { this.handleChange(e) }} value="Large">Large</button>
-                    <button className='button' name='spaceSize' onClick={(e) => { this.handleChange(e) }} value="Oversized">Oversized</button>
-                </p>
-                <br/>
-                <p className='ptag'>About: <input type='' className='input' name='about' onChange={(e) => { this.handleChange(e) }} value={this.state.about} /></p>
-                <p className='ptag'>Instructions: <input type='' className='input' name='instructions' onChange={(e) => { this.handleChange(e) }} value={this.state.instructions} /></p>
-                <p className='ptag'>Hourly Rate: <input type='' className='input' name='price' onChange={(e) => { this.handleChange(e) }} value={this.state.price} /></p>
-                <br/>
-                <p className='ptag'>Payments:
-                    <button className='button' name='cash' onClick={(e) => { this.handleClick(e) }} value={this.state.cash}>cash</button>
-                    <button className='button' name='credit' onClick={(e) => { this.handleClick(e) }} value={this.state.credit}>credit</button>
-                    <button className='button' name='venmo' onClick={(e) => { this.handleClick(e) }} value={this.state.venmo}>venmo</button>
-                    <button className='button' name='payPal' onClick={(e) => { this.handleClick(e) }} value={this.state.payPal}>payPal</button>
-                    <button className='button' name='applePay' onClick={(e) => { this.handleClick(e) }} value={this.state.applePay}>applePay</button>
-                </p>
-                <br/>
-                <p className='ptag'>Picture 1: <input type='' className='input' name='picOne' onChange={(e) => { this.handleChange(e) }} value={this.state.picOne} /></p>
-                <p className='ptag'>Picture 2: <input type='' className='input' name='picTwo' onChange={(e) => { this.handleChange(e) }} value={this.state.picTwo} /></p>
-                <p className='ptag'>Picture 3: <input type='' className='input' name='picThree' onChange={(e) => { this.handleChange(e) }} value={this.state.picThree} /></p>
-                <p className='ptag'>Pciture 4: <input type='' className='input' name='picFour' onChange={(e) => { this.handleChange(e) }} value={this.state.picFour} /></p>
-                <br/>
-                <p className='ptag'>Availability:
-                    <button className='button' name='monday' onClick={(e) => { this.handleClick(e) }} value={this.state.monday}>Monday</button>
-                    <button className='button' name='tuesday' onClick={(e) => { this.handleClick(e) }} value={this.state.tuesday}>Tuesday</button>
-                    <button className='button' name='wednesday' onClick={(e) => { this.handleClick(e) }} value={this.state.wednesday}>Wednesday</button>
-                    <button className='button' name='thursday' onClick={(e) => { this.handleClick(e) }} value={this.state.thursday}>Thursday</button>
-                    <button className='button' name='friday' onClick={(e) => { this.handleClick(e) }} value={this.state.friday}>Friday</button>
-                    <button className='button' name='saturday' onClick={(e) => { this.handleClick(e) }} value={this.state.saturday}>Saturday</button>
-                    <button className='button' name='sunday' onClick={(e) => { this.handleClick(e) }} value={this.state.sunday}>Sunday</button>
-                </p>
-                <br />
-                <p className='ptag'>Features:
-                    <button className='button' name='covered' onClick={(e) => { this.handleClick(e) }} value={this.state.covered}>Covered</button>
-                    <button className='button' name='lit' onClick={(e) => { this.handleClick(e) }} value={this.state.lit}>Lit</button>
-                    <button className='button' name='charging' onClick={(e) => { this.handleClick(e) }} value={this.state.charging}>Charging</button>
-                    <button className='button' name='camera' onClick={(e) => { this.handleClick(e) }} value={this.state.camera}>Camera</button>
-                    <button className='button' name='fenced' onClick={(e) => { this.handleClick(e) }} value={this.state.fenced}>Fenced</button>
-                    <button className='button' name='guarded' onClick={(e) => { this.handleClick(e) }} value={this.state.guarded}>Guarded</button>
-                </p>
-                <br/>
-                <button onClick={(e) => { this.updateListing() }}>Submit Updates</button>
+            <div className='reset'>
+                <Nav/>
+                <div>
+                    <div>Picture 1: <input type='' className='input' name='picOne' onChange={(e) => { this.handleInput(e) }} value={this.state.picOne} /></div>
+                    <div>Picture 2: <input type='' className='input' name='picTwo' onChange={(e) => { this.handleInput(e) }} value={this.state.picTwo} /></div>
+                    <div>Picture 3: <input type='' className='input' name='picThree' onChange={(e) => { this.handleInput(e) }} value={this.state.picThree} /></div>
+                    <div>Pciture 4: <input type='' className='input' name='picFour' onChange={(e) => { this.handleInput(e) }} value={this.state.picFour} /></div>
+                    <div className='card' style={{textAlign:'center'}}>
+                        <div>Address <hr/><input type='' className='input' name='address' onChange={(e) => { this.handleInput(e) }} value={this.state.address} /></div>
+                    </div>
+                    <div className='card' style={{textAlign:'center'}}> 
+                        <h1>Building Type</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                        <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='buidlingType' onClick={(e) => {this.handleInput(e)}} value={'Residential'}>
+                                    Residential
+                                    {this.state.buidlingType === 'Residential' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='buidlingType' onClick={(e) => {this.handleInput(e)}} value={'Business'}>
+                                    Business
+                                    {this.state.buidlingType === 'Business' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='buidlingType' onClick={(e) => {this.handleInput(e)}} value={'Other'}>
+                                    Other
+                                    {this.state.buidlingType === 'Other' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='card' style={{textAlign:'center'}}>
+                        <h1>Space Type</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceType' onClick={(e) => {this.handleInput(e)}} value={'Driveway'}>
+                                    Driveway
+                                    {this.state.spaceType === 'Driveway' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceType' onClick={(e) => {this.handleInput(e)}} value={'Home Garage'}>
+                                    Home Garage
+                                    {this.state.spaceType === 'Home Garage' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceType' onClick={(e) => {this.handleInput(e)}} value={'Parking Garage'}>
+                                    Parking Garage
+                                    {this.state.spaceType === 'Parking Garage' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceType' onClick={(e) => {this.handleInput(e)}} value={'Parking Lot'}>
+                                    Parking Lot
+                                    {this.state.spaceType === 'Parking Lot' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceType' onClick={(e) => {this.handleInput(e)}} value={'Unpaved Lot'}>
+                                    Unpaved Lot
+                                    {this.state.spaceType === 'Unpaved Lot' ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                        </div>
+                    <br/>
+                    <br/>
+                    <div>Number of Available Spaces: <hr/><input type='' className='input' name='numSpaces' onChange={(e) => { this.handleInput(e) }} value={this.state.numSpaces} /></div>
+                    </div>
+                    <div className='card' style={{textAlign:'center'}}>
+                        <h1>Space Size</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceSize' onClick={(e) => { this.handleInput(e) }} value={'Compact'}>
+                                    Compact
+                                    {this.state.spaceSize === 'Compact'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceSize' onClick={(e) => { this.handleInput(e) }} value={'Midsized'}>
+                                    Midsized
+                                    {this.state.spaceSize === 'Midsized'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceSize' onClick={(e) => { this.handleInput(e) }} value={'Large'}>
+                                    Large
+                                    {this.state.spaceSize === 'Large'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div> 
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='spaceSize' onClick={(e) => { this.handleInput(e) }} value={'Oversized'}>
+                                    Oversized
+                                    {this.state.spaceSize === 'Oversized'? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>  
+                        </div>
+                    </div> 
+                    <div className='card' style={{textAlign:'center'}}>
+                        <div>
+                            <h1>About</h1>
+                            <hr/>
+                            <input type='' className='input' name='about' onChange={(e) => { this.handleInput(e) }} value={this.state.about} /></div>
+                        <div>Instructions: <input type='' className='input' name='instructions' onChange={(e) => { this.handleInput(e) }} value={this.state.instructions} /></div>
+                        <div>Hourly Rate: <br/>$<input type='' className='input' name='price' onChange={(e) => { this.handleInput(e) }} value={this.state.price} /></div>
+                    </div> 
+                    <div className='card' style={{textAlign:'center'}}>
+                        <h1>Features</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='covered' onClick={(e) => { this.handleClick(e) }} value={this.state.covered}>
+                                    Covered
+                                    {this.state.covered ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='lit' onClick={(e) => { this.handleClick(e) }} value={this.state.lit}>
+                                    Lit
+                                    {this.state.lit ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div> 
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='charging' onClick={(e) => { this.handleClick(e) }} value={this.state.charging}>
+                                    Charging
+                                    {this.state.charging ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='camera' onClick={(e) => { this.handleClick(e) }} value={this.state.camera}>
+                                    Camera
+                                    {this.state.camera ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='fenced' onClick={(e) => { this.handleClick(e) }} value={this.state.fenced}>
+                                    Fenced
+                                    {this.state.fenced ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='guarded' onClick={(e) => { this.handleClick(e) }} value={this.state.guarded}>
+                                    Guarded
+                                    {this.state.guarded ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                        </div> 
+                    </div>
+                    <div className='card' style={{textAlign:'center'}}>
+                        <h1>Availability</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='monday' onClick={(e) => { this.handleClick(e) }} value={this.state.monday}>
+                                    Monday
+                                    {this.state.monday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div> 
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='tuesday' onClick={(e) => { this.handleClick(e) }} value={this.state.tuesday}>
+                                    Tuesday
+                                    {this.state.tuesday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='wednesday' onClick={(e) => { this.handleClick(e) }} value={this.state.wednesday}>
+                                    Wednesday
+                                    {this.state.wednesday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='thursday' onClick={(e) => { this.handleClick(e) }} value={this.state.thursday}>
+                                    Thursday
+                                    {this.state.thursday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='friday' onClick={(e) => { this.handleClick(e) }} value={this.state.friday}>
+                                    Friday
+                                    {this.state.friday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='saturday' onClick={(e) => { this.handleClick(e) }} value={this.state.saturday}>
+                                    Saturday
+                                    {this.state.saturday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='sunday' onClick={(e) => { this.handleClick(e) }} value={this.state.sunday}>
+                                    Sunday
+                                    {this.state.sunday ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='card' style={{textAlign:'center'}}>
+                        <h1>Payments</h1>
+                        <hr/>
+                        <div style={{flexDirection:'column'}}>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='cash' onClick={(e) => { this.handleClick(e) }} value={this.state.cash}>
+                                    Cash
+                                    {this.state.cash ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                                </button>
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='credit' onClick={(e) => { this.handleClick(e) }} value={this.state.credit}>Credit</button>
+                                {this.state.credit ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='venmo' onClick={(e) => { this.handleClick(e) }} value={this.state.venmo}>Venmo</button>
+                                {this.state.venmo ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='payPal' onClick={(e) => { this.handleClick(e) }} value={this.state.payPal}>PayPal</button>
+                                {this.state.payPal ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                            </div>
+                            <div className='divwithcheck'>
+                                <button className='smallbutton buttoncheckmark' name='applePay' onClick={(e) => { this.handleClick(e) }} value={this.state.applePay}>ApplePay</button>
+                                {this.state.applePay ? <img className='animated bounceIn checkmark' alt='' src={checkmark_icon}/> : <div></div> }
+                            </div>
+                        </div>
+                    </div>
+                    <button className='bigbutton' onClick={(e) => { this.updateListing() }}>Update</button>
+                </div> 
             </div >
         )
     }

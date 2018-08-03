@@ -38,8 +38,8 @@ class Wizard8 extends Component {
           guarded: guarded,
           listing_id: res.data[0].id
         })
-          
-        
+
+
         axios.post('/api/picture', {
           pic_one: picOne,
           pic_two: picTwo,
@@ -50,7 +50,7 @@ class Wizard8 extends Component {
 
         axios.post('/api/availability', {
           monday: monday,
-          tuesday: tuesday, 
+          tuesday: tuesday,
           wednesday: wednesday,
           thursday: thursday,
           friday: friday,
@@ -65,9 +65,9 @@ class Wizard8 extends Component {
           venmo: venmo,
           pay_pal: paypal,
           apple_pay: applePay,
-          listing_id:res.data[0].id
+          listing_id: res.data[0].id
         })
-          
+
       }))
   }
 
@@ -76,76 +76,112 @@ class Wizard8 extends Component {
     // console.log(this.props)
     return (
       <div className="reset">
-
-          <h1>Here is a preview of your listing:</h1>
+        <div className='wizard'>
           <br />
 
-          <h3>ADDRESS</h3>
-          <p>{address}</p>
-          <p>Lat:{lat}</p>
-          <p>Lng:{lng}</p>
+          <h1>Here is a preview of your listing</h1>
           <br />
+          <div className='card'>
+            <h3>ADDRESS</h3>
+            <br />
+            <p>{address}</p>
+            <p>Lat:{lat}</p>
+            <p>Lng:{lng}</p>
+            <hr />
 
-          <h3>BUILDING TYPE</h3>
-          <p>{buildingType}</p>
-          <br />
+            <h3>BUILDING TYPE</h3>
+            <br />
+            <p>{buildingType}</p>
+            <hr />
 
-          <h3>NUMBER OF AVAILABLE SPACES</h3>
-          <p>{spaceQuantity}</p>
-          <br />
+            <h3>NUMBER OF AVAILABLE SPACES</h3>
+            <br />
+            <p>{spaceQuantity}</p>
+            <hr />
 
-          <h3>SPACE TYPE</h3>
-          <p>{spaceType}</p>
-          <br />
+            <h3>SPACE TYPE</h3>
+            <br />
+            <p>{spaceType}</p>
+            <hr />
 
-          <h3>PARKING INSTRUCTIONS</h3>
-          <p>{instructions}</p>
-          <br />
+            <h3>PARKING INSTRUCTIONS</h3>
+            <br />
+            <p>{instructions}</p>
+            <hr />
 
-          <h3>SPACE DESCRIPTION</h3>
-          <p>{description}</p>
-          <br />
+            <h3>SPACE DESCRIPTION</h3>
+            <br />
+            <p>{description}</p>
+            <hr />
 
-          <h3>SPACE SIZE</h3>
-          <p>{spaceSize}</p>
-          <br />
+            <h3>SPACE SIZE</h3>
+            <br />
+            <p>{spaceSize}</p>
+            <hr />
 
-          <h3>FEATURES</h3>
-          <p>covered: {`${covered}`}</p>
-          <p>lit: {`${lit}`}</p>
-          <p>charging: {`${charging}`}</p>
-          <p>camera: {`${camera}`}</p>
-          <p>fenced: {`${fenced}`}</p>
-          <p>guarded: {`${guarded}`}</p>
-          <br />
+            <h3>FEATURES</h3>
+            <br />
+            <p>covered: {`${covered}`}</p>
+            <p>lit: {`${lit}`}</p>
+            <p>charging: {`${charging}`}</p>
+            <p>camera: {`${camera}`}</p>
+            <p>fenced: {`${fenced}`}</p>
+            <p>guarded: {`${guarded}`}</p>
+            <hr />
 
-          <h3>SPACE AVAILABILITY</h3>
-          <p>Monday: {`${monday}`}</p>
-          <p>Tuesday: {`${tuesday}`}</p>
-          <p>Wednesday: {`${wednesday}`}</p>
-          <p>Thursday: {`${thursday}`}</p>
-          <p>Friday: {`${friday}`}</p>
-          <p>Saturday: {`${saturday}`}</p>
-          <p>Sunday: {`${sunday}`}</p>
-          <br />
+            <h3>SPACE AVAILABILITY</h3>
+            <div className="simple-border">
+              <p className={monday ? "visible" : "invisible"}>Monday</p>
+              <hr />
+              <p className={tuesday ? "visible" : "invisible"}>Tuesday</p>
+              <hr />
+              <p className={wednesday ? "visible" : "invisible"}>Wednesday</p>
+              <hr />
+              <p className={thursday ? "visible" : "invisible"}>Thursday</p>
+              <hr />
+              <p className={friday ? "visible" : "invisible"}>Friday</p>
+              <hr />
+              <p className={saturday ? "visible" : "invisible"}>Saturday</p>
+              <hr />
+              <p className={sunday ? "visible" : "invisible"}>Sunday</p>
+            </div>
 
-          <h3>PAYMENT PREFERENCE</h3>
-          <p>cash:{`${cash}`}</p>
-          <p>credit: {`${credit}`}</p>
-          <p>venmo: {`${venmo}`}</p>
-          <p>paypal: {`${paypal}`}</p>
-          <p>apple pay: {`${applePay}`}</p>
-          <br />
+            {/* <p>Monday: {`${monday}`}</p>
+            <p>Tuesday: {`${tuesday}`}</p>
+            <p>Wednesday: {`${wednesday}`}</p>
+            <p>Thursday: {`${thursday}`}</p>
+            <p>Friday: {`${friday}`}</p>
+            <p>Saturday: {`${saturday}`}</p>
+            <p>Sunday: {`${sunday}`}</p> */}
+            {/* <hr /> */}
+            <br />
+            <h3>PAYMENT PREFERENCE</h3>
+            <div className="simple-border">
+              <p className={cash ? "visible" : "invisible"}>Cash</p>
+              <p className={credit ? "visible" : "invisible"}>Credit</p>
+              <p className={venmo ? "visible" : "invisible"}>Venmo</p>
+              <p className={paypal ? "visible" : "invisible"}>Paypal</p>
+              <p className={applePay ? "visible" : "invisible"}>ApplePay</p>
 
-          <h3>HOURLY RATE</h3>
-          <p>${rate}</p>
 
-          <h3>Submitted Photos</h3>
-          <img src={picOne} alt='' style={{ width: "300px" }} />
-          <img src={picTwo} alt='' style={{ width: "300px" }} />
-          <img src={picThree} alt='' style={{ width: "300px" }} />
-          <img src={picFour} alt='' style={{ width: "300px" }} />
+              {/* <p>cash:{`${cash}`}</p>
+              <p>credit: {`${credit}`}</p>
+              <p>venmo: {`${venmo}`}</p>
+              <p>paypal: {`${paypal}`}</p>
+              <p>apple pay: {`${applePay}`}</p> */}
+            </div>
+            <hr />
 
+            <h3>HOURLY RATE</h3>
+            <br />
+            <p>${rate}</p>
+            <hr />
+            <h3>Submitted Photos</h3>
+            <img src={picOne} alt='' style={{ width: "300px" }} />
+            <img src={picTwo} alt='' style={{ width: "300px" }} />
+            <img src={picThree} alt='' style={{ width: "300px" }} />
+            <img src={picFour} alt='' style={{ width: "300px" }} />
+          </div>
           {/* the values returned above are booleans of true or false, so we have to escape the jsx for them to log to the console*/}
 
 
@@ -159,16 +195,10 @@ class Wizard8 extends Component {
               <img className='wizardnav' alt="" src={cancel_icon} style={{ height: "30px", width: "30px" }} />
             </Link>
             <Link to="/mylistings">
-              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} />
+              <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} onClick={(e) => { this.handleWizPost() }} />
             </Link>
           </div>
-          <Link to="/wizard7">
-            <img alt="" src={backarrow} style={{ height: "30px", width: "30px" }} />
-          </Link>
-
-          <Link to="/mylistings">
-            <button className="button" onClick={(e) => { this.handleWizPost() }}>Submit Listing</button>
-          </Link>
+        </div>
       </div>
     );
   }

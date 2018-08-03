@@ -7,6 +7,14 @@ import './my_listings.css'
 import { connect } from 'react-redux';
 import { getUser} from '../../ducks/reducer';
 
+import coverd_parking_icon from './../newImages/covered_parking_icon.svg'
+import lit_icon from './../newImages/lit_icon.svg'
+import charging_icon from './../newImages/charging_icon.svg'
+import camera_icon from './../newImages/camera_icon.svg'
+import fence_icon from './../newImages/fence_icon.svg'
+import police_icon from './../newImages/police_icon.svg'
+import delete_icon from './../newImages/delete_icon.svg'
+import edit_icon from './../newImages/edit_icon.svg'
 
 class Mylistings extends Component {
     constructor() {
@@ -36,8 +44,7 @@ class Mylistings extends Component {
         });
     }
 
-    handleListingUpdate(id) {  
-        console.log(id)      
+    handleListingUpdate(id) {        
         this.props.history.push('/mylisting/edit/' + id);
     }
 
@@ -53,43 +60,48 @@ class Mylistings extends Component {
 
 
     render() {
-   
-        let mappedlistings = this.state.mylistings.map((listing, i) => {
-            // console.log("this is this.state", this.state)
-
+       let mappedlistings = this.state.mylistings.map((listing, i) => {
             return <div key={i}>
-
-                <hr />
-                <br />
-                <p>Address: {listing.address}</p>
-                <p>Building Type: {listing.building_type}</p>
-                <p>Space Type: {listing.space_type}</p>
-                <p>Number of Spaces: {listing.num_spaces}</p>
-                <p>Space Size: {listing.space_size}</p>
-                <p>About: {listing.about}</p>
-                <p>Instructions: {listing.instructions}</p>
-                <p>Price: ${listing.price}</p>
-                <br />
-
-                <br />
-                <p>Covered: {`${listing.covered}`}</p>
-                <p>Lit: {`${listing.lit}`}</p>
-                <p>Charging: {`${listing.charging}`}</p>
-                <p>Camera: {`${listing.camera}`}</p>
-                <p>Fenced: {`${listing.fenced}`}</p>
-                <p>Guarded: {`${listing.guarded}`}</p>
-                <br />
-
-                <br />
-                <img alt='' src={listing.pic_one} style={{ height: '150px', width: '150px' }} />
-                <img alt='' src={listing.pic_two} style={{ height: '150px', width: '150px' }} />
-                <img alt='' src={listing.pic_three} style={{ height: '150px', width: '150px' }} />
-                <img alt='' src={listing.pic_four} style={{ height: '150px', width: '150px' }} />
-                <br />
-                <button onClick={() => { this.handleListingUpdate(listing.id) }}>Edit this listing</button>
-                <button onClick={() => { this.handleListingDelete(listing.id) }}>Delete This Listing</button>
-                <br />
-
+                <div className='card'> 
+                    <img alt='' src={listing.pic_one} style={{ height: '150px', width: '150px' }} />
+                    <img alt='' src={listing.pic_two} style={{ height: '150px', width: '150px' }} />
+                    <img alt='' src={listing.pic_three} style={{ height: '150px', width: '150px' }} />
+                    <img alt='' src={listing.pic_four} style={{ height: '150px', width: '150px' }} />
+                    <p style={{marginTop:'30px'}}>Address: {listing.address}</p>
+                    <hr/>
+                    <p>Building Type: {listing.building_type}</p>
+                    <hr/>
+                    <p>Space Type: {listing.space_type}</p>
+                    <hr/>
+                    <p>Number of Spaces: {listing.num_spaces}</p>
+                    <hr/>
+                    <p>Space Size: {listing.space_size}</p>
+                    <hr/>
+                    <p>About: {listing.about}</p>
+                    <hr/>
+                    <p>Instructions: {listing.instructions}</p>
+                    <hr/>
+                    <p>Price: ${listing.price}</p>
+                    <hr/>
+                    <div className='card'>
+                        <h1 style={{textAlign:'center'}}>Features</h1>
+                        <hr/>
+                        <div className='grid'>
+                            <div>
+                            {`${listing.covered}` ? <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon'/>Covered</div> : <div></div>}
+                            </div>
+                            <div>{`${listing.lit}` ? <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon'/>Lit</div>: <div></div>}</div>
+                            <div>{`${listing.charging}` ? <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon'/>Charging</div>: <div></div>}</div>
+                            <div>{`${listing.camera}` ? <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon'/>Surveillance</div> : <div></div>}</div>
+                            <div>{`${listing.fenced}` ? <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon'/>Fenced</div> : <div></div>}</div>
+                            <div>{`${listing.guarded}` ? <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon'/>Security</div>: <div></div>}</div>
+                        </div>
+                    </div>
+                    <br/>
+                    <img style={{float: 'right', height: '25px'}} alt='' src={edit_icon} onClick={() => { this.handleListingUpdate(listing.id) }}/>
+                    <img style={{height: '22px'}} alt='' src={delete_icon} onClick={() => { this.handleListingDelete(listing.id) }}/>
+                    <br />
+                </div>
             </div>
         })
 
