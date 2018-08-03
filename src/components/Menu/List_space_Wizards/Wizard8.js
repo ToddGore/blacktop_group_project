@@ -114,7 +114,7 @@ class Wizard8 extends Component {
           listing_id: res.data[0].id
         })
 
-      })).then( () => {
+      })).then(() => {
         this.props.history.push('/mylistings')
       })
   }
@@ -268,7 +268,7 @@ class Wizard8 extends Component {
             {/* <Link to="/mylistings"> */}
             <div>
               <img className='wizardnav' alt="" src={post_icon} style={{ height: "30px", width: "30px" }} onClick={(e) => { this.handleWizPost() }} />
-            </div> 
+            </div>
             {/* </Link> */}
           </div>
         </div>

@@ -158,31 +158,6 @@ class Listing extends Component {
                             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
 
                         <div className='card'>
@@ -192,7 +167,10 @@ class Listing extends Component {
                             <br />
                             <img src={host.user_pic} style={{ width: '50px' }} alt='' />
                             <br />
-                            <button>SEND EMAIL</button>
+                            <Link to='/chat'>
+                                <button>SEND EMAIL</button>
+                            </Link>
+                            
                             <br />
                             <p>About: {listing.about}</p>
                         </div>
