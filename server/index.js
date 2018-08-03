@@ -82,7 +82,7 @@ passport.deserializeUser(((primaryKeyId, done) => {
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
     // this redirects the user back to the front end where they started the login process
-    successRedirect: 'http://localhost:3000/#/search'
+    successRedirect: `${process.env.FRONTEND_URL}#/search`
     // user the hash symbol above because we are using Hashrouter
 }))
 
@@ -98,7 +98,7 @@ app.get('/auth/user', (req, res) => {
 app.get('/auth/logout', (req, res) => {
     req.logOut();
     // this is a built in method in passport that kills the session and resets the user property
-    res.redirect('http://localhost:3000');
+    res.redirect(process.env.FRONTEND_URL);
 });
 
 // User
