@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Nav from '../Nav/Nav'
 import './my_listings.css'
 import { connect } from 'react-redux';
-import { 
+import {
     getUser,
 } from '../../ducks/reducer';
 
@@ -30,13 +30,14 @@ class Mylistings extends Component {
         this.state = {
             mylistings: [],
             address: '',
-            buildingType:'',
+            buildingType: '',
             spaceType: '',
             numSpaces: 0,
             spaceSize: '',
             about: '',
             instructions: '',
-            price: 0
+            price: 0,
+            isLoading: true
         }
     }
 
@@ -44,12 +45,15 @@ class Mylistings extends Component {
 
         this.props.getUser().then(() => {
             axios.get(`/api/userlisting/${this.props.user.id}`).then(res => {
-                this.setState({ mylistings: res.data })
+                this.setState({ 
+                    mylistings: res.data, 
+                    isLoading: false
+                })
             })
         });
     }
 
-    handleListingUpdate(id) {        
+    handleListingUpdate(id) {
         this.props.history.push('/mylisting/edit/' + id);
     }
 
@@ -65,68 +69,68 @@ class Mylistings extends Component {
 
 
     render() {
-       let mappedlistings = this.state.mylistings.map((listing, i) => {
+        let mappedlistings = this.state.mylistings.map((listing, i) => {
             return <div key={i}>
-                <div className='card'> 
+                <div className='card'>
                     <img alt='' src={listing.pic_one} style={{ height: '150px', width: '150px' }} />
                     <img alt='' src={listing.pic_two} style={{ height: '150px', width: '150px' }} />
                     <img alt='' src={listing.pic_three} style={{ height: '150px', width: '150px' }} />
                     <img alt='' src={listing.pic_four} style={{ height: '150px', width: '150px' }} />
-                    <p style={{marginTop:'30px'}}>Address: {listing.address}</p>
-                    <hr/>
+                    <p style={{ marginTop: '30px' }}>Address: {listing.address}</p>
+                    <hr />
                     <p>Building Type: {listing.building_type}</p>
-                    <hr/>
+                    <hr />
                     <p>Space Type: {listing.space_type}</p>
-                    <hr/>
+                    <hr />
                     <p>Number of Spaces: {listing.num_spaces}</p>
-                    <hr/>
+                    <hr />
                     <p>Space Size: {listing.space_size}</p>
-                    <hr/>
+                    <hr />
                     <p>About: {listing.about}</p>
-                    <hr/>
+                    <hr />
                     <p>Instructions: {listing.instructions}</p>
-                    <hr/>
+                    <hr />
                     <p>Price: ${listing.price}</p>
-                    <hr/>
+                    <hr />
                     <div className='card'>
-                        <h1 style={{textAlign:'center'}}>Features</h1>
-                        <hr/>
+                        <h1 style={{ textAlign: 'center' }}>Features</h1>
+                        <hr />
                         <div className='grid'>
                             <div>
-                            {listing.covered ? 
-                            <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon'/>Covered</div> 
-                            : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon'/>Covered</div>}
+                                {listing.covered ?
+                                    <div className='featureicon'><img alt='' src={coverd_parking_icon} className='mylistingicon' />Covered</div>
+                                    : <div className='featureicon'><img alt='' src={coverd_parking_icon_off} className='mylistingicon' />Covered</div>}
                             </div>
                             <div>
-                            {listing.lit ? 
-                            <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon'/>Lit</div>
-                            : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon'/>Lit</div>}
+                                {listing.lit ?
+                                    <div className='featureicon'><img alt='' src={lit_icon} className='mylistingicon' />Lit</div>
+                                    : <div className='featureicon'><img alt='' src={lit_icon_off} className='mylistingicon' />Lit</div>}
                             </div>
                             <div>
-                            {listing.charging ? 
-                            <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon'/>Charging</div>
-                            : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon'/>Charging</div>}
+                                {listing.charging ?
+                                    <div className='featureicon'><img alt='' src={charging_icon} className='mylistingicon' />Charging</div>
+                                    : <div className='featureicon'><img alt='' src={charging_icon_off} className='mylistingicon' />Charging</div>}
                             </div>
                             <div>
-                            {listing.camera ? 
-                            <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon'/>Surveillance</div> 
-                            : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon'/>Surveillance</div>}
+                                {listing.camera ?
+                                    <div className='featureicon'><img alt='' src={camera_icon} className='mylistingicon' />Surveillance</div>
+                                    : <div className='featureicon'><img alt='' src={camera_icon_off} className='mylistingicon' />Surveillance</div>}
                             </div>
                             <div>
-                            {listing.fenced ? 
-                            <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon'/>Fenced</div> 
-                            : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon'/>Fenced</div>}
+                                {listing.fenced ?
+                                    <div className='featureicon'><img alt='' src={fence_icon} className='mylistingicon' />Fenced</div>
+                                    : <div className='featureicon'><img alt='' src={fence_icon_off} className='mylistingicon' />Fenced</div>}
                             </div>
                             <div>
-                            {listing.guarded ? 
-                            <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon'/>Security</div>
-                            : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon'/>Security</div>}
+                                {listing.guarded ?
+                                    <div className='featureicon'><img alt='' src={police_icon} className='mylistingicon' />Security</div>
+                                    : <div className='featureicon'><img alt='' src={police_icon_off} className='mylistingicon' />Security</div>}
                             </div>
                         </div>
                     </div>
-                    <br/>
-                    <img style={{float: 'right', height: '25px'}} alt='' src={edit_icon} onClick={() => { this.handleListingUpdate(listing.id) }}/>
-                    <img style={{height: '22px'}} alt='' src={delete_icon} onClick={() => { this.handleListingDelete(listing.id) }}/>
+                    <br />
+                    <img style={{ float: 'right', height: '25px' }} alt='' src={edit_icon} onClick={() => { this.handleListingUpdate(listing.id) }} />
+                    <img style={{ height: '22px' }} alt='' src={delete_icon} onClick={() => { this.handleListingDelete(listing.id) }} />
                     <br />
                 </div>
             </div>
@@ -135,21 +139,29 @@ class Mylistings extends Component {
 
         return (
             <div>
-                <Nav />
-                <div className='reset'>
-                    <Link to='/wizard0'><button className='bigbutton'>Add a Listing</button></Link>
-                    <br />
-                    {mappedlistings}
-                </div>
+                {!this.state.isLoading ?
+                    <div>
+                        <Nav />
+                        <div className='reset'>
+                            <Link to='/wizard0'><button className='bigbutton'>Add a Listing</button></Link>
+                            <br />
+                            {mappedlistings}
+                        </div>
+                    </div>
+                    :
+                    <div>
+                        <p>LOADING . . .</p>
+                    </div>
+                }
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    const { user} = state;
+    const { user } = state;
     return {
-        user:user
+        user: user
     }
 }
 
